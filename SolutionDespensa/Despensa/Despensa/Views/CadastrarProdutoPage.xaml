@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.CadastrarProdutoPage"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             Title="Despensa - Novo Produto"
+             BackgroundColor="#e0e0e0">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
+            <Image HorizontalOptions="Center"
+                   VerticalOptions="Center" 
+                   Source="imagemCriar.png" 
+                   Aspect="AspectFill"
+                   ></Image>
+            <ContentView 
+                         BackgroundColor="#3498DB" Opacity="0.5"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         IsVisible="{Binding IsLoading}">
+            </ContentView>
+            <ActivityIndicator 
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                         IsRunning="{Binding IsLoading}"
+                         IsVisible="{Binding IsLoading}" />
+            <Label Text="Nome" />
+            <Entry Text="{Binding NovoProduto.Nome}"/>
+            <Label Text="Marca" />
+            <Entry Text="{Binding NovoProduto.Marca}"/>
+            <Label Text="Categoria" />
+            <Picker ItemsSource="{Binding Categorias,Mode=TwoWay}" SelectedIndexChanged="Picker_SelectedIndexChangedCategoria" x:Name="PicCategoria"></Picker>
+            <Label Text="Status" />
+            <Picker ItemsSource="{Binding Status}" SelectedIndexChanged="Picker_SelectedIndexChangedStatus" x:Name="PicStatus"></Picker>
+            <Grid RowSpacing="1" ColumnSpacing="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Quantidade"  Grid.Row="0" Grid.Column="0" />
+                <Entry Text="{Binding NovoProduto.Quantidade}" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="Medida" Grid.Row="0" Grid.Column="1" />
+                <Picker ItemsSource="{Binding Medidas}" SelectedIndexChanged="Picker_SelectedIndexChangedMedidas" x:Name="PicMedidas" Grid.Row="0" Grid.Column="1" ></Picker>
+            </Grid>
+
+            <Button Text="Cadastrar Produto"
+             BackgroundColor="#caa052"
+             Command="{Binding CadastrarNovoProdutoCommand}"  
+		     BorderRadius="0"
+			 TextColor="White"  />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

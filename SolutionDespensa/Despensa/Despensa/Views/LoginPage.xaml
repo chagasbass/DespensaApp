@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.LoginPage"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             Title="Efetue o Login"
+             BackgroundColor="#e0e0e0">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image HorizontalOptions="Center"
+                   VerticalOptions="Center" 
+                   Source="imagemLogin.png" 
+                   Aspect="AspectFill"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"></Image>
+            </Grid>
+
+            <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
+
+                <ContentView 
+                         BackgroundColor="#3498DB" Opacity="0.5"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         IsVisible="False">
+                </ContentView>
+                <ActivityIndicator 
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                         IsRunning="False"
+                         IsVisible="False" />
+                <Label Text="Login"  />
+                <Entry Keyboard="Email" Text="{Binding Login}"/>
+                <Label Text="Senha" />
+                <Entry  IsPassword="true" Text="{Binding Senha}"/>
+                <Button Text="Acessar"
+             BackgroundColor="#caa052"
+		     BorderRadius="0"
+             Command="{Binding EfetuarLoginCommand}"
+			 TextColor="White" />
+
+                <Button
+                    Text="Esqueceu a Senha?"
+                     BorderWidth="1"
+                    Command="{Binding RedirecionarParaEsqueciSenhaCommand}"
+                    BorderRadius="0">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

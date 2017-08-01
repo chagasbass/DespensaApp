@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.ListagemDeProdutosPage"
+             Title="Despensa - Produtos"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             NavigationPage.HasBackButton="False">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_add_white_24dp" 
+                     Activated="ToolbarItem_Activated"
+                     Order="Primary"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ListView x:Name="listViewProdutos" IsPullToRefreshEnabled="true"
+              Refreshing="listViewProdutos_Refreshing" 
+              ItemSelected="listViewProdutos_ItemSelected"
+              CachingStrategy="RecycleElement"
+              ItemsSource="{Binding Produtos}"
+              IsGroupingEnabled="True"
+              GroupDisplayBinding="{Binding Categoria}"
+              GroupShortNameBinding="{Binding Categoria}"
+              HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Nome}" TextColor="Gray"></Label>
+                        <Label Text="{Binding Quantidade}" TextColor="#caa052"></Label>
+                    </StackLayout>
+
+                    <ViewCell.ContextActions>
+                            <MenuItem Text="Editar" Clicked="MenuItem_EditarProdutos"  CommandParameter="{Binding .}" />
+                            <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirProdutos" IsDestructive="True" CommandParameter="{Binding .}"/>
+                    </ViewCell.ContextActions>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

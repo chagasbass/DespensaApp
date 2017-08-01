@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.EsqueciSenhaPage"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+           BackgroundColor="#e0e0e0"
+             Title="Recupere a sua Senha">
+    <ContentPage.Content>
+        
+        <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
+            <Image HorizontalOptions="Center"
+                   VerticalOptions="Center" 
+                   Source="imagemCriar.png" 
+                   Aspect="AspectFill"
+                   ></Image>
+            <ContentView 
+                         BackgroundColor="#3498DB" Opacity="0.5"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         IsVisible="{Binding IsLoading}">
+            </ContentView>
+            <ActivityIndicator 
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                         IsRunning="{Binding IsLoading}"
+                         IsVisible="{Binding IsLoading}" />
+            
+            <Label Text="Email" />
+            <Entry Keyboard="Email" Text="{Binding UsuarioTrocaSenha.Email}" IsEnabled="{Binding DesabilitarEmail}"/>
+            <Label Text="Sobrenome"  IsVisible="{Binding HabilitarSenha}"/>
+            <Entry Text="{Binding UsuarioTrocaSenha.Codigo}" IsVisible="{Binding HabilitarSenha}"/>
+            <Label Text="Senha"  IsVisible="{Binding HabilitarSenha}"/>
+            <Entry  IsPassword="true" Text="{Binding UsuarioTrocaSenha.NovaSenha}" IsVisible="{Binding HabilitarSenha}"/>
+            <Label Text="Confirmar Senha" IsVisible="{Binding HabilitarSenha}" />
+            <Entry  IsPassword="true" Text="{Binding UsuarioTrocaSenha.ConfirmacaoDeSenha}" IsVisible="{Binding HabilitarSenha}"/>
+            <Button Text="{Binding TextoBotao}"
+             BackgroundColor="#caa052"
+		     BorderRadius="0"
+             Command="{Binding GerarCodigoDeUsuarioCommand}"
+			 TextColor="White"  />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

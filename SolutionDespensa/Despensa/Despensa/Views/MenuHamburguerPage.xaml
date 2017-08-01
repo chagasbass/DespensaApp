@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.MenuHamburguerPage"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             Title="Menu"
+             Icon="ic_menu_white_24dp.png">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="http://cinefilos.jornalismojunior.com.br/wp-content/uploads/Batman06.jpg"/>
+                <Label TextColor="White" Text="Seja bem vindo Usuário" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </StackLayout>
+            <ListView 
+                      ItemSelected="ListView_ItemSelected"
+                      ItemsSource="{Binding ListaMenu}"
+                      SelectedItem="{Binding ItemSelecionado,Mode=TwoWay}"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Icone}" Aspect="AspectFit"></Image>
+                                <Label Text="{Binding Texto}" FontAttributes="Bold" VerticalOptions="CenterAndExpand" TextColor="Black"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

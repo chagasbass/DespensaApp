@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.ListagemDeCategoriasPage"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             Title="Despensa -Categorias">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_add_white_24dp" 
+                     Activated="ToolbarItem_Activated"
+                     Order="Primary"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+   
+    <StackLayout>
+        <SearchBar Placeholder="Pesquisar..." Text="{Binding Pesquisa}" TextChanged="SearchBar_TextChanged" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"></SearchBar>    
+    <ListView x:Name="listViewCategorias" IsPullToRefreshEnabled="true"
+              Refreshing="listViewCategorias_Refreshing"
+              ItemSelected="listViewCategorias_ItemSelected"
+              CachingStrategy="RecycleElement"
+              ItemsSource="{Binding Categorias}"
+              HasUnevenRows="True"
+              RowHeight="55">
+            <ListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="{Binding Nome}" TextColor="Gray" FontSize="Medium" FontAttributes="Bold"></Label>
+                </StackLayout>
+
+                <ViewCell.ContextActions>
+                    <MenuItem Text="Editar" Clicked="MenuItem_EditarCategorias"  CommandParameter="{Binding .}" />
+                    <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirCategorias" IsDestructive="True" CommandParameter="{Binding .}"/>
+                </ViewCell.ContextActions>
+            </ViewCell>
+        </DataTemplate>
+            </ListView.ItemTemplate>
+            <!--<DataTemplate>
+            <ImageCell
+                    Text="{Binding Texto}"
+                    Detail="{Binding Detalhe}"
+                    ImageSource="{Binding Imagem}"/>
+        </DataTemplate>-->
+
+    </ListView>
+    </StackLayout>
+</ContentPage>

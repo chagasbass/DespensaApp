@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.RegistrarUsuarioPage"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             Title="Crie a sua Conta"
+             BackgroundColor="#e0e0e0">
+    <ContentPage.Content>
+        
+        <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
+            <Image HorizontalOptions="Center"
+                   VerticalOptions="Center" 
+                   Source="imagemCriar.png" 
+                   Aspect="AspectFill"
+                   ></Image>
+            <ContentView 
+                         BackgroundColor="#3498DB" Opacity="0.5"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         IsVisible="{Binding IsLoading}">
+            </ContentView>
+            <ActivityIndicator 
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                         IsRunning="{Binding IsLoading}"
+                         IsVisible="{Binding IsLoading}" />
+            <Label Text="Nome" />
+            <Entry Text="{Binding NovoUsuario.Nome}"/>
+            <Label Text="Sobrenome" />
+            <Entry Text="{Binding NovoUsuario.Sobrenome}"/>
+            <Label Text="Email" />
+            <Entry Keyboard="Email" Text="{Binding NovoUsuario.Email}"/>
+            <Label Text="Senha" />
+            <Entry  IsPassword="true" Text="{Binding NovoUsuario.Senha}"/>
+            <Button Text="Criar Conta"
+             BackgroundColor="#caa052"
+             Command="{Binding CadastrarNovoUsuarioCommand}"  
+		     BorderRadius="0"
+			 TextColor="White"  />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
