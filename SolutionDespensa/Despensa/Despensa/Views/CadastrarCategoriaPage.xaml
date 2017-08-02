@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Despensa.Views.CadastrarCategoriaPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             Title="Crie a sua Categoria"
+             Title="Despensa - nova Categoria"
              BackgroundColor="#e0e0e0">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
@@ -25,6 +25,8 @@
                          IsVisible="{Binding IsLoading}" />
             <Label Text="Nome" />
             <Entry Text="{Binding NovaCategoria.Nome}"/>
+            <Label Text="Informações" />
+            <Editor Text="{Binding NovaCategoria.Informacao}"/>
             <Button Text="Cadastrar Categoria"
              BackgroundColor="#caa052"
              Command="{Binding CadastrarNovaCategoriaCommand}"  

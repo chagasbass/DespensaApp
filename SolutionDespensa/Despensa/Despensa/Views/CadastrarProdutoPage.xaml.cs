@@ -32,16 +32,13 @@ namespace Despensa.Views
 
             BindingContext = new CadastrarProdutoViewModel(this.Navigation, ProdutoRepo,CategoriaRepo, PageService);
             ViewModel.NovoProduto = new Models.Produto();
-            ViewModel.Categorias = new List<Categoria>();
-            ViewModel.Medidas = new List<string>();
-            ViewModel.Status = new List<string>();
         }
 
-        private void Picker_SelectedIndexChangedCategoria(object sender, EventArgs e)
-        {
-            var categoria = ViewModel.Categorias[PicCategoria.SelectedIndex];
-            ViewModel.SelecionarCategoriaCommand.Execute(categoria);
-        }
+        //private void Picker_SelectedIndexChangedCategoria(object sender, EventArgs e)
+        //{
+        //    var categoria = ViewModel.Categorias[PicCategoria.SelectedIndex];
+        //    ViewModel.SelecionarCategoriaCommand.Execute(categoria);
+        //}
 
         private void Picker_SelectedIndexChangedStatus(object sender, EventArgs e)
         {

@@ -18,18 +18,18 @@ namespace Despensa.Views
             get { return BindingContext as ProdutoViewModel; }
             set { BindingContext = value; }
         }
-
-        protected override async void OnAppearing()
-        {
-            ViewModel.ListarProdutosCommand.Execute(null);
-        }
-
+       
         public ListagemDeProdutosPage()
         {
             InitializeComponent();
             _Repo = new ProdutoRepository();
             BindingContext = new ProdutoViewModel(this, _Repo);
             _Repo.CriarTabelas();
+        }
+
+        protected override async void OnAppearing()
+        {
+            ViewModel.ListarProdutosCommand.Execute(null);
         }
 
         private async void ToolbarItem_Activated(object sender, EventArgs e)
@@ -72,7 +72,12 @@ namespace Despensa.Views
 
         private async void listViewProdutos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            //ViewModel.SelecionarContatoCommand.Execute(e.SelectedItem);
+            ViewModel.SelecionarProdutoCommand.Execute(e.SelectedItem);
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

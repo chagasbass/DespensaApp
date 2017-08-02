@@ -11,12 +11,8 @@
 namespace Despensa.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProjetosXamarin\\SolutionDespensa\\Despensa\\Despensa\\Views\\CadastrarProdutoPage." +
-        "xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\App\\SolutionDespensa\\Despensa\\Despensa\\Views\\CadastrarProdutoPage.xaml")]
     public partial class CadastrarProdutoPage : global::Xamarin.Forms.ContentPage {
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
-        private global::Xamarin.Forms.Picker PicCategoria;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private global::Xamarin.Forms.Picker PicStatus;
@@ -27,7 +23,6 @@ namespace Despensa.Views {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(CadastrarProdutoPage));
-            PicCategoria = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "PicCategoria");
             PicStatus = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "PicStatus");
             PicMedidas = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "PicMedidas");
         }

@@ -76,7 +76,7 @@ namespace Despensa.ViewModels
             if (categoria == null)
                 return;
 
-            //await _Page.Navigation.PushAsync(new DetalhesContatoPage(produto));
+            await _Page.Navigation.PushAsync(new DetalhesCategoriaPage(categoria));
         }
 
         private async Task AtualizarCategoria(Categoria categoria)

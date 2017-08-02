@@ -3,7 +3,6 @@ using Despensa.Models;
 using Despensa.Views;
 using Plugin.LocalNotifications;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -17,22 +16,19 @@ namespace Despensa.ViewModels
         public ICommand NavegarParaAtualizarProdutoCommand { get; private set; }
         public ICommand ExcluirProdutoCommand { get; private set; }
         public ICommand ListarProdutosCommand { get; private set; }
-
-        public ObservableCollection<Agrupamento<string,Produto>> Produtos { get; private set; } = new ObservableCollection<Agrupamento<string, Produto>>();
-        //public ObservableCollection<Produto> Produtos { get; private set; } = new ObservableCollection<Produto>();
+       
+        public ObservableCollection<Produto> Produtos { get; private set; } = new ObservableCollection<Produto>();
 
         readonly ProdutoRepository _ProdutoRepository;
         readonly Page _Page;
 
-        private Produto _ProdutoSelecionado;
-
+         Produto _ProdutoSelecionado;
+         
         public Produto ProdutoSelecionado
         {
             get { return _ProdutoSelecionado; }
             set { SetValue(ref _ProdutoSelecionado, value); }
         }
-
-        public object Contatos { get; private set; }
 
         public ProdutoViewModel(Page Page, ProdutoRepository ProdutoRepository)
         {
@@ -50,9 +46,8 @@ namespace Despensa.ViewModels
         {
             if (produto == null)
                 return;
-
-            await _Page.DisplayAlert("Atenção", "Selecionado produto", "OK");
-            //await _Page.Navigation.PushAsync(new DetalhesContatoPage(produto));
+            
+            await _Page.Navigation.PushAsync(new DetalhesProdutoPage(produto));
         }
 
         private async Task AtualizarProduto(Produto produto)
@@ -77,22 +72,33 @@ namespace Despensa.ViewModels
 
         private async void ListarProdutos()
         {
-            Produtos.Clear();
+            try
+            {
+                Produtos.Clear();
 
-            var produtos = await _ProdutoRepository.RecuperarProdutosAsync();
+                var produtos = await _ProdutoRepository.RecuperarProdutosAsync();
 
-            if (produtos == null)
-                return;
+                if (produtos == null)
+                    return;
 
-            var lista = from p in produtos
-                       orderby p.Nome
-                       group p by p.Categoria.Nome into produtosAgrupados
-                       select new Agrupamento<string, Produto>(produtosAgrupados.Key, produtosAgrupados);
+                //var lista = from p in produtos
+                //            orderby p.Nome
+                //            group p by p.Categoria.Nome into produtosAgrupados
+                //            select new Agrupamento<string, Produto>(produtosAgrupados.Key, produtosAgrupados);
 
-            Produtos = new ObservableCollection<Agrupamento<string, Produto>>(lista);
+                foreach (var produto in produtos)
+                {
+                    produto.CriarDetalhes();
+                    Produtos.Add(produto);
+                }
 
-            if (Produtos.Count == 0)
-                CrossLocalNotifications.Current.Show("Atenção", "A despensa está vazia!!, cadastre os seus items");
+                if (Produtos.Count == 0)
+                    CrossLocalNotifications.Current.Show("Atenção", "A despensa está vazia!!, cadastre os seus items");
+            }
+            catch (System.Exception ex)
+            {
+                var e = ex.Message;
+            }
         }
     }
 }

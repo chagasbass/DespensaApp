@@ -11,8 +11,7 @@
 namespace Despensa.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProjetosXamarin\\SolutionDespensa\\Despensa\\Despensa\\Views\\ListagemDeProdutosPag" +
-        "e.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\App\\SolutionDespensa\\Despensa\\Despensa\\Views\\ListagemDeProdutosPage.xaml")]
     public partial class ListagemDeProdutosPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

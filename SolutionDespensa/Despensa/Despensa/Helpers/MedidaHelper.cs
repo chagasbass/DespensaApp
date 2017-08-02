@@ -11,7 +11,7 @@ namespace Despensa.Helpers
         {
             return  new List<string>()
             {
-                "Kg","unidade","Litro(s)","Pacote(s)"
+                "Kg","Unidade(s)","Litro(s)","Pacote(s)"
             };
         }
     }

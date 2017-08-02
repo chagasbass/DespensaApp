@@ -14,6 +14,7 @@ namespace Despensa.Models
         private string _DataCadastro;
         private Categoria _Categoria;
         private string _Status;
+        private string _Detalhes;
         
         public Produto()
         {
@@ -111,6 +112,18 @@ namespace Despensa.Models
             }
         }
 
+        [Ignore]
+        public string Detalhes
+        {
+            get { return _Detalhes; }
+
+            set
+            {
+                SetValue(ref _Detalhes, value);
+                OnPropertyChanged(nameof(_Detalhes));
+            }
+        }
+
         #endregion
 
         public List<string> ValidarProduto()
@@ -131,6 +144,11 @@ namespace Despensa.Models
                 notificacoes.Add("Status Inválido");
 
             return notificacoes;
+        }
+
+        public void  CriarDetalhes()
+        {
+            Detalhes =  string.Concat(Quantidade, " ", Medida);
         }
     }
 }

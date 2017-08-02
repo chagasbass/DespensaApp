@@ -71,7 +71,7 @@ namespace Despensa.DataContexts
         {
             var produtos = await _Connection.Table<Produto>().ToListAsync();
 
-            var produto = produtos.Find(x => x.Marca.ToUpper() == nome.ToUpper() && x.Marca.ToUpper() == marca.ToUpper());
+            var produto = produtos.Find(x => x.Nome.ToUpper() == nome.ToUpper() && x.Marca.ToUpper() == marca.ToUpper());
 
             return produto;
         }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using Despensa.Helpers;
+using System.Collections.ObjectModel;
 
 namespace Despensa.ViewModels
 {
@@ -22,9 +23,10 @@ namespace Despensa.ViewModels
         readonly IPageService _PageService;
 
         Produto _NovoProduto;
-        List<Categoria> _Categorias;
+        public ObservableCollection<Categoria> Categorias { get; private set; } = new ObservableCollection<Categoria>();
         List<string> _Status;
         List<string> _Medidas;
+        Categoria _CategoriaSelecionada;
         bool _IsLoading;
         string _Erros;
 
@@ -36,16 +38,6 @@ namespace Despensa.ViewModels
             {
                 SetValue(ref _NovoProduto, value);
                 OnPropertyChanged(nameof(_NovoProduto));
-            }
-        }
-
-        public List<Categoria> Categorias
-        {
-            get { return _Categorias; }
-            set
-            {
-                SetValue(ref _Categorias, value);
-                OnPropertyChanged(nameof(_Categorias));
             }
         }
 
@@ -89,6 +81,16 @@ namespace Despensa.ViewModels
             }
         }
 
+        public Categoria CategoriaSelecionada
+        {
+            get { return _CategoriaSelecionada; }
+            set
+            {
+                SetValue(ref _CategoriaSelecionada, value);
+                OnPropertyChanged(nameof(_CategoriaSelecionada));
+            }
+        }
+
         #endregion
 
         public CadastrarProdutoViewModel(INavigation Navigation, ProdutoRepository ProdutoRepository, CategoriaRepository CategoriaRepository, IPageService PageService)
@@ -99,7 +101,7 @@ namespace Despensa.ViewModels
             _PageService = PageService;
 
             CadastrarNovoProdutoCommand = new Command(CadastrarProduto);
-            SelecionarCategoriaCommand = new Command<Categoria>(async vm => await SelecionarCategoria(vm));
+            //SelecionarCategoriaCommand = new Command<Categoria>(async vm => await SelecionarCategoria(vm));
             SelecionarMedidaCommand = new Command<string>(async vm => await SelecionarMedida(vm));
             SelecionarStatusCommand = new Command<string>(async vm => await SelecionarStatus(vm));
 
@@ -110,16 +112,28 @@ namespace Despensa.ViewModels
             IsLoading = false;
         }
 
-        private async void InicializarListas()
+        private void InicializarListas()
         {
-            _Categorias = await _CategoriaRepository.RecuperarCategoriasAsync();
-            _Medidas = MedidaHelper.RetornarMedidas();
-            _Status = StatusHelper.RecuperarStatus();
+            ListarCategorias();
+            Medidas = MedidaHelper.RetornarMedidas();
+            Status = StatusHelper.RecuperarStatus();
+        }
+
+        private async void ListarCategorias()
+        {
+            var categorias = await _CategoriaRepository.RecuperarCategoriasAsync();
+
+            foreach (var cat in categorias)
+                Categorias.Add(cat);
         }
 
         private async void CadastrarProduto()
         {
             IsLoading = true;
+
+            NovoProduto.CriarDetalhes();
+            NovoProduto.Categoria = CategoriaSelecionada;
+            NovoProduto.IdCategoria = CategoriaSelecionada.Id;
 
             var erros = NovoProduto.ValidarProduto();
 
@@ -145,6 +159,8 @@ namespace Despensa.ViewModels
                 return;
             }
 
+           
+
             _ProdutoRepository.CadastrarProdutoAsync(NovoProduto);
 
             IsLoading = false;
@@ -154,11 +170,12 @@ namespace Despensa.ViewModels
             //volta para a lista
             await _Navigation.PopAsync();
         }
-        
-        private async Task SelecionarCategoria(Categoria categoria)
-        {
-            NovoProduto.Categoria = categoria;
-        }
+
+        //private async Task SelecionarCategoria(Categoria categoria)
+        //{
+        //    NovoProduto.Categoria = categoria;
+        //    NovoProduto.IdCategoria = categoria.Id;
+        //}
 
         private async Task SelecionarMedida(string medida)
         {

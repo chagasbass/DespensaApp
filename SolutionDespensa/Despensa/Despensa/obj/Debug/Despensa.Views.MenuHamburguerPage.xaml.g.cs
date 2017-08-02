@@ -11,8 +11,7 @@
 namespace Despensa.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProjetosXamarin\\SolutionDespensa\\Despensa\\Despensa\\Views\\MenuHamburguerPage.xa" +
-        "ml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\App\\SolutionDespensa\\Despensa\\Despensa\\Views\\MenuHamburguerPage.xaml")]
     public partial class MenuHamburguerPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

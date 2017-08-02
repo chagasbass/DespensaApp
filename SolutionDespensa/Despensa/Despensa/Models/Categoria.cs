@@ -10,8 +10,9 @@ namespace Despensa.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        private string _Nome;
-        private string _DataCadastro;
+         string _Nome;
+         string _DataCadastro;
+        string _Informacao;
 
         [MaxLength(50),NotNull]
         public string Nome
@@ -25,7 +26,7 @@ namespace Despensa.Models
             }
         }
 
-        [MaxLength(20)]
+        [MaxLength(20),NotNull]
         public string DataCadastro
         {
             get { return _DataCadastro; }
@@ -36,7 +37,19 @@ namespace Despensa.Models
                 OnPropertyChanged(nameof(_DataCadastro));
             }
         }
-     
+
+        [MaxLength(100)]
+        public string Informacao
+        {
+            get { return _Informacao; }
+
+            set
+            {
+                SetValue(ref _Informacao, value);
+                OnPropertyChanged(nameof(_Informacao));
+            }
+        }
+
         public Categoria()
         {
             DataCadastro = DateTime.Now.ToString();

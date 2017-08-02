@@ -64,14 +64,14 @@ namespace Despensa.ViewModels
             RedirecionarParaEsqueciSenhaCommand = new Command(IRedirecionarParaTrocaDeSenha);
             EfetuarLoginCommand = new Command(EfetuarLogin);
             IsLoading = false;
+            Login = "teste@teste.com";
+            Senha = "teste";
         }
 
         private async  void EfetuarLogin(object obj)
         {
             IsLoading = true;
-
-            Login = "teste@teste.com";
-            Senha = "teste";
+            
 
             var eValido = await ValidarLogin();
 

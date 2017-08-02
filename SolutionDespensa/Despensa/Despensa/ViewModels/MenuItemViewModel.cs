@@ -37,8 +37,8 @@ namespace Despensa.ViewModels
 
         private void CriarListaDeMenu()
         {
-            ListaMenu.Add(new Models.ItemMenu() { Texto = "Produtos", Icone = "ic_menuLateral.png", Page = new ListagemDeProdutosPage() });
-            ListaMenu.Add(new Models.ItemMenu() { Texto = "Categorias", Icone = "ic_menuLateral.png", Page = new ListagemDeCategoriasPage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Produtos", Icone = "ic_list_black_24dp.png", Page = new ListagemDeProdutosPage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Categorias", Icone = "ic_list_black_24dp.png", Page = new ListagemDeCategoriasPage() });
         }
     }
 }

@@ -29,9 +29,13 @@
             <Label Text="Marca" />
             <Entry Text="{Binding NovoProduto.Marca}"/>
             <Label Text="Categoria" />
-            <Picker ItemsSource="{Binding Categorias,Mode=TwoWay}" SelectedIndexChanged="Picker_SelectedIndexChangedCategoria" x:Name="PicCategoria"></Picker>
+            <Picker ItemsSource="{Binding Categorias}"  
+                    ItemDisplayBinding="{Binding Nome}" 
+                    SelectedItem="{Binding CategoriaSelecionada}"></Picker>
             <Label Text="Status" />
-            <Picker ItemsSource="{Binding Status}" SelectedIndexChanged="Picker_SelectedIndexChangedStatus" x:Name="PicStatus"></Picker>
+            <Picker ItemsSource="{Binding Status}" 
+             SelectedIndexChanged="Picker_SelectedIndexChangedStatus" 
+             x:Name="PicStatus"></Picker>
             <Grid RowSpacing="1" ColumnSpacing="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
@@ -42,7 +46,9 @@
                 <Label Text="Quantidade"  Grid.Row="0" Grid.Column="0" />
                 <Entry Text="{Binding NovoProduto.Quantidade}" Grid.Row="0" Grid.Column="0"/>
                 <Label Text="Medida" Grid.Row="0" Grid.Column="1" />
-                <Picker ItemsSource="{Binding Medidas}" SelectedIndexChanged="Picker_SelectedIndexChangedMedidas" x:Name="PicMedidas" Grid.Row="0" Grid.Column="1" ></Picker>
+                <Picker ItemsSource="{Binding Medidas}" 
+                        SelectedIndexChanged="Picker_SelectedIndexChangedMedidas" 
+                        x:Name="PicMedidas" Grid.Row="0" Grid.Column="1" ></Picker>
             </Grid>
 
             <Button Text="Cadastrar Produto"

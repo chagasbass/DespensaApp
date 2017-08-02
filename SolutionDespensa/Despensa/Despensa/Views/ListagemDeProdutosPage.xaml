@@ -11,31 +11,32 @@
                      Activated="ToolbarItem_Activated"
                      Order="Primary"></ToolbarItem>
     </ContentPage.ToolbarItems>
-
-    <ListView x:Name="listViewProdutos" IsPullToRefreshEnabled="true"
+ 
+    <StackLayout>
+        <SearchBar Placeholder="Pesquisar..." Text="{Binding Pesquisa}" TextChanged="SearchBar_TextChanged" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"></SearchBar>
+        <ListView x:Name="listViewProdutos" IsPullToRefreshEnabled="true"
               Refreshing="listViewProdutos_Refreshing" 
               ItemSelected="listViewProdutos_ItemSelected"
               CachingStrategy="RecycleElement"
               ItemsSource="{Binding Produtos}"
-              IsGroupingEnabled="True"
-              GroupDisplayBinding="{Binding Categoria}"
-              GroupShortNameBinding="{Binding Categoria}"
-              HasUnevenRows="True">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding Nome}" TextColor="Gray"></Label>
-                        <Label Text="{Binding Quantidade}" TextColor="#caa052"></Label>
-                    </StackLayout>
+              HasUnevenRows="True"
+              RowHeight="55">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Nome}" TextColor="Gray"></Label>
+                            <Label Text="{Binding Detalhes}" TextColor="#caa052"></Label>
+                        </StackLayout>
 
-                    <ViewCell.ContextActions>
+                        <ViewCell.ContextActions>
                             <MenuItem Text="Editar" Clicked="MenuItem_EditarProdutos"  CommandParameter="{Binding .}" />
                             <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirProdutos" IsDestructive="True" CommandParameter="{Binding .}"/>
-                    </ViewCell.ContextActions>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 
 </ContentPage>
