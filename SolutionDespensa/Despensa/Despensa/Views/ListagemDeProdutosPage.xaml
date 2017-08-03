@@ -4,7 +4,8 @@
              x:Class="Despensa.Views.ListagemDeProdutosPage"
              Title="Despensa - Produtos"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             NavigationPage.HasBackButton="False">
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="#e0e0e0">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_add_white_24dp" 

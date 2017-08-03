@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Despensa.Views.ListagemDeCategoriasPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             Title="Despensa - Categorias">
+             NavigationPage.HasBackButton="False"
+             Title="Despensa - Categorias"
+             BackgroundColor="#e0e0e0">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_add_white_24dp" 
@@ -19,11 +21,16 @@
               CachingStrategy="RecycleElement"
               ItemsSource="{Binding Categorias}"
               HasUnevenRows="True"
-              RowHeight="55">
+              RowHeight="100">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="5">
+                        <ImageCell
+                            Detail="{Binding Informacao}"
+                            ImageSource="ic_menuLateral.png"
+                            Text="{Binding Nome}"
+                            ></ImageCell>
+                        <!--<Grid Padding="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"></RowDefinition>
                                 <RowDefinition Height="20"></RowDefinition>
@@ -34,21 +41,15 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Source="ic_menuLateral.png" Aspect="AspectFill"/>
                             <Label Grid.Row="0" Grid.Column="0" Text="{Binding Nome}" LineBreakMode="TailTruncation"></Label>
-                        </Grid>
-                    <ViewCell.ContextActions>
-                        <MenuItem Text="Editar" Clicked="MenuItem_EditarCategorias"  CommandParameter="{Binding .}" />
-                        <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirCategorias" IsDestructive="True" CommandParameter="{Binding .}"/>
-                    </ViewCell.ContextActions>
+                        </Grid>-->
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Editar" Clicked="MenuItem_EditarCategorias"  CommandParameter="{Binding .}" />
+                            <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirCategorias" IsDestructive="True" CommandParameter="{Binding .}"/>
+                        </ViewCell.ContextActions>
                     </ViewCell>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <!--<DataTemplate>
-            <ImageCell
-                    Text="{Binding Texto}"
-                    Detail="{Binding Detalhe}"
-                    ImageSource="{Binding Imagem}"/>
-        </DataTemplate>-->
-
         </ListView>
     </StackLayout>
 </ContentPage>

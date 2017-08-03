@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Despensa.Views.CadastrarCategoriaPage"
+             x:Class="Despensa.Views.AtualizarCategoriaPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             Title="Despensa - nova Categoria"
+             Title="Despensa - Categoria"
              BackgroundColor="#e0e0e0">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
@@ -24,12 +24,12 @@
                          IsRunning="{Binding IsLoading}"
                          IsVisible="{Binding IsLoading}" />-->
             <Label Text="Nome" />
-            <Entry Text="{Binding NovaCategoria.Nome}"/>
+            <Entry Text="{Binding CategoriaAtualizada.Nome}"/>
             <Label Text="Informações" />
-            <Editor Text="{Binding NovaCategoria.Informacao}"/>
-            <Button Text="Cadastrar Categoria"
+            <Editor Text="{Binding CategoriaAtualizada.Informacao}"/>
+            <Button Text="Atualizar Categoria"
              BackgroundColor="#caa052"
-             Command="{Binding CadastrarNovaCategoriaCommand}"  
+             Command="{Binding AtualizarCategoriaCommand}"  
 		     BorderRadius="0"
 			 TextColor="White"  />
         </StackLayout>

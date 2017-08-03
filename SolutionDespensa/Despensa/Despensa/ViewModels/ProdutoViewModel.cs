@@ -2,7 +2,9 @@
 using Despensa.Models;
 using Despensa.Views;
 using Plugin.LocalNotifications;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,18 +18,26 @@ namespace Despensa.ViewModels
         public ICommand NavegarParaAtualizarProdutoCommand { get; private set; }
         public ICommand ExcluirProdutoCommand { get; private set; }
         public ICommand ListarProdutosCommand { get; private set; }
-       
+        public ICommand PesquisarProdutoCommand { get; set; }
+
         public ObservableCollection<Produto> Produtos { get; private set; } = new ObservableCollection<Produto>();
 
         readonly ProdutoRepository _ProdutoRepository;
         readonly Page _Page;
+        private string _Pesquisa;
 
-         Produto _ProdutoSelecionado;
+        Produto _ProdutoSelecionado;
          
         public Produto ProdutoSelecionado
         {
             get { return _ProdutoSelecionado; }
             set { SetValue(ref _ProdutoSelecionado, value); }
+        }
+
+        public string Pesquisa
+        {
+            get { return _Pesquisa; }
+            set { SetValue(ref _Pesquisa, value); }
         }
 
         public ProdutoViewModel(Page Page, ProdutoRepository ProdutoRepository)
@@ -40,6 +50,25 @@ namespace Despensa.ViewModels
             NavegarParaAtualizarProdutoCommand = new Command<Produto>(async vm => await AtualizarProduto(vm));
             ListarProdutosCommand = new Command(ListarProdutos);
             ExcluirProdutoCommand = new Command(ExcluirProduto);
+            PesquisarProdutoCommand = new Command(PesquisarProduto);
+        }
+
+        private async void PesquisarProduto()
+        {
+            if (String.IsNullOrEmpty(Pesquisa))
+            {
+                ListarProdutos();
+                return;
+            }
+
+            var pesquisa = Produtos.Where(x => x.Nome.ToUpper().Contains(Pesquisa.ToUpper())).ToList();
+
+            Produtos.Clear();
+
+            foreach (var item in pesquisa)
+            {
+                Produtos.Add(item);
+            }
         }
 
         private async Task SelecionarProduto(Produto produto)

@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿
+using Java.Lang;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Despensa
@@ -6,6 +9,7 @@ namespace Despensa
     public partial class App : Application
     {
         public static MasterDetailPage MasterDetail { get; set; }
+        
 
         public App()
         {
@@ -16,8 +20,15 @@ namespace Despensa
 
         public async static Task NavigateMasterDetail(Page page)
         {
-            App.MasterDetail.IsPresented = false;//esconde a barra quando navegar para outra página!
-            await App.MasterDetail.Detail.Navigation.PushAsync(page);
+            try
+            {
+                MasterDetail.IsPresented = false;//esconde a barra quando navegar para outra página!
+                MasterDetail.Detail = new NavigationPage(page);
+            }
+            catch (System.Exception ex)
+            {
+                var m = ex.Message;
+            }
         }
 
         protected override void OnStart()

@@ -18,6 +18,7 @@ namespace Despensa.ViewModels
         public ICommand ExcluirCategoriaCommand { get; private set; }
         public ICommand ListarCategoriasCommand { get; private set; }
         public ICommand PesquisarCategoriaCommand { get; set; }
+        public ICommand AtualizarCategoriaCommand { get; set; }
 
 
         public ObservableCollection<Categoria> Categorias { get; private set; } = new ObservableCollection<Categoria>();
@@ -51,6 +52,7 @@ namespace Despensa.ViewModels
             ListarCategoriasCommand = new Command(ListarCategorias);
             ExcluirCategoriaCommand = new Command(ExcluirCategoria);
             PesquisarCategoriaCommand = new Command(PesquisarCategoria);
+            
         }
 
         private async void PesquisarCategoria()
@@ -84,7 +86,7 @@ namespace Despensa.ViewModels
             if (categoria == null)
                 return;
 
-            //await _Page.Navigation.PushAsync(new AtualizarContatoPage(produto));
+           await _Page.Navigation.PushAsync(new AtualizarCategoriaPage(categoria));
         }
 
         private async void ExcluirCategoria()

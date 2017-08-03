@@ -57,6 +57,7 @@
     <Compile Include="Services\IAndroidMethods.cs" />
     <Compile Include="Services\IPageService.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="ViewModels\AtualizarCategoriaViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CadastrarCategoriaViewModel.cs" />
     <Compile Include="ViewModels\CadastrarProdutoViewModel.cs" />
@@ -67,6 +68,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\RegistrarUsuarioViewModel.cs" />
+    <Compile Include="Views\AtualizarCategoriaPage.xaml.cs">
+      <DependentUpon>AtualizarCategoriaPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CadastrarCategoriaPage.xaml.cs">
       <DependentUpon>CadastrarCategoriaPage.xaml</DependentUpon>
     </Compile>
@@ -112,6 +116,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v7.1\Mono.Android.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -218,6 +225,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DetalhesProdutoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AtualizarCategoriaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

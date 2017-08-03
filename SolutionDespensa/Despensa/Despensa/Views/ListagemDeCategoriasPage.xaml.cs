@@ -48,7 +48,7 @@ namespace Despensa.Views
             var escolha = (MenuItem)sender;
             var categoria = (Categoria)escolha.CommandParameter;
 
-            //ViewModel.NavegarParaAtualizarProdutoCommand(produto);
+            ViewModel.NavegarParaCategoriaProdutoCommand.Execute(categoria);
         }
 
         private async void MenuItem_ExcluirCategorias(object sender, EventArgs e)

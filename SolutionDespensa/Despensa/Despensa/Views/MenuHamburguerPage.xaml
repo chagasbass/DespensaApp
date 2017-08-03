@@ -12,9 +12,11 @@
                 <Label TextColor="White" Text="Seja bem vindo Usuário" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
             <ListView 
+                      x:Name="listViewMenu"
                       ItemSelected="ListView_ItemSelected"
                       ItemsSource="{Binding ListaMenu}"
-                      SelectedItem="{Binding ItemSelecionado,Mode=TwoWay}"
+                      SelectedItem="{Binding ItemSelecionado}"
+                      
                       >
                 <ListView.ItemTemplate>
                     <DataTemplate>

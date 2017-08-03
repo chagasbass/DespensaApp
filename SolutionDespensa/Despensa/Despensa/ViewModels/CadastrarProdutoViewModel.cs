@@ -159,13 +159,11 @@ namespace Despensa.ViewModels
                 return;
             }
 
-           
-
             _ProdutoRepository.CadastrarProdutoAsync(NovoProduto);
 
             IsLoading = false;
 
-            await _PageService.DisplayAlert("Despensa", "Categoria criada com sucesso", "OK");
+            await _PageService.DisplayAlert("Despensa", "Produto criada com sucesso", "OK");
 
             //volta para a lista
             await _Navigation.PopAsync();

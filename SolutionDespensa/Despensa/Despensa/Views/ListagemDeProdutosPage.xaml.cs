@@ -77,7 +77,7 @@ namespace Despensa.Views
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            ViewModel.PesquisarProdutoCommand.Execute(null);
         }
     }
 }

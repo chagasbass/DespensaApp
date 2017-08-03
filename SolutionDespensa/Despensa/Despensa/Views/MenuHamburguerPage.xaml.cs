@@ -25,10 +25,11 @@ namespace Despensa.Views
             {
                 if (ViewModel.ItemSelecionado == null)
                     return;
-
+                
                 ViewModel.SelecionarItemCommand.Execute(null);
 
                 ViewModel.ItemSelecionado = null;
+                
             }
             catch (System.Exception ex)
             {
