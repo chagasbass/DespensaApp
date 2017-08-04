@@ -101,7 +101,6 @@ namespace Despensa.ViewModels
             _PageService = PageService;
 
             CadastrarNovoProdutoCommand = new Command(CadastrarProduto);
-            //SelecionarCategoriaCommand = new Command<Categoria>(async vm => await SelecionarCategoria(vm));
             SelecionarMedidaCommand = new Command<string>(async vm => await SelecionarMedida(vm));
             SelecionarStatusCommand = new Command<string>(async vm => await SelecionarStatus(vm));
 
@@ -147,15 +146,19 @@ namespace Despensa.ViewModels
                 IsLoading = false;
                 await _PageService.DisplayAlert("Atenção", Erros, "OK");
 
+                Erros = string.Empty;
+
                 return;
             }
+
+            NovoProduto.FormatarCamposDeItem();
 
             var produtoEncontrado = await _ProdutoRepository.RecuperarProdutoPorNomeEMarcaAsync(NovoProduto.Nome, NovoProduto.Marca);
 
             if (produtoEncontrado != null)
             {
                 IsLoading = false;
-                await _PageService.DisplayAlert("Atenção", "Produto já cadastrado", "OK");
+                await _PageService.DisplayAlert("Atenção", "Item já cadastrado", "OK");
                 return;
             }
 
@@ -163,17 +166,11 @@ namespace Despensa.ViewModels
 
             IsLoading = false;
 
-            await _PageService.DisplayAlert("Despensa", "Produto criada com sucesso", "OK");
+            await _PageService.DisplayAlert("Despensa", "Item criado com sucesso", "OK");
 
             //volta para a lista
             await _Navigation.PopAsync();
         }
-
-        //private async Task SelecionarCategoria(Categoria categoria)
-        //{
-        //    NovoProduto.Categoria = categoria;
-        //    NovoProduto.IdCategoria = categoria.Id;
-        //}
 
         private async Task SelecionarMedida(string medida)
         {

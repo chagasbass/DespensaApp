@@ -88,6 +88,8 @@ namespace Despensa.ViewModels
                 return;
             }
 
+            NovaCategoria.FormatarCamposDeItem();
+
             _CategoriaRepository.CadastrarCategoriaAsync(NovaCategoria);
 
             IsLoading = false;

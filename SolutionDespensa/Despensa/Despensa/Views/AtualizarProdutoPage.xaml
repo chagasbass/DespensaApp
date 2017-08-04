@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.AtualizarProdutoPage"
+               Title="Despensa - Produto"
+             BackgroundColor="#e0e0e0">
+
+    <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
+        <Image HorizontalOptions="Center"
+                   VerticalOptions="Center" 
+                   Source="imagemCriar.png" 
+                   Aspect="AspectFill"/>
+
+        <Label Text="Nome" />
+        <Entry Text="{Binding ProdutoAtualizado.Nome}"/>
+        <Label Text="Marca" />
+        <Entry Text="{Binding ProdutoAtualizado.Marca}"/>
+        <Label Text="Categoria" />
+        <Picker ItemsSource="{Binding CategoriasDeItem}"  
+                    ItemDisplayBinding="{Binding Nome}" 
+                    SelectedItem="{Binding CategoriaSelecionada}"
+                    SelectedIndex="{Binding Posicao}"/>
+        <Label Text="Status" />
+        <Picker ItemsSource="{Binding Status}" SelectedItem="{Binding StatusSelecionado}" />
+        <Grid RowSpacing="1" ColumnSpacing="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Text="Quantidade"  Grid.Row="0" Grid.Column="0" />
+            <Entry Text="{Binding ProdutoAtualizado.Quantidade}" Grid.Row="0" Grid.Column="0"/>
+            <Label Text="Medida" Grid.Row="0" Grid.Column="1" />
+            <Picker ItemsSource="{Binding Medidas}"  SelectedItem="{Binding MedidaSelecionada}"
+                         Grid.Row="0" Grid.Column="1" />
+        </Grid>
+
+        <Button Text="Atualizar Produto"
+             BackgroundColor="#caa052"
+             Command="{Binding AtualizarProdutoCommand}"  
+		     BorderRadius="0"
+			 TextColor="White"  />
+    </StackLayout>
+</ContentPage>

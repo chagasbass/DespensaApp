@@ -4,20 +4,27 @@
              x:Class="Despensa.Views.DetalhesProdutoPage"
                Title="Despensa - Produto"
              BackgroundColor="#e0e0e0">
-    <StackLayout Orientation="Vertical">
+
+    <StackLayout Orientation="Vertical" Spacing="30" Padding="0,30,0,0">
         <Image HorizontalOptions="Center"
-                   VerticalOptions="Center" 
+                    VerticalOptions="Center" 
+                    HeightRequest="200"
+                    WidthRequest="200"
                    Source="produtoImg.png" 
-                   Aspect="AspectFill"></Image>
-        <TableView Intent="Form">
-            <TableRoot>
-                <TableSection Title="Informações">
-                    <TextCell Text="{Binding Nome}"></TextCell>
-                    <TextCell Text="{Binding Marca}"></TextCell>
-                    <TextCell Text="{Binding Status}"></TextCell>
-                    <TextCell Text="{Binding Detalhes}"></TextCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+                   Aspect="AspectFill"/>
+        <Frame OutlineColor="#caa052">
+            <StackLayout>
+                <Label Text="Item" TextColor="Black"/>
+                <Label Text="{Binding Nome}" TextColor="Gray"/>
+                <Label Text="Categoria" TextColor="Black"/>
+                <Label Text="{Binding Categoria.Nome}" TextColor="Gray"/>
+                <Label Text="Marca" TextColor="Black"/>
+                <Label Text="{Binding Marca}" TextColor="Gray"/>
+                <Label Text="Status" TextColor="Black"/>
+                <Label Text="{Binding Status}" TextColor="Gray"/>
+                <Label Text="Detalhes" TextColor="Black"/>
+                <Label Text="{Binding Detalhes}" TextColor="Gray"/>
+            </StackLayout>
+        </Frame>
     </StackLayout>
 </ContentPage>

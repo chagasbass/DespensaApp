@@ -148,7 +148,14 @@ namespace Despensa.Models
 
         public void  CriarDetalhes()
         {
+            Detalhes = string.Empty;
             Detalhes =  string.Concat(Quantidade, " ", Medida);
+        }
+
+        public void FormatarCamposDeItem()
+        {
+            Marca = char.ToUpper(Marca[0]) + Marca.Substring(1);
+            Nome = char.ToUpper(Nome[0]) + Nome.Substring(1);
         }
     }
 }

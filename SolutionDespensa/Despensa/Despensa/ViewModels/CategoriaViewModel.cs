@@ -52,7 +52,6 @@ namespace Despensa.ViewModels
             ListarCategoriasCommand = new Command(ListarCategorias);
             ExcluirCategoriaCommand = new Command(ExcluirCategoria);
             PesquisarCategoriaCommand = new Command(PesquisarCategoria);
-            
         }
 
         private async void PesquisarCategoria()
@@ -91,7 +90,7 @@ namespace Despensa.ViewModels
 
         private async void ExcluirCategoria()
         {
-            //_ProdutoRepository.ExcluirContatoAsync(ProdutoSelecionado);
+            _CategoriaRepository.ExcluirCategoriaAsync(CategoriaSelecionada);
         }
 
         private async void NavegarParaNovoCategoria()

@@ -4,19 +4,23 @@
              x:Class="Despensa.Views.DetalhesCategoriaPage" 
              Title="Despensa - Categoria"
              BackgroundColor="#e0e0e0">
-    <StackLayout Orientation="Vertical">
+    <StackLayout Orientation="Vertical" Spacing="30" Padding="0,0,10,0">
+        
         <Image HorizontalOptions="Center"
-                   VerticalOptions="Center" 
+                    VerticalOptions="Center" 
+                    HeightRequest="200"
+                    WidthRequest="200"
                    Source="categoriaImg.png" 
-                   Aspect="AspectFill"></Image>
-        <TableView Intent="Form">
-            <TableRoot>
-                <TableSection Title="Informações">
-                    <TextCell Text="{Binding Nome}"></TextCell>
-                    <EntryCell Text="{Binding Informacao}" IsEnabled="True"></EntryCell>
-                    <TextCell Text="{Binding DataCadastro}"></TextCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+                   Aspect="AspectFill"/>
+        <Frame OutlineColor="#caa052">
+        <StackLayout>
+            <Label Text="Categoria" TextColor="Black"/>
+            <Label Text="{Binding Nome}" TextColor="Gray"/>
+
+            <Label Text="Informações" TextColor="Black"/>
+            <Label Text="{Binding Informacao}" TextColor="Gray"/>
+        </StackLayout>
+        </Frame>
+
     </StackLayout>
 </ContentPage>

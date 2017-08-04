@@ -10,7 +10,6 @@ namespace Despensa.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AtualizarCategoriaPage : ContentPage
     {
-        
 
         private AtualizarCategoriaViewModel ViewModel
         {

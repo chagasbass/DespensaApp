@@ -48,7 +48,7 @@ namespace Despensa.Views
             var escolha = (MenuItem)sender;
             var produto = (Produto)escolha.CommandParameter;
 
-            //ViewModel.NavegarParaAtualizarProdutoCommand(produto);
+            ViewModel.NavegarParaAtualizarProdutoCommand.Execute(produto);
         }
 
         private async void MenuItem_ExcluirProdutos(object sender, EventArgs e)
@@ -58,14 +58,14 @@ namespace Despensa.Views
 
             ViewModel.ProdutoSelecionado = produto;
 
-            var response = await DisplayAlert("Atenção", "Deseja excluir o produto?", "SIM", "NÃO");
+            var response = await DisplayAlert("Atenção", "Deseja excluir o Item?", "SIM", "NÃO");
 
             if (!response)
                 return;
 
-           //ViewModel.ExcluirContatoCommand.Execute(produto);
+            ViewModel.ExcluirProdutoCommand.Execute(null);
 
-            await DisplayAlert("Atenção", "Produto excluído com sucesso", "OK");
+            await DisplayAlert("Atenção", "Item excluído com sucesso", "OK");
 
             ViewModel.ListarProdutosCommand.Execute(null);
         }

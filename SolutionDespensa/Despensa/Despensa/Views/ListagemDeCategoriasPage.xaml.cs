@@ -58,14 +58,14 @@ namespace Despensa.Views
 
             ViewModel.CategoriaSelecionada = categoria;
 
-            var response = await DisplayAlert("Atenção", "Deseja excluir o produto?", "SIM", "NÃO");
+            var response = await DisplayAlert("Atenção", "Deseja excluir o Item?", "SIM", "NÃO");
 
             if (!response)
                 return;
 
             ViewModel.ExcluirCategoriaCommand.Execute(categoria);
 
-            await DisplayAlert("Atenção", "Produto excluído com sucesso", "OK");
+            await DisplayAlert("Atenção", "Item excluído com sucesso", "OK");
 
             ViewModel.ListarCategoriasCommand.Execute(null);
         }

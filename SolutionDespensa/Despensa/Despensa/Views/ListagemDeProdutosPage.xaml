@@ -24,17 +24,17 @@
               RowHeight="55">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Vertical">
+                    <ImageCell Text="{Binding Nome}" TextColor="Black" Detail="{Binding Detalhes}" DetailColor="#caa052" ImageSource="produtos.png">
+                        <!--<StackLayout Orientation="Vertical">
                             <Label Text="{Binding Nome}" TextColor="Gray"></Label>
                             <Label Text="{Binding Detalhes}" TextColor="#caa052"></Label>
-                        </StackLayout>
+                        </StackLayout>-->
 
-                        <ViewCell.ContextActions>
+                        <ImageCell.ContextActions>
                             <MenuItem Text="Editar" Clicked="MenuItem_EditarProdutos"  CommandParameter="{Binding .}" />
                             <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirProdutos" IsDestructive="True" CommandParameter="{Binding .}"/>
-                        </ViewCell.ContextActions>
-                    </ViewCell>
+                        </ImageCell.ContextActions>
+                    </ImageCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

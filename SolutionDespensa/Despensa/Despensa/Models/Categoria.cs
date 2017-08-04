@@ -64,5 +64,10 @@ namespace Despensa.Models
 
             return notificacoes;
         }
+
+        public void FormatarCamposDeItem()
+        {
+            Nome = char.ToUpper(Nome[0]) + Nome.Substring(1);
+        }
     }
 }

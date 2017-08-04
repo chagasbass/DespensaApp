@@ -23,6 +23,7 @@ namespace Despensa.ViewModels
         public ObservableCollection<Produto> Produtos { get; private set; } = new ObservableCollection<Produto>();
 
         readonly ProdutoRepository _ProdutoRepository;
+        readonly CategoriaRepository _CategoriaRepository;
         readonly Page _Page;
         private string _Pesquisa;
 
@@ -44,6 +45,7 @@ namespace Despensa.ViewModels
         {
             _Page = Page;
             _ProdutoRepository = ProdutoRepository;
+            _CategoriaRepository = new CategoriaRepository();
 
             SelecionarProdutoCommand = new Command<Produto>(async vm => await SelecionarProduto(vm));
             NavegarParaNovoProdutoCommand = new Command(NavegarParaNovoProduto);
@@ -83,15 +85,13 @@ namespace Despensa.ViewModels
         {
             if (produto == null)
                 return;
-
-            await _Page.DisplayAlert("Atenção", "Atualizando produto", "OK");
-            //await _Page.Navigation.PushAsync(new AtualizarContatoPage(produto));
+            
+            await _Page.Navigation.PushAsync(new AtualizarProdutoPage(produto));
         }
 
         private async void ExcluirProduto()
         {
-            await _Page.DisplayAlert("Atenção", "Excluindo produto", "OK");
-            //_ProdutoRepository.ExcluirContatoAsync(ProdutoSelecionado);
+            _ProdutoRepository.ExcluirProdutoAsync(ProdutoSelecionado);
         }
 
         private async void NavegarParaNovoProduto()
@@ -118,6 +118,7 @@ namespace Despensa.ViewModels
                 foreach (var produto in produtos)
                 {
                     produto.CriarDetalhes();
+                    produto.Categoria = await _CategoriaRepository.RecuperarCategoriaPorIdAsync(produto.IdCategoria);
                     Produtos.Add(produto);
                 }
 
