@@ -42,6 +42,7 @@
     <Compile Include="DataContexts\IDataContext.cs" />
     <Compile Include="DataContexts\ProdutoRepository.cs" />
     <Compile Include="DataContexts\UsuarioRepository.cs" />
+    <Compile Include="Helpers\CategoriaProduto.cs" />
     <Compile Include="Helpers\MedidaHelper.cs" />
     <Compile Include="Helpers\StatusHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -64,6 +65,7 @@
     <Compile Include="ViewModels\CadastrarProdutoViewModel.cs" />
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
     <Compile Include="ViewModels\EsqueciSenhaViewModel.cs" />
+    <Compile Include="ViewModels\MinhaContaViewModel.cs" />
     <Compile Include="ViewModels\ProdutoViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -104,6 +106,9 @@
     </Compile>
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MinhaContaPage.xaml.cs">
+      <DependentUpon>MinhaContaPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegistrarUsuarioPage.xaml.cs">
       <DependentUpon>RegistrarUsuarioPage.xaml</DependentUpon>
@@ -241,6 +246,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AtualizarProdutoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MinhaContaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

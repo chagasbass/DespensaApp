@@ -2,7 +2,6 @@
 using Despensa.Models;
 using Despensa.Views;
 using Plugin.LocalNotifications;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ using Xamarin.Forms;
 
 namespace Despensa.ViewModels
 {
-    public class ProdutoViewModel:BaseViewModel
+    public class ProdutoViewModel : BaseViewModel
     {
         public ICommand SelecionarProdutoCommand { get; private set; }
         public ICommand NavegarParaNovoProdutoCommand { get; private set; }
@@ -21,6 +20,7 @@ namespace Despensa.ViewModels
         public ICommand PesquisarProdutoCommand { get; set; }
 
         public ObservableCollection<Produto> Produtos { get; private set; } = new ObservableCollection<Produto>();
+        //public ObservableCollection<CategoriaProduto<string, Produto>> Produtos { get; private set; } = new ObservableCollection<CategoriaProduto<string, Produto>>();
 
         readonly ProdutoRepository _ProdutoRepository;
         readonly CategoriaRepository _CategoriaRepository;
@@ -28,7 +28,7 @@ namespace Despensa.ViewModels
         private string _Pesquisa;
 
         Produto _ProdutoSelecionado;
-         
+
         public Produto ProdutoSelecionado
         {
             get { return _ProdutoSelecionado; }
@@ -40,7 +40,7 @@ namespace Despensa.ViewModels
             get { return _Pesquisa; }
             set { SetValue(ref _Pesquisa, value); }
         }
-
+      
         public ProdutoViewModel(Page Page, ProdutoRepository ProdutoRepository)
         {
             _Page = Page;
@@ -57,27 +57,27 @@ namespace Despensa.ViewModels
 
         private async void PesquisarProduto()
         {
-            if (String.IsNullOrEmpty(Pesquisa))
-            {
-                ListarProdutos();
-                return;
-            }
+            //if (String.IsNullOrEmpty(Pesquisa))
+            //{
+            //    ListarProdutos();
+            //    return;
+            //}
 
-            var pesquisa = Produtos.Where(x => x.Nome.ToUpper().Contains(Pesquisa.ToUpper())).ToList();
+            //var pesquisa = Produtos.Where(x => x.Nome.ToUpper().Contains(Pesquisa.ToUpper())).ToList();
 
-            Produtos.Clear();
+            //Produtos.Clear();
 
-            foreach (var item in pesquisa)
-            {
-                Produtos.Add(item);
-            }
+            //foreach (var item in pesquisa)
+            //{
+            //    Produtos.Add(item);
+            //}
         }
 
         private async Task SelecionarProduto(Produto produto)
         {
             if (produto == null)
                 return;
-            
+
             await _Page.Navigation.PushAsync(new DetalhesProdutoPage(produto));
         }
 
@@ -85,7 +85,7 @@ namespace Despensa.ViewModels
         {
             if (produto == null)
                 return;
-            
+
             await _Page.Navigation.PushAsync(new AtualizarProdutoPage(produto));
         }
 
@@ -109,18 +109,16 @@ namespace Despensa.ViewModels
 
                 if (produtos == null)
                     return;
-
-                //var lista = from p in produtos
-                //            orderby p.Nome
-                //            group p by p.Categoria.Nome into produtosAgrupados
-                //            select new Agrupamento<string, Produto>(produtosAgrupados.Key, produtosAgrupados);
-
+               
+                #region recuperando as categorias de cada produto
                 foreach (var produto in produtos)
                 {
                     produto.CriarDetalhes();
                     produto.Categoria = await _CategoriaRepository.RecuperarCategoriaPorIdAsync(produto.IdCategoria);
                     Produtos.Add(produto);
                 }
+
+                #endregion
 
                 if (Produtos.Count == 0)
                     CrossLocalNotifications.Current.Show("Atenção", "A despensa está vazia!!, cadastre os seus items");

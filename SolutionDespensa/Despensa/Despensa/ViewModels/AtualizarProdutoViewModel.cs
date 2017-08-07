@@ -5,7 +5,6 @@ using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -149,11 +148,11 @@ namespace Despensa.ViewModels
             {
                 case "Acabou":
                     CrossLocalNotifications.Current.Show("Despensa", string.Concat("Verifique a sua Despensa, existe um item que acabou"), 101, DateTime.Now.AddSeconds(2));
-                    //CrossLocalNotifications.Current.Cancel(101);
+                    _Page.Navigation.PopAsync();
                     break;
                 case "Acabando":
                     CrossLocalNotifications.Current.Show("Despensa", string.Concat("Existe um item que está acabando na Despensa"), 101, DateTime.Now);
-                    //CrossLocalNotifications.Current.Cancel(101);
+                    _Page.Navigation.PopAsync();
                     break;
                 default:
                     break;

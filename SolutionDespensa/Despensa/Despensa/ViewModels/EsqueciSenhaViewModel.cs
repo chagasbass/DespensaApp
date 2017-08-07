@@ -17,21 +17,10 @@ namespace Despensa.ViewModels
         readonly IPageService _PageService;
 
         UsuarioTrocaSenha _UsuarioTrocaSenha;
-        bool _IsLoading;
         bool _DesabilitarEmail;
         bool _HabilitarSenha;
         string _CodigoGerado;
         string _TextoBotao;
-
-        public bool IsLoading
-        {
-            get { return _IsLoading; }
-            set
-            {
-                SetValue(ref _IsLoading, value);
-                OnPropertyChanged(nameof(_IsLoading));
-            }
-        }
 
         public bool DesabilitarEmail
         {
@@ -90,7 +79,6 @@ namespace Despensa.ViewModels
             _PageService = PageService;
             
             GerarCodigoDeUsuarioCommand = new Command(GerarCodigoDeUsuario);
-            IsLoading = false;
             HabilitarSenha = false;
             DesabilitarEmail = true;
             _TextoBotao = "Solicitar Código";
@@ -113,18 +101,14 @@ namespace Despensa.ViewModels
 
         private async System.Threading.Tasks.Task GerarCodigo()
         {
-            IsLoading = true;
-
             if (string.IsNullOrEmpty(UsuarioTrocaSenha.Email))
             {
-                IsLoading = false;
                 await _PageService.DisplayAlert("Atenção", "Email não preenchido", "OK");
                 return;
             }
 
             if (!string.IsNullOrEmpty(CodigoGerado))
             {
-                IsLoading = false;
                 CrossLocalNotifications.Current.Show("Atenção", string.Concat("Use o código ", CodigoGerado, " para alterar a senha"));
                 return;
             }
@@ -134,7 +118,6 @@ namespace Despensa.ViewModels
 
             if (user == null)
             {
-                IsLoading = false;
                 await _PageService.DisplayAlert("Atenção", "Usuário não encontrado", "OK");
                 return;
             }
@@ -145,7 +128,6 @@ namespace Despensa.ViewModels
 
             CodigoGerado = UsuarioTrocaSenha.Codigo;
 
-            IsLoading = false;
             HabilitarSenha = true;
             DesabilitarEmail = false;
             TextoBotao = "Alterar Senha";
@@ -158,12 +140,9 @@ namespace Despensa.ViewModels
         /// </summary>
         private async System.Threading.Tasks.Task TrocarSenha()
         {
-            IsLoading = true;
-
             //testa se senhas sao iguais
             if (UsuarioTrocaSenha.NovaSenha != UsuarioTrocaSenha.ConfirmacaoDeSenha)
             {
-                IsLoading = false;
                 await _PageService.DisplayAlert("Atenção", "As senhas devem ser iguais", "OK");
                 return;
             }

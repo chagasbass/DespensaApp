@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.MinhaContaPage"
+             Title="Despensa - Minha Conta"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             BackgroundColor="#e0e0e0">
+    <StackLayout Orientation="Vertical" Spacing="30" Padding="0,10,0,0">
+
+        <!--<Image HorizontalOptions="Center"
+                    VerticalOptions="Center" 
+                    HeightRequest="200"
+                    WidthRequest="200"
+                   Source="categoriaImg.png" 
+                   Aspect="AspectFill"/>-->
+        <Frame OutlineColor="#caa052"  VerticalOptions="Fill">
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Nome" TextColor="Black"/>
+                <Label Text="{Binding UsuarioEncontrado.Nome}" TextColor="Gray"/>
+                <Label Text="Sobrenome" TextColor="Black"/>
+                <Label Text="{Binding UsuarioEncontrado.Sobrenome}" TextColor="Gray"/>
+
+                <Label Text="Email" TextColor="Black"/>
+                <Label Text="{Binding UsuarioEncontrado.Email}" TextColor="Gray"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

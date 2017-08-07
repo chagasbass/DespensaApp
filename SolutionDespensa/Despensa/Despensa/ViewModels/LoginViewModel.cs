@@ -17,21 +17,9 @@ namespace Despensa.ViewModels
         readonly INavigation _Navigation;
         readonly IPageService _PageService;
 
-
         #region Propriedades 
-        bool _IsLoading;
         string _Login;
         string _Senha;
-
-        public bool IsLoading
-        {
-            get { return _IsLoading; }
-            set
-            {
-                SetValue(ref _IsLoading, value);
-                OnPropertyChanged(nameof(_IsLoading));
-            }
-        }
 
         public string Login
         {
@@ -63,16 +51,10 @@ namespace Despensa.ViewModels
 
             RedirecionarParaEsqueciSenhaCommand = new Command(IRedirecionarParaTrocaDeSenha);
             EfetuarLoginCommand = new Command(EfetuarLogin);
-            IsLoading = false;
-            Login = "teste@teste.com";
-            Senha = "teste";
         }
 
-        private async  void EfetuarLogin(object obj)
+        private async  void EfetuarLogin()
         {
-            IsLoading = true;
-            
-
             var eValido = await ValidarLogin();
 
             if (!eValido)
@@ -86,8 +68,6 @@ namespace Despensa.ViewModels
                 return;
             }
 
-            //redireciona para a tela inicial da aplicação
-
             await _Navigation.PushAsync(new MenuPage());
         }
 
@@ -95,7 +75,6 @@ namespace Despensa.ViewModels
         /// Redireciona para a Page de troca de senha
         /// </summary>
         private async void IRedirecionarParaTrocaDeSenha() => await _Navigation.PushAsync(new EsqueciSenhaPage());
-
 
         public  async Task<bool> ValidarLogin()
         {

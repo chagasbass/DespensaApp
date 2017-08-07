@@ -8,7 +8,7 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <application android:label="Despensa" android:icon="@drawable/icon" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
-    <activity android:configChanges="orientation|screenSize" android:icon="@drawable/icon" android:label="Despensa" android:theme="@style/MainTheme" android:name="md57f457a2c0d66b4c4b4bb7367d72885ca.MainActivity" />
+    <activity android:configChanges="orientation|screenSize" android:icon="@drawable/icon" android:label="Despensa" android:screenOrientation="portrait" android:theme="@style/MainTheme" android:name="md57f457a2c0d66b4c4b4bb7367d72885ca.MainActivity" />
     <activity android:noHistory="true" android:theme="@style/Theme.Splash" android:name="md57f457a2c0d66b4c4b4bb7367d72885ca.SplashActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

@@ -74,6 +74,7 @@ C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.DetalhesCateg
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.DetalhesProdutoPage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.AtualizarCategoriaPage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.AtualizarProdutoPage.xaml.g.cs
+C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.MinhaContaPage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.dll
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.pdb
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.csprojResolveAssemblyReference.cache

@@ -27,7 +27,6 @@ namespace Despensa.ViewModels
         List<string> _Status;
         List<string> _Medidas;
         Categoria _CategoriaSelecionada;
-        bool _IsLoading;
         string _Erros;
 
         #region Propriedades
@@ -58,16 +57,6 @@ namespace Despensa.ViewModels
             {
                 SetValue(ref _Medidas, value);
                 OnPropertyChanged(nameof(_Medidas));
-            }
-        }
-
-        public bool IsLoading
-        {
-            get { return _IsLoading; }
-            set
-            {
-                SetValue(ref _IsLoading, value);
-                OnPropertyChanged(nameof(_IsLoading));
             }
         }
 
@@ -104,11 +93,7 @@ namespace Despensa.ViewModels
             SelecionarMedidaCommand = new Command<string>(async vm => await SelecionarMedida(vm));
             SelecionarStatusCommand = new Command<string>(async vm => await SelecionarStatus(vm));
 
-            IsLoading = true;
-
             InicializarListas();
-
-            IsLoading = false;
         }
 
         private void InicializarListas()
@@ -128,8 +113,6 @@ namespace Despensa.ViewModels
 
         private async void CadastrarProduto()
         {
-            IsLoading = true;
-
             NovoProduto.CriarDetalhes();
             NovoProduto.Categoria = CategoriaSelecionada;
             NovoProduto.IdCategoria = CategoriaSelecionada.Id;
@@ -143,7 +126,6 @@ namespace Despensa.ViewModels
                     Erros = string.Concat(Erros, "*", item);
                 }
 
-                IsLoading = false;
                 await _PageService.DisplayAlert("Atenção", Erros, "OK");
 
                 Erros = string.Empty;
@@ -157,14 +139,11 @@ namespace Despensa.ViewModels
 
             if (produtoEncontrado != null)
             {
-                IsLoading = false;
                 await _PageService.DisplayAlert("Atenção", "Item já cadastrado", "OK");
                 return;
             }
 
             _ProdutoRepository.CadastrarProdutoAsync(NovoProduto);
-
-            IsLoading = false;
 
             await _PageService.DisplayAlert("Despensa", "Item criado com sucesso", "OK");
 

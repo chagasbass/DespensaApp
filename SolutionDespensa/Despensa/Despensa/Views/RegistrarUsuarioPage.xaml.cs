@@ -23,7 +23,7 @@ namespace Despensa.Views
             try
             {
                 InitializeComponent();
-
+                NavigationPage.SetHasNavigationBar(this, false);
                 UsuarioRepo = new UsuarioRepository();
                 PageService = new PageService();
 

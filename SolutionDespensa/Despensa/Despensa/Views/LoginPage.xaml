@@ -24,19 +24,8 @@
                    Grid.ColumnSpan="2"></Image>
             </Grid>
 
-            <StackLayout Orientation="Vertical"  VerticalOptions="Center">
+            <StackLayout Orientation="Vertical"  VerticalOptions="Center" Padding="0,15,0,0">
 
-                <!--<ContentView  Margin="10,0,10,0"
-                         BackgroundColor="#3498DB" Opacity="0.5"
-                         AbsoluteLayout.LayoutFlags="All"
-                         AbsoluteLayout.LayoutBounds="0,0,1,1"
-                         IsVisible="False">
-                </ContentView>
-                <ActivityIndicator 
-                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
-                         IsRunning="False"
-                         IsVisible="False" />-->
                 <Label Text="Login"  />
                 <Entry Keyboard="Email" Text="{Binding Login}"/>
                 <Label Text="Senha" />

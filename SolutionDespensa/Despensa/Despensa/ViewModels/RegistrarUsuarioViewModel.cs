@@ -19,7 +19,6 @@ namespace Despensa.ViewModels
 
         private Usuario _NovoUsuario;
         private string _Erros;
-        private bool _IsLoading;
 
         public Usuario NovoUsuario
         {
@@ -41,42 +40,26 @@ namespace Despensa.ViewModels
             }
         }
 
-        public bool IsLoading
-        {
-            get { return _IsLoading; }
-            set
-            {
-                SetValue(ref _IsLoading, value);
-                OnPropertyChanged(nameof(_IsLoading));
-            }
-        }
-
         #endregion
 
-        public RegistrarUsuarioViewModel(INavigation Navigation,UsuarioRepository UsuarioRepository,IPageService PageService)
+        public RegistrarUsuarioViewModel(INavigation Navigation, UsuarioRepository UsuarioRepository, IPageService PageService)
         {
             _UsuarioRepository = UsuarioRepository;
             _Navigation = Navigation;
             _PageService = PageService;
 
             CadastrarNovoUsuarioCommand = new Command(CadastrarNovoUsuario);
-            IsLoading = false;
         }
 
         private async void CadastrarNovoUsuario()
         {
-            IsLoading = true;
-
             var erros = NovoUsuario.ValidarUsuario();
 
             if (erros.Count > 0)
             {
                 foreach (var item in erros)
-                {
                     Erros = string.Concat(Erros, "*", item);
-                }
 
-                IsLoading = false;
                 await _PageService.DisplayAlert("Atenção", Erros, "OK");
 
                 return;
@@ -86,21 +69,14 @@ namespace Despensa.ViewModels
 
             if (userEncontrado != null)
             {
-                IsLoading = false;
                 await _PageService.DisplayAlert("Atenção", "Usuário já cadastrado", "OK");
                 return;
             }
 
             _UsuarioRepository.CadastrarUsuarioAsync(NovoUsuario);
 
-            //pq da erro aqui??
-            //await _PageService.DisplayAlert("Parabéns", "Sua conta foi criada com sucesso", "OK");
-
-            IsLoading = false;
-
             CrossLocalNotifications.Current.Show("Despensa", string.Concat("Sua conta foi criada,seja bem vindo ", NovoUsuario.Nome, " ", NovoUsuario.Sobrenome));
-
-            //pa da erro aqui e em algumas páginas não??
+            
             await _Navigation.PopAsync();
         }
     }

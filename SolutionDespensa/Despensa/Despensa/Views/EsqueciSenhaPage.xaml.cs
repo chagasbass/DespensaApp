@@ -22,8 +22,9 @@ namespace Despensa.Views
         public EsqueciSenhaPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
 
-            UsuarioRepo = new UsuarioRepository();
+           UsuarioRepo = new UsuarioRepository();
             PageService = new PageService();
 
             BindingContext = new EsqueciSenhaViewModel(this.Navigation, UsuarioRepo, PageService);

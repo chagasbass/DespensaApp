@@ -5,14 +5,14 @@
                Title="Despensa - Produto"
              BackgroundColor="#e0e0e0">
 
-    <StackLayout Orientation="Vertical" Spacing="30" Padding="0,30,0,0">
+    <StackLayout Orientation="Vertical" Spacing="30" Padding="0,10,0,0">
         <Image HorizontalOptions="Center"
                     VerticalOptions="Center" 
                     HeightRequest="200"
                     WidthRequest="200"
                    Source="produtoImg.png" 
                    Aspect="AspectFill"/>
-        <Frame OutlineColor="#caa052">
+        <Frame OutlineColor="#caa052" VerticalOptions="FillAndExpand">
             <StackLayout>
                 <Label Text="Item" TextColor="Black"/>
                 <Label Text="{Binding Nome}" TextColor="Gray"/>

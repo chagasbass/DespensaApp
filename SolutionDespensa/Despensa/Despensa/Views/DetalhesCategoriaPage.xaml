@@ -4,7 +4,7 @@
              x:Class="Despensa.Views.DetalhesCategoriaPage" 
              Title="Despensa - Categoria"
              BackgroundColor="#e0e0e0">
-    <StackLayout Orientation="Vertical" Spacing="30" Padding="0,0,10,0">
+    <StackLayout Orientation="Vertical" Spacing="30" Padding="0,10,0,0">
         
         <Image HorizontalOptions="Center"
                     VerticalOptions="Center" 
@@ -12,8 +12,8 @@
                     WidthRequest="200"
                    Source="categoriaImg.png" 
                    Aspect="AspectFill"/>
-        <Frame OutlineColor="#caa052">
-        <StackLayout>
+        <Frame OutlineColor="#caa052" VerticalOptions="FillAndExpand">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
             <Label Text="Categoria" TextColor="Black"/>
             <Label Text="{Binding Nome}" TextColor="Gray"/>
 

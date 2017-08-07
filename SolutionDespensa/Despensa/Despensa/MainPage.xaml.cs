@@ -11,9 +11,9 @@ namespace Despensa
     {
         public MainPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
             InicializarRepositorios();
-            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = new MainViewModel(this.Navigation);
         }
 
