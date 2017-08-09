@@ -90,7 +90,20 @@ namespace Despensa.ViewModels
 
         private async void ExcluirCategoria()
         {
-            _CategoriaRepository.ExcluirCategoriaAsync(CategoriaSelecionada);
+            var response = await _Page.DisplayAlert("Atenção", "Deseja excluir o Item?", "SIM", "NÃO");
+
+            if (!response)
+                return;
+
+            if (CategoriaSelecionada.Original == false)
+            {
+                _CategoriaRepository.ExcluirCategoriaAsync(CategoriaSelecionada);
+                await _Page.DisplayAlert("Atenção", "Item excluído com sucesso", "OK");
+            }
+            else
+            { 
+                await _Page.DisplayAlert("Atenção", "Esta categoria não pode ser excluída", "OK");
+            }
         }
 
         private async void NavegarParaNovoCategoria()

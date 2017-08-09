@@ -35,9 +35,15 @@ namespace Despensa.ViewModels
 
         private async void AtualizarContato()
         {
-            await _CategoriaRepository.AtualizarCategoriaAsync(CategoriaAtualizada);
-
-            await _Page.DisplayAlert("Atenção", "Categoria atualizada com sucesso", "OK");
+            if (CategoriaAtualizada.Original == false)
+            {
+                await _CategoriaRepository.AtualizarCategoriaAsync(CategoriaAtualizada);
+                await _Page.DisplayAlert("Atenção", "Categoria atualizada com sucesso", "OK");
+            }
+            else
+            {
+                await _Page.DisplayAlert("Atenção", "Esta categoria não pode ser atualizada", "OK");
+            }
 
             await _Page.Navigation.PopAsync();
         }

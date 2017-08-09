@@ -15,7 +15,7 @@
                    ></Image>
             <Label Text="Email" />
             <Entry Keyboard="Email" Text="{Binding UsuarioTrocaSenha.Email}" IsEnabled="{Binding DesabilitarEmail}"/>
-            <Label Text="Sobrenome"  IsVisible="{Binding HabilitarSenha}"/>
+            <Label Text="Código"  IsVisible="{Binding HabilitarSenha}"/>
             <Entry Text="{Binding UsuarioTrocaSenha.Codigo}" IsVisible="{Binding HabilitarSenha}"/>
             <Label Text="Senha"  IsVisible="{Binding HabilitarSenha}"/>
             <Entry  IsPassword="true" Text="{Binding UsuarioTrocaSenha.NovaSenha}" IsVisible="{Binding HabilitarSenha}"/>

@@ -12,17 +12,6 @@
                    Source="imagemCriar.png" 
                    Aspect="AspectFill"
                    ></Image>
-            <!--<ContentView 
-                         BackgroundColor="#3498DB" Opacity="0.5"
-                         AbsoluteLayout.LayoutFlags="All"
-                         AbsoluteLayout.LayoutBounds="0,0,1,1"
-                         IsVisible="{Binding IsLoading}">
-            </ContentView>
-            <ActivityIndicator 
-                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
-                         IsRunning="{Binding IsLoading}"
-                         IsVisible="{Binding IsLoading}" />-->
             <Label Text="Nome" />
             <Entry Text="{Binding NovaCategoria.Nome}"/>
             <Label Text="Informações" />

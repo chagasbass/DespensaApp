@@ -5,16 +5,18 @@ using System.Collections.Generic;
 
 namespace Despensa.Models
 {
-    public  class Categoria: BaseViewModel
+    public class Categoria : BaseViewModel
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-         string _Nome;
-         string _DataCadastro;
+        string _Nome;
+        string _DataCadastro;
         string _Informacao;
+        bool _Original;
+        string _Imagem;
 
-        [MaxLength(50),NotNull]
+        [MaxLength(50), NotNull]
         public string Nome
         {
             get { return _Nome; }
@@ -26,7 +28,7 @@ namespace Despensa.Models
             }
         }
 
-        [MaxLength(20),NotNull]
+        [MaxLength(20), NotNull]
         public string DataCadastro
         {
             get { return _DataCadastro; }
@@ -50,9 +52,35 @@ namespace Despensa.Models
             }
         }
 
+        [NotNull]
+        public bool Original
+        {
+            get { return _Original; }
+
+            set
+            {
+                SetValue(ref _Original, value);
+                OnPropertyChanged(nameof(_Original));
+            }
+        }
+
+        [MaxLength(50), NotNull]
+        public string Imagem
+        {
+            get { return _Imagem; }
+
+            set
+            {
+                SetValue(ref _Imagem, value);
+                OnPropertyChanged(nameof(_Imagem));
+            }
+        }
+
         public Categoria()
         {
             DataCadastro = DateTime.Now.ToString();
+            Imagem = "categorias.png";
+            Original = false;
         }
 
         public List<string> ValidarCategoria()

@@ -25,6 +25,7 @@ namespace Despensa.Views
             _Repo = new CategoriaRepository();
             BindingContext = new CategoriaViewModel(this, _Repo);
             _Repo.CriarTabelas();
+            _Repo.InicializarCategorias();
         }
 
         private async void ToolbarItem_Activated(object sender, EventArgs e)
@@ -58,14 +59,7 @@ namespace Despensa.Views
 
             ViewModel.CategoriaSelecionada = categoria;
 
-            var response = await DisplayAlert("Atenção", "Deseja excluir o Item?", "SIM", "NÃO");
-
-            if (!response)
-                return;
-
             ViewModel.ExcluirCategoriaCommand.Execute(categoria);
-
-            await DisplayAlert("Atenção", "Item excluído com sucesso", "OK");
 
             ViewModel.ListarCategoriasCommand.Execute(null);
         }

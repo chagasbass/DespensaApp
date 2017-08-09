@@ -24,7 +24,7 @@
               RowHeight="100">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ImageCell Text="{Binding Nome}" ImageSource="categorias.png">
+                    <ImageCell Text="{Binding Nome}" ImageSource="{Binding Imagem}">
                         <ImageCell.ContextActions>
                             <MenuItem Text="Editar" Clicked="MenuItem_EditarCategorias"  CommandParameter="{Binding .}" />
                             <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirCategorias" IsDestructive="True" CommandParameter="{Binding .}"/>
