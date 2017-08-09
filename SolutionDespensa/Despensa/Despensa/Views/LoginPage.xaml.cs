@@ -1,4 +1,5 @@
 ﻿using Despensa.DataContexts;
+using Despensa.Helpers.Despensa.Helpers;
 using Despensa.Services;
 using Despensa.ViewModels;
 using System;
@@ -13,54 +14,11 @@ namespace Despensa.Views
         readonly UsuarioRepository UsuarioRepo;
         readonly IPageService PageService;
 
-        const string Login = "Login";
-        const string Senha = "Senha";
-
-        public string _Login
-        {
-            get
-            {
-                if (Application.Current.Properties.ContainsKey(Login))
-                    return Application.Current.Properties[Login].ToString();
-
-                return string.Empty;
-            }
-            set
-            {
-                Application.Current.Properties[Login] = value;
-            }
-        }
-
-        public string _Senha
-        {
-            get
-            {
-                if (Application.Current.Properties.ContainsKey(Senha))
-                    return Application.Current.Properties[Senha].ToString();
-
-                return string.Empty;
-            }
-            set
-            {
-                Application.Current.Properties[Senha] = value;
-            }
-        }
 
         protected override void OnAppearing()
         {
-            if (!string.IsNullOrEmpty(_Login))
-            {
-                ViewModel.Login = _Login;
-                ViewModel.Senha = _Senha;
-            }
-        }
-
-        protected override void OnDisappearing()
-        {
-            _Login = ViewModel.Login;
-            _Senha = ViewModel.Senha;
-
-            Application.Current.SavePropertiesAsync();
+            ViewModel.Login = PreferenciasHelper.GravarLogin;
+            ViewModel.Senha = PreferenciasHelper.GravarSenha;
         }
 
         private LoginViewModel ViewModel

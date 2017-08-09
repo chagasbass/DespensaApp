@@ -1,4 +1,5 @@
 ﻿using Despensa.DataContexts;
+using Despensa.Helpers.Despensa.Helpers;
 using Despensa.Models;
 using Despensa.Services;
 using Plugin.LocalNotifications;
@@ -75,9 +76,20 @@ namespace Despensa.ViewModels
 
             _UsuarioRepository.CadastrarUsuarioAsync(NovoUsuario);
 
+            GravarPreferenciasDeUsuario();
+
             CrossLocalNotifications.Current.Show("Despensa", string.Concat("Sua conta foi criada,seja bem vindo ", NovoUsuario.Nome, " ", NovoUsuario.Sobrenome));
             
             await _Navigation.PopAsync();
+        }
+
+        /// <summary>
+        /// Grava as preferencias do usuário
+        /// </summary>
+        private void GravarPreferenciasDeUsuario()
+        {
+            PreferenciasHelper.GravarLogin = NovoUsuario.Email;
+            PreferenciasHelper.GravarSenha = NovoUsuario.Senha;
         }
     }
 }

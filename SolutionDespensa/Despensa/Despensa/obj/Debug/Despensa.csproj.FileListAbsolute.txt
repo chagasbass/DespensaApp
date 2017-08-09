@@ -59,6 +59,7 @@ C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Xamarin.Forms.Core.xml
 C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Xamarin.Forms.Platform.pdb
 C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.csprojResolveAssemblyReference.cache
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.MainPage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.App.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.RegistrarUsuarioPage.xaml.g.cs
@@ -77,4 +78,8 @@ C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.AtualizarProd
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.MinhaContaPage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.dll
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.pdb
-C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.csprojResolveAssemblyReference.cache
+C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Plugin.Settings.Abstractions.dll
+C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Plugin.Settings.dll
+C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Plugin.Settings.xml
+C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Plugin.Settings.Abstractions.pdb
+C:\App\SolutionDespensa\Despensa\Despensa\bin\Debug\Plugin.Settings.Abstractions.xml

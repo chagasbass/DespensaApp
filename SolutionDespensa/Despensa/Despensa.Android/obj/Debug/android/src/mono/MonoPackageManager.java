@@ -103,6 +103,8 @@ class MonoPackageManager_Resources {
 		"FormsViewGroup.dll",
 		"Plugin.LocalNotifications.Abstractions.dll",
 		"Plugin.LocalNotifications.dll",
+		"Plugin.Settings.Abstractions.dll",
+		"Plugin.Settings.dll",
 		"SQLite-net.dll",
 		"SQLitePCLRaw.batteries_green.dll",
 		"SQLitePCLRaw.batteries_v2.dll",

@@ -428,3 +428,13 @@ C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\SQLit
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Xamarin.Forms.Core.dll.mdb
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Xamarin.Forms.Platform.Android.dll.mdb
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Xamarin.Forms.Xaml.dll.mdb
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.Settings.Abstractions.dll
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.Settings.dll
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.Settings.pdb
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.Settings.xml
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.Settings.Abstractions.pdb
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.Settings.Abstractions.xml
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.Settings.dll.mdb
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.Settings.Abstractions.dll.mdb
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Plugin.Settings.Abstractions.dll.mdb
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Plugin.Settings.dll.mdb
