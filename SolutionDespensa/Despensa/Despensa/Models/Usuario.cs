@@ -1,5 +1,6 @@
 ﻿using Despensa.ViewModels;
 using SQLite;
+using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 

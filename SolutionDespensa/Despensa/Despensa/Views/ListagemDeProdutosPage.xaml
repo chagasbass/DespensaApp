@@ -14,14 +14,13 @@
     </ContentPage.ToolbarItems>
  
     <StackLayout>
-        <SearchBar Placeholder="Pesquisar..." Text="{Binding Pesquisa}" TextChanged="SearchBar_TextChanged" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"></SearchBar>
+        <SearchBar Placeholder="Pesquisar..." Text="{Binding Pesquisa}" IsVisible="{Binding TemItems}" TextChanged="SearchBar_TextChanged" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"></SearchBar>
         <ListView x:Name="listViewProdutos" IsPullToRefreshEnabled="true"
               Refreshing="listViewProdutos_Refreshing" 
               ItemSelected="listViewProdutos_ItemSelected"
               CachingStrategy="RecycleElement"
               ItemsSource="{Binding Produtos}"
-              HasUnevenRows="True"
-              RowHeight="55">
+              HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ImageCell Text="{Binding Nome}" TextColor="Black" Detail="{Binding Detalhes}" DetailColor="#caa052" ImageSource="produtos.png">

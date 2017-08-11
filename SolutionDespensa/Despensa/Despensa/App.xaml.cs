@@ -1,4 +1,5 @@
 ﻿
+using Despensa.DataContexts;
 using Java.Lang;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace Despensa
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            DataContextInitializer.InicializarBancoDeDados();
         }
 
         protected override void OnSleep()

@@ -97,7 +97,7 @@ namespace Despensa.ViewModels
 
             if (CategoriaSelecionada.Original == false)
             {
-                _CategoriaRepository.ExcluirCategoriaAsync(CategoriaSelecionada);
+                _CategoriaRepository.ExcluirCategoria(CategoriaSelecionada);
                 await _Page.DisplayAlert("Atenção", "Item excluído com sucesso", "OK");
             }
             else
@@ -115,7 +115,7 @@ namespace Despensa.ViewModels
         {
             Categorias.Clear();
 
-            var categorias = await _CategoriaRepository.RecuperarCategoriasAsync();
+            var categorias =  _CategoriaRepository.RecuperarCategorias();
 
             if (categorias == null)
                 return;

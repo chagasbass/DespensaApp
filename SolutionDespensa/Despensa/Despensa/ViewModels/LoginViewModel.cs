@@ -60,7 +60,7 @@ namespace Despensa.ViewModels
             if (!eValido)
                 return;
 
-            var user = await _UsuarioRepository.ValidarLoginAsync(Login, Senha);
+            var user =  _UsuarioRepository.ValidarLogin(Login, Senha);
 
             if(user == null)
             {

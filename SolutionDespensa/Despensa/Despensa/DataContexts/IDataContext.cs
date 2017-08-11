@@ -1,9 +1,9 @@
-﻿using SQLite;
+﻿using SQLite.Net;
 
 namespace Despensa.DataContexts
 {
     public interface IDataContext
     {
-        SQLiteAsyncConnection GetConnection();
+        SQLiteConnection GetConnection();
     }
 }

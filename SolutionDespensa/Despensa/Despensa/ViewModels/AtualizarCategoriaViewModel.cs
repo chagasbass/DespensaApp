@@ -37,7 +37,7 @@ namespace Despensa.ViewModels
         {
             if (CategoriaAtualizada.Original == false)
             {
-                await _CategoriaRepository.AtualizarCategoriaAsync(CategoriaAtualizada);
+                _CategoriaRepository.AtualizarCategoria(CategoriaAtualizada);
                 await _Page.DisplayAlert("Atenção", "Categoria atualizada com sucesso", "OK");
             }
             else

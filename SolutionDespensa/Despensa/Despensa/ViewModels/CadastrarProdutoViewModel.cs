@@ -103,9 +103,9 @@ namespace Despensa.ViewModels
             Status = StatusHelper.RecuperarStatus();
         }
 
-        private async void ListarCategorias()
+        private  void ListarCategorias()
         {
-            var categorias = await _CategoriaRepository.RecuperarCategoriasAsync();
+            var categorias = _CategoriaRepository.RecuperarCategorias();
 
             foreach (var cat in categorias)
                 Categorias.Add(cat);
@@ -135,7 +135,7 @@ namespace Despensa.ViewModels
 
             NovoProduto.FormatarCamposDeItem();
 
-            var produtoEncontrado = await _ProdutoRepository.RecuperarProdutoPorNomeEMarcaAsync(NovoProduto.Nome, NovoProduto.Marca);
+            var produtoEncontrado = _ProdutoRepository.RecuperarProdutoPorNomeEMarca(NovoProduto.Nome, NovoProduto.Marca);
 
             if (produtoEncontrado != null)
             {
@@ -143,7 +143,7 @@ namespace Despensa.ViewModels
                 return;
             }
 
-            _ProdutoRepository.CadastrarProdutoAsync(NovoProduto);
+            _ProdutoRepository.CadastrarProduto(NovoProduto);
 
             await _PageService.DisplayAlert("Despensa", "Item criado com sucesso", "OK");
 

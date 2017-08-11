@@ -17,12 +17,9 @@
         <Label Text="Marca" />
         <Entry Text="{Binding ProdutoAtualizado.Marca}"/>
         <Label Text="Categoria" />
-        <Picker ItemsSource="{Binding CategoriasDeItem}"  
-                    ItemDisplayBinding="{Binding Nome}" 
-                    SelectedItem="{Binding CategoriaSelecionada}"
-                    SelectedIndex="{Binding Posicao}"/>
+        <Picker ItemsSource="{Binding Categorias}" SelectedItem="{Binding CategoriaSelecionada,Mode=TwoWay}"/>
         <Label Text="Status" />
-        <Picker ItemsSource="{Binding Status}" SelectedItem="{Binding StatusSelecionado}" />
+            <Picker ItemsSource="{Binding Status}" SelectedItem="{Binding ProdutoAtualizado.Status}" />
         <Grid RowSpacing="1" ColumnSpacing="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -33,10 +30,9 @@
             <Label Text="Quantidade"  Grid.Row="0" Grid.Column="0" />
             <Entry Text="{Binding ProdutoAtualizado.Quantidade}" Grid.Row="0" Grid.Column="0"/>
             <Label Text="Medida" Grid.Row="0" Grid.Column="1" />
-            <Picker ItemsSource="{Binding Medidas}"  SelectedItem="{Binding MedidaSelecionada}"
+                <Picker ItemsSource="{Binding Medidas}"  SelectedItem="{Binding ProdutoAtualizado.Medida}"
                          Grid.Row="0" Grid.Column="1" />
         </Grid>
-
         <Button Text="Atualizar Produto"
              BackgroundColor="#caa052"
              Command="{Binding AtualizarProdutoCommand}"  

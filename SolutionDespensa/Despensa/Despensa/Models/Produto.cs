@@ -1,5 +1,7 @@
-﻿using Despensa.ViewModels;
+﻿using Despensa.Helpers;
+using Despensa.ViewModels;
 using SQLite;
+using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 
@@ -7,18 +9,21 @@ namespace Despensa.Models
 {
     public class Produto:BaseViewModel
     {
-        private string _Nome;
-        private string _Quantidade;
-        private string _Medida;
-        private string _Marca;
-        private string _DataCadastro;
-        private Categoria _Categoria;
-        private string _Status;
-        private string _Detalhes;
+         string _Nome;
+         string _Quantidade;
+         string _Medida;
+         string _Marca;
+         string _DataCadastro;
+         Categoria _Categoria;
+         string _Status;
+         string _Detalhes;
+         bool _Comprado;
+        string _CorStatus;
         
         public Produto()
         {
             DataCadastro = DateTime.Now.ToString();
+            _Comprado = true;
         }
 
         #region Propriedades
@@ -26,7 +31,7 @@ namespace Despensa.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [NotNull]
+        [Indexed]
         public int IdCategoria { get; set; }
 
         [MaxLength(50), NotNull]
@@ -124,6 +129,30 @@ namespace Despensa.Models
             }
         }
 
+        [NotNull]
+        public bool Comprado
+        {
+            get { return _Comprado; }
+
+            set
+            {
+                SetValue(ref _Comprado, value);
+                OnPropertyChanged(nameof(_Comprado));
+            }
+        }
+
+        [Ignore]
+        public string CorStatus
+        {
+            get { return _CorStatus; }
+
+            set
+            {
+                SetValue(ref _CorStatus, value);
+                OnPropertyChanged(nameof(_CorStatus));
+            }
+        }
+
         #endregion
 
         public List<string> ValidarProduto()
@@ -150,6 +179,21 @@ namespace Despensa.Models
         {
             Detalhes = string.Empty;
             Detalhes =  string.Concat(Quantidade, " ", Medida);
+        }
+
+        public void TrocarStatus(string status)
+        {
+            switch (status)
+            {
+                case "Acabando":
+                    CorStatus = "#caa052";
+                    break;
+                case "Acabou":
+                    CorStatus = "Red";
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void FormatarCamposDeItem()

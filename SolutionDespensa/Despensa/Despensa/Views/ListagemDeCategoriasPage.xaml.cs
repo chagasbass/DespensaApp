@@ -24,8 +24,6 @@ namespace Despensa.Views
             InitializeComponent();
             _Repo = new CategoriaRepository();
             BindingContext = new CategoriaViewModel(this, _Repo);
-            _Repo.CriarTabelas();
-            _Repo.InicializarCategorias();
         }
 
         private async void ToolbarItem_Activated(object sender, EventArgs e)

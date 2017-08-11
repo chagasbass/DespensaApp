@@ -1,4 +1,5 @@
 ﻿using Despensa.DataContexts;
+using Despensa.Helpers.Despensa.Helpers;
 using Despensa.Models;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -29,14 +30,14 @@ namespace Despensa.ViewModels
             _Navigation = Navigation;
             _UsuarioRepository = UsuarioRepository;
 
-            RecuperarUsuarioCommand = new Command(RecuperarUsuarioAsync);
+            RecuperarUsuarioCommand = new Command(RecuperarUsuario);
         }
 
-        private async void RecuperarUsuarioAsync()
+        private  void RecuperarUsuario()
         {
-            var email = Application.Current.Properties["Login"].ToString();
+            var email = PreferenciasHelper.GravarLogin;
 
-            UsuarioEncontrado = await _UsuarioRepository.RecuperarUsuarioPorEmailAsync(email);
+            UsuarioEncontrado =  _UsuarioRepository.RecuperarUsuarioPorEmail(email);
         }
     }
 }

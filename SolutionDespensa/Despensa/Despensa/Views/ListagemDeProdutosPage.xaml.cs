@@ -24,7 +24,6 @@ namespace Despensa.Views
             InitializeComponent();
             _Repo = new ProdutoRepository();
             BindingContext = new ProdutoViewModel(this, _Repo);
-            _Repo.CriarTabelas();
         }
 
         protected override async void OnAppearing()

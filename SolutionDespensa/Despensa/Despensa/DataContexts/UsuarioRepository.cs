@@ -1,50 +1,40 @@
 ﻿using Despensa.Models;
-using SQLite;
-using System.Threading.Tasks;
+using SQLite.Net;
 using Xamarin.Forms;
 
 namespace Despensa.DataContexts
 {
     public class UsuarioRepository
     {
-        SQLiteAsyncConnection _Connection;
+        SQLiteConnection _Connection;
 
         public UsuarioRepository()
         {
             _Connection = DependencyService.Get<IDataContext>().GetConnection();
         }
 
-        public async void CriarTabelas()
+        public  void CadastrarUsuario(Usuario usuario)
         {
-            await _Connection.CreateTableAsync<Usuario>();
+             _Connection.Insert(usuario);
         }
 
-        public async void CadastrarUsuarioAsync(Usuario usuario)
+        public Usuario RecuperarUsuarioPorEmail(string email)
         {
-            await _Connection.InsertAsync(usuario);
-        }
-
-        public async Task<Usuario> RecuperarUsuarioPorEmailAsync(string email)
-        {
-            var usuarios = await _Connection.Table<Usuario>().ToListAsync();
-
-            var usuario = usuarios.Find(x => x.Email == email);
+            var usuario = _Connection.Table<Usuario>().Where(x => x.Email == email).FirstOrDefault();
 
             return usuario;
         }
 
-        public async Task<Usuario> ValidarLoginAsync(string email, string senha)
+        public Usuario ValidarLogin(string email, string senha)
         {
-            var usuarios = await _Connection.Table<Usuario>().ToListAsync();
-
-            var usuario = usuarios.Find(x => x.Email == email && x.Senha == senha);
+            var usuario = _Connection.Table<Usuario>().Where(x => x.Email == email && x.Senha == senha).FirstOrDefault();
 
             return usuario;
         }
 
-        public async Task<Usuario> AtualizarUsuarioAsync(Usuario usuario)
+        public Usuario AtualizarUsuario(Usuario usuario)
         {
-            int retorno = await _Connection.UpdateAsync(usuario);
+            int retorno =  _Connection.Update(usuario);
 
             if (retorno > 0)
                 return usuario;

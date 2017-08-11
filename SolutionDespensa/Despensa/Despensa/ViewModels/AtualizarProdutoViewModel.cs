@@ -5,6 +5,7 @@ using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -19,10 +20,11 @@ namespace Despensa.ViewModels
         readonly CategoriaRepository _CategoriaRepository;
 
         Produto _ProdutoAtualizado;
-        Categoria _CategoriaSelecionada;
+        string _CategoriaSelecionada;
         public ObservableCollection<Categoria> CategoriasDeItem { get; private set; } = new ObservableCollection<Categoria>();
         List<string> _Status;
         List<string> _Medidas;
+        List<string> _Categorias;
         string _StatusSelecionado;
         string _MedidaSelecionada;
         string _Erros;
@@ -36,7 +38,7 @@ namespace Despensa.ViewModels
             set { SetValue(ref _ProdutoAtualizado, value); }
         }
 
-        public Categoria CategoriaSelecionada
+        public string CategoriaSelecionada
         {
             get { return _CategoriaSelecionada; }
             set { SetValue(ref _CategoriaSelecionada, value); }
@@ -74,6 +76,16 @@ namespace Despensa.ViewModels
             }
         }
 
+        public List<string> Categorias
+        {
+            get { return _Categorias; }
+            set
+            {
+                SetValue(ref _Categorias, value);
+                OnPropertyChanged(nameof(_Categorias));
+            }
+        }
+
         public string Erros
         {
             get { return _Erros; }
@@ -96,25 +108,27 @@ namespace Despensa.ViewModels
 
         #endregion
 
-        public AtualizarProdutoViewModel(Page Page, ProdutoRepository ProdutoRepository,CategoriaRepository CategoriaRepository)
+        public AtualizarProdutoViewModel(Page Page, ProdutoRepository ProdutoRepository,CategoriaRepository CategoriaRepository,Produto produto)
         {
             _Page = Page;
             _ProdutoRepository = ProdutoRepository;
             _CategoriaRepository = CategoriaRepository;
+            ProdutoAtualizado = produto;
+            CategoriaSelecionada = produto.Categoria.Nome;
+            InicializarListas();
 
             AtualizarProdutoCommand = new Command(AtualizarContato);
-
-            InicializarListas();
         }
 
         private async void AtualizarContato()
         {
+            var cat = (from c in CategoriasDeItem
+                                 where c.Nome == CategoriaSelecionada
+                                 select c).FirstOrDefault();
 
-            ProdutoAtualizado.Categoria = CategoriaSelecionada;
-            ProdutoAtualizado.IdCategoria = CategoriaSelecionada.Id;
-            ProdutoAtualizado.Medida = MedidaSelecionada;
-            ProdutoAtualizado.Status = StatusSelecionado;
+            ProdutoAtualizado.Categoria = cat;
 
+            ProdutoAtualizado.IdCategoria = ProdutoAtualizado.Categoria.Id;
             ProdutoAtualizado.CriarDetalhes();
 
             var erros = ProdutoAtualizado.ValidarProduto();
@@ -133,9 +147,9 @@ namespace Despensa.ViewModels
                 return;
             }
 
-            await _ProdutoRepository.AtualizarProdutoAsync(ProdutoAtualizado);
+             _ProdutoRepository.AtualizarProduto(ProdutoAtualizado);
 
-            await _Page.DisplayAlert("Atenção", "Item atualizado com sucesso", "OK");
+             await _Page.DisplayAlert("Atenção", "Item atualizado com sucesso", "OK");
 
             VerificarStatusDeItem();
 
@@ -159,21 +173,23 @@ namespace Despensa.ViewModels
             }
         }
 
-        private async void InicializarListas()
+        private void InicializarListas()
         {
             ListarCategorias();
             Medidas = MedidaHelper.RetornarMedidas();
             Status = StatusHelper.RecuperarStatus();
         }
 
-        private async void ListarCategorias()
+        private void ListarCategorias()
         {
-            var categorias = await _CategoriaRepository.RecuperarCategoriasAsync();
+            var categorias =  _CategoriaRepository.RecuperarCategorias();
+            Categorias = new List<string>();
 
             foreach (var cat in categorias)
+            {
                 CategoriasDeItem.Add(cat);
-
-            Posicao = CategoriasDeItem.IndexOf(CategoriaSelecionada);
+                Categorias.Add(cat.Nome);
+            }
         }
     }
 }

@@ -62,7 +62,7 @@ namespace Despensa.ViewModels
                 return;
             }
 
-            var categoriaEncontrada = await _CategoriaRepository.RecuperarCategoriaPorNomeAsync(NovaCategoria.Nome);
+            var categoriaEncontrada =  _CategoriaRepository.RecuperarCategoriaPorNome(NovaCategoria.Nome);
 
             if (categoriaEncontrada != null)
             {
@@ -72,7 +72,7 @@ namespace Despensa.ViewModels
 
             NovaCategoria.FormatarCamposDeItem();
 
-            _CategoriaRepository.CadastrarCategoriaAsync(NovaCategoria);
+            _CategoriaRepository.CadastrarCategoria(NovaCategoria);
 
             await _PageService.DisplayAlert("Despensa", "Categoria criada com sucesso", "OK");
             

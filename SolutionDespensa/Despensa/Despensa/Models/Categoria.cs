@@ -1,5 +1,6 @@
 ﻿using Despensa.ViewModels;
 using SQLite;
+using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 
@@ -52,7 +53,6 @@ namespace Despensa.Models
             }
         }
 
-        [NotNull]
         public bool Original
         {
             get { return _Original; }

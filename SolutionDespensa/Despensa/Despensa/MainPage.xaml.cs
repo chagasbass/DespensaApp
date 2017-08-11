@@ -13,7 +13,7 @@ namespace Despensa
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
-            InicializarRepositorios();
+            
             BindingContext = new MainViewModel(this.Navigation);
         }
 
@@ -23,18 +23,6 @@ namespace Despensa
                 DependencyService.Get<IAndroidMethods>();
 
             return base.OnBackButtonPressed();
-        }
-
-        private void InicializarRepositorios()
-        {
-
-            var UsuarioRepo = new UsuarioRepository();
-            var CategoriaRepo = new CategoriaRepository();
-            var ProdutoRepo = new ProdutoRepository();
-
-            UsuarioRepo.CriarTabelas();
-            CategoriaRepo.CriarTabelas();
-            ProdutoRepo.CriarTabelas();
         }
     }
 }

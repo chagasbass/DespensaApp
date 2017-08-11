@@ -114,7 +114,7 @@ namespace Despensa.ViewModels
             }
 
             #region  recuperando o user
-            var user = await _UsuarioRepository.RecuperarUsuarioPorEmailAsync(UsuarioTrocaSenha.Email);
+            var user = _UsuarioRepository.RecuperarUsuarioPorEmail(UsuarioTrocaSenha.Email);
 
             if (user == null)
             {
@@ -149,11 +149,11 @@ namespace Despensa.ViewModels
 
             //atualiza o user
 
-            var user = await _UsuarioRepository.RecuperarUsuarioPorEmailAsync(UsuarioTrocaSenha.Email);
+            var user = _UsuarioRepository.RecuperarUsuarioPorEmail(UsuarioTrocaSenha.Email);
 
             user.Senha = UsuarioTrocaSenha.NovaSenha;
 
-            var retorno = await _UsuarioRepository.AtualizarUsuarioAsync(user);
+            var retorno = _UsuarioRepository.AtualizarUsuario(user);
 
             if (retorno == null)
             {

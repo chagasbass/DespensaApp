@@ -66,7 +66,7 @@ namespace Despensa.ViewModels
                 return;
             }
 
-            var userEncontrado = await _UsuarioRepository.RecuperarUsuarioPorEmailAsync(NovoUsuario.Email);
+            var userEncontrado =  _UsuarioRepository.RecuperarUsuarioPorEmail(NovoUsuario.Email);
 
             if (userEncontrado != null)
             {
@@ -74,7 +74,7 @@ namespace Despensa.ViewModels
                 return;
             }
 
-            _UsuarioRepository.CadastrarUsuarioAsync(NovoUsuario);
+            _UsuarioRepository.CadastrarUsuario(NovoUsuario);
 
             GravarPreferenciasDeUsuario();
 

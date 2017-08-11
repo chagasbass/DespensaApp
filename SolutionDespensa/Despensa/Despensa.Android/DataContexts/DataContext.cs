@@ -1,6 +1,7 @@
 ﻿using Despensa.DataContexts;
 using Despensa.Droid.DataContexts.AppSqLite.Droid.DataContexts;
 using SQLite;
+using SQLite.Net;
 using System.IO;
 using Xamarin.Forms;
 
@@ -9,16 +10,21 @@ namespace Despensa.Droid.DataContexts
 {
     namespace AppSqLite.Droid.DataContexts
     {
+        /// <summary>
+        /// Classe que implementa a interface de acesso à dados
+        /// </summary>
         public class DataContext : IDataContext
         {
-            public SQLiteAsyncConnection GetConnection()
+            public SQLiteConnection GetConnection()
             {
-                var fileName = "DespensaDB.db3";
+                var nomeDoArquivo = "DespensaDB.db3";
 
-                var documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                var path = Path.Combine(documentsPath, fileName);
+                var caminhoDoDiretorio = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                var caminho = Path.Combine(caminhoDoDiretorio, nomeDoArquivo);
 
-                return new SQLiteAsyncConnection(path);
+                var conexao = new SQLiteConnection(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(), caminho);
+
+                return conexao;
             }
         }
     }

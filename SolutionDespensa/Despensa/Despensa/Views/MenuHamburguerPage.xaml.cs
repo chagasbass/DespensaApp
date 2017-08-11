@@ -19,7 +19,7 @@ namespace Despensa.Views
             BindingContext = new MenuItemViewModel();
         }
 
-        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace Despensa.Views
                 
                 ViewModel.SelecionarItemCommand.Execute(null);
 
-                ViewModel.ItemSelecionado = null;
+                //ViewModel.ItemSelecionado = null;
                 
             }
             catch (System.Exception ex)

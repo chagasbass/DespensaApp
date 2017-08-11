@@ -1,7 +1,6 @@
 ﻿using Despensa.DataContexts;
 using Despensa.Models;
 using Despensa.Views;
-using Plugin.LocalNotifications;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,7 +24,8 @@ namespace Despensa.ViewModels
         readonly ProdutoRepository _ProdutoRepository;
         readonly CategoriaRepository _CategoriaRepository;
         readonly Page _Page;
-        private string _Pesquisa;
+        string _Pesquisa;
+        bool _TemItems;
 
         Produto _ProdutoSelecionado;
 
@@ -40,7 +40,13 @@ namespace Despensa.ViewModels
             get { return _Pesquisa; }
             set { SetValue(ref _Pesquisa, value); }
         }
-      
+
+        public bool TemItems
+        {
+            get { return _TemItems; }
+            set { SetValue(ref _TemItems, value); }
+        }
+
         public ProdutoViewModel(Page Page, ProdutoRepository ProdutoRepository)
         {
             _Page = Page;
@@ -53,24 +59,25 @@ namespace Despensa.ViewModels
             ListarProdutosCommand = new Command(ListarProdutos);
             ExcluirProdutoCommand = new Command(ExcluirProduto);
             PesquisarProdutoCommand = new Command(PesquisarProduto);
+            TemItems = true;
         }
 
         private async void PesquisarProduto()
         {
-            //if (String.IsNullOrEmpty(Pesquisa))
-            //{
-            //    ListarProdutos();
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(Pesquisa))
+            {
+                ListarProdutos();
+                return;
+            }
 
-            //var pesquisa = Produtos.Where(x => x.Nome.ToUpper().Contains(Pesquisa.ToUpper())).ToList();
+            var pesquisa = Produtos.Where(x => x.Nome.ToUpper().Contains(Pesquisa.ToUpper())).ToList();
 
-            //Produtos.Clear();
+            Produtos.Clear();
 
-            //foreach (var item in pesquisa)
-            //{
-            //    Produtos.Add(item);
-            //}
+            foreach (var item in pesquisa)
+            {
+                Produtos.Add(item);
+            }
         }
 
         private async Task SelecionarProduto(Produto produto)
@@ -89,7 +96,7 @@ namespace Despensa.ViewModels
             await _Page.Navigation.PushAsync(new AtualizarProdutoPage(produto));
         }
 
-        private async void ExcluirProduto()
+        private  void ExcluirProduto()
         {
             _ProdutoRepository.ExcluirProdutoAsync(ProdutoSelecionado);
         }
@@ -105,7 +112,7 @@ namespace Despensa.ViewModels
             {
                 Produtos.Clear();
 
-                var produtos = await _ProdutoRepository.RecuperarProdutosAsync();
+                var produtos = _ProdutoRepository.RecuperarProdutos();
 
                 if (produtos == null)
                     return;
@@ -114,14 +121,17 @@ namespace Despensa.ViewModels
                 foreach (var produto in produtos)
                 {
                     produto.CriarDetalhes();
-                    produto.Categoria = await _CategoriaRepository.RecuperarCategoriaPorIdAsync(produto.IdCategoria);
+                    produto.Categoria =  _CategoriaRepository.RecuperarCategoriaPorId(produto.IdCategoria);
                     Produtos.Add(produto);
                 }
 
                 #endregion
 
                 if (Produtos.Count == 0)
-                    CrossLocalNotifications.Current.Show("Atenção", "A despensa está vazia!!, cadastre os seus items");
+                {
+                    TemItems = false;
+                    await _Page.DisplayAlert("Despensa", "Não existem produtos cadastrados", "OK");
+                }
             }
             catch (System.Exception ex)
             {

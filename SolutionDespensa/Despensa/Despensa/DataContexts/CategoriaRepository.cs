@@ -1,81 +1,66 @@
 ﻿using Despensa.Models;
-using SQLite;
+using SQLite.Net;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Despensa.DataContexts
 {
     public class CategoriaRepository
     {
-        SQLiteAsyncConnection _Connection;
+        SQLiteConnection _Connection;
 
         public CategoriaRepository()
         {
             _Connection = DependencyService.Get<IDataContext>().GetConnection();
         }
 
-        public async void CriarTabelas()
+        public void InicializarCategorias()
         {
-            await _Connection.CreateTableAsync<Categoria>();
-        }
+            var listaDeOriginais = _Connection.Table<Categoria>().Where(x => x.Original == true);
 
-        public async void InicializarCategorias()
-        {
-            var lista_ = await _Connection.Table<Categoria>().ToListAsync();
-
-            var listaDeOriginais = lista_.FindAll(x => x.Original == true);
-
-            if(listaDeOriginais != null)
+            if (listaDeOriginais.Count() == 0)
             {
                 var lista = new List<Categoria>();
-                lista.Add(new Categoria() { Nome = "Bebidas", Informacao = "Água, sucos, refrigerantes, vinhos, cervejas, entre outras.",Original=true });
+                lista.Add(new Categoria() { Nome = "Bebidas", Informacao = "Água, sucos, refrigerantes, vinhos, cervejas, entre outras.", Original = true });
                 lista.Add(new Categoria() { Nome = "Mantimentos de mercearia", Informacao = "Óleos, azeites, mostardas, ketchups, maioneses. Molhos, patês, azeitonas, latinhas de atum e sardinha. Temperos diversos. Manteiga.", Original = true });
                 lista.Add(new Categoria() { Nome = "Mantimentos secos", Informacao = "Água Massas, arroz, feijão, farinhas, lentilha, legumes enlatados, sopas de pacote, macarrão instantâneo, amendoins, frutas secas, açúcar, sal.", Original = true });
                 lista.Add(new Categoria() { Nome = "Alimentos em conserva ", Informacao = "Carnes", Original = true });
-                lista.Add(new Categoria() { Nome = "Bebidas", Informacao = "Água, sucos, refrigerantes, vinhos, cervejas, entre outras.", Original = true });
                 lista.Add(new Categoria() { Nome = "Doces", Informacao = "Chocolates, biscoitos, creme de leite, leite condensado, gelatinas, adoçantes, geléias.", Original = true });
 
                 foreach (var item in lista)
-                {
-                    await _Connection.InsertAsync(item);
-                }
+                    _Connection.Insert(item);
             }
         }
 
-        public async void CadastrarCategoriaAsync(Categoria categoria)
+        public void CadastrarCategoria(Categoria categoria)
         {
-            await _Connection.InsertAsync(categoria);
+            _Connection.Insert(categoria);
         }
 
-        public async Task<Categoria> RecuperarCategoriaPorIdAsync(int id)
+        public Categoria RecuperarCategoriaPorId(int id)
         {
-            var categorias = await _Connection.Table<Categoria>().ToListAsync();
-
-            var categoria = categorias.Find(x => x.Id == id);
+            var categoria = _Connection.Table<Categoria>().Where(x => x.Id == id).FirstOrDefault();
 
             return categoria;
         }
 
-        public async Task<List<Categoria>> RecuperarCategoriasAsync()
+        public IEnumerable<Categoria> RecuperarCategorias()
         {
-            var categorias = await _Connection.Table<Categoria>().ToListAsync();
+            var categorias =  _Connection.Table<Categoria>();
 
             return categorias;
         }
 
-        public async Task<Categoria> RecuperarCategoriaPorNomeAsync(string nome)
+        public Categoria RecuperarCategoriaPorNome(string nome)
         {
-            var categorias = await _Connection.Table<Categoria>().ToListAsync();
-
-            var categoria = categorias.Find(x => x.Nome.ToUpper() == nome.ToUpper());
+            var categoria = _Connection.Table<Categoria>().Where(x => x.Nome.ToUpper() == nome.ToUpper()).FirstOrDefault();
 
             return categoria;
         }
 
-        public async Task<Categoria> AtualizarCategoriaAsync(Categoria categoria)
+        public Categoria AtualizarCategoria(Categoria categoria)
         {
-            int retorno = await _Connection.UpdateAsync(categoria);
+            int retorno =  _Connection.Update(categoria);
 
             if (retorno > 0)
                 return categoria;
@@ -83,9 +68,9 @@ namespace Despensa.DataContexts
             return null;
         }
 
-        public async void ExcluirCategoriaAsync(Categoria categoria)
+        public  void ExcluirCategoria(Categoria categoria)
         {
-            await _Connection.DeleteAsync(categoria);
+           _Connection.Delete(categoria);
         }
     }
 }

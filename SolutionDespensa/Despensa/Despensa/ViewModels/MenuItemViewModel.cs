@@ -39,6 +39,7 @@ namespace Despensa.ViewModels
         {
             ListaMenu.Add(new Models.ItemMenu() { Texto = "Produtos", Icone = "ic_list_black_24dp.png", Page = new ListagemDeProdutosPage() });
             ListaMenu.Add(new Models.ItemMenu() { Texto = "Categorias", Icone = "ic_list_black_24dp.png", Page = new ListagemDeCategoriasPage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Lista de Compras", Icone = "ic_info_outline_black_24dp.png", Page = new ListaDeComprasPage() });
             ListaMenu.Add(new Models.ItemMenu() { Texto = "Minha Conta", Icone = "ic_account_box_black_24dp.png", Page = new MinhaContaPage() });
         }
     }

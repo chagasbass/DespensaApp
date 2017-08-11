@@ -27,6 +27,8 @@ namespace Despensa.Droid
 		public static void UpdateIdValues()
 		{
 			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::Despensa.Droid.Resource.Drawable.plugin_lc_smallicon;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::Despensa.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::Despensa.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Despensa.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -3667,6 +3669,12 @@ namespace Despensa.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f09003f
+			public const int ApplicationName = 2131296319;
+			
+			// aapt resource value: 0x7f09003e
+			public const int Hello = 2131296318;
 			
 			// aapt resource value: 0x7f090015
 			public const int abc_action_bar_home_description = 2131296277;

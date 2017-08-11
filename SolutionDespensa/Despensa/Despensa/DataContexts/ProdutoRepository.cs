@@ -1,28 +1,22 @@
 ﻿using Despensa.Models;
-using SQLite;
+using SQLite.Net;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Despensa.DataContexts
 {
-    public  class ProdutoRepository
+    public class ProdutoRepository
     {
-        SQLiteAsyncConnection _Connection;
+        SQLiteConnection _Connection;
 
         public ProdutoRepository()
         {
             _Connection = DependencyService.Get<IDataContext>().GetConnection();
         }
 
-        public async void CriarTabelas()
+        public void CadastrarProduto(Produto produto)
         {
-            await _Connection.CreateTableAsync<Produto>();
-        }
-
-        public async void CadastrarProdutoAsync(Produto produto)
-        {
-            await _Connection.InsertAsync(produto);
+            _Connection.Insert(produto);
         }
 
         /// <summary>
@@ -30,12 +24,10 @@ namespace Despensa.DataContexts
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Produto> RecuperarProdutoPorIdAsync(int id)
+        public Produto RecuperarProdutoPorId(int id)
         {
-            var produtos = await _Connection.Table<Produto>().ToListAsync();
+            var produto = _Connection.Table<Produto>().Where(x => x.Id == id).FirstOrDefault();
 
-            var produto = produtos.Find(x => x.Id == id);
-          
             return produto;
         }
 
@@ -44,11 +36,9 @@ namespace Despensa.DataContexts
         /// </summary>
         /// <param name="marca"></param>
         /// <returns></returns>
-        public async Task<Produto> RecuperarProdutoPorMarcaAsync(string marca)
+        public Produto RecuperarProdutoPorMarca(string marca)
         {
-            var produtos = await _Connection.Table<Produto>().ToListAsync();
-
-            var produto = produtos.Find(x => x.Marca.ToUpper() == marca.ToUpper());
+            var produto = _Connection.Table<Produto>().Where(x => x.Marca.ToUpper() == marca.ToUpper()).FirstOrDefault();
 
             return produto;
         }
@@ -58,20 +48,16 @@ namespace Despensa.DataContexts
         /// </summary>
         /// <param name="nome"></param>
         /// <returns></returns>
-        public async Task<Produto> RecuperarProdutoPorNomeAsync(string nome)
+        public Produto RecuperarProdutoPorNome(string nome)
         {
-            var produtos = await _Connection.Table<Produto>().ToListAsync();
-
-            var produto = produtos.Find(x => x.Marca.ToUpper() == nome.ToUpper());
+            var produto = _Connection.Table<Produto>().Where(x => x.Marca.ToUpper() == nome.ToUpper()).FirstOrDefault();
 
             return produto;
         }
 
-        public async Task<Produto> RecuperarProdutoPorNomeEMarcaAsync(string nome,string marca)
+        public Produto RecuperarProdutoPorNomeEMarca(string nome, string marca)
         {
-            var produtos = await _Connection.Table<Produto>().ToListAsync();
-
-            var produto = produtos.Find(x => x.Nome.ToUpper() == nome.ToUpper() && x.Marca.ToUpper() == marca.ToUpper());
+            var produto = _Connection.Table<Produto>().Where(x => x.Nome.ToUpper() == nome.ToUpper() && x.Marca.ToUpper() == marca.ToUpper()).FirstOrDefault();
 
             return produto;
         }
@@ -80,16 +66,26 @@ namespace Despensa.DataContexts
         /// Recupera a lista de produtos
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Produto>> RecuperarProdutosAsync()
+        public IEnumerable<Produto> RecuperarProdutos()
         {
-            var produtos = await _Connection.Table<Produto>().ToListAsync();
+            var lista = _Connection.Table<Produto>();
+            return lista;
+        }
+
+
+        public IEnumerable<Produto> RecuperarProdutosParaCompra()
+        {
+            var produtos = _Connection.Table<Produto>().Where(x => x.Status == "Acabou" || x.Status == "Acabando");
+
+            foreach (var item in produtos)
+                item.Comprado = false;
 
             return produtos;
         }
 
-        public async Task<Produto> AtualizarProdutoAsync(Produto produto)
+        public Produto AtualizarProduto(Produto produto)
         {
-            int retorno = await _Connection.UpdateAsync(produto);
+            int retorno = _Connection.Update(produto);
 
             if (retorno > 0)
                 return produto;
@@ -97,9 +93,8 @@ namespace Despensa.DataContexts
             return null;
         }
 
-        public async void ExcluirProdutoAsync(Produto produto)
-        {
-            await _Connection.DeleteAsync(produto);
-        }
+        public void AtualizarProdutosEmLote(List<Produto> lote) => _Connection.UpdateAll(lote);
+
+        public void ExcluirProdutoAsync(Produto produto) => _Connection.Delete(produto);
     }
 }
