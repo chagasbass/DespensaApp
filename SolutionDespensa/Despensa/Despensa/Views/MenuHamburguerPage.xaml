@@ -4,20 +4,19 @@
              x:Class="Despensa.Views.MenuHamburguerPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
              Title="Menu"
+             BackgroundColor="#ffd180"
              Icon="ic_menu_white_24dp.png">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Image Source="http://cinefilos.jornalismojunior.com.br/wp-content/uploads/Batman06.jpg"/>
-                <Label TextColor="White" Text="Seja bem vindo Usuário" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Image Source="despensaMenu.png"/>
+                <Label TextColor="White" Text="{Binding MensagemUsuario}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
             <ListView 
                       x:Name="listViewMenu"
                       ItemSelected="ListView_ItemSelected"
                       ItemsSource="{Binding ListaMenu}"
-                      SelectedItem="{Binding ItemSelecionado}"
-                      
-                      >
+                      SelectedItem="{Binding ItemSelecionado}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

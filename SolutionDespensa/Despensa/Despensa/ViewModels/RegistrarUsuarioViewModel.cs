@@ -90,6 +90,7 @@ namespace Despensa.ViewModels
         {
             PreferenciasHelper.GravarLogin = NovoUsuario.Email;
             PreferenciasHelper.GravarSenha = NovoUsuario.Senha;
+            PreferenciasHelper.GravarNomeUsuario = NovoUsuario.Nome;
         }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="Models\Agrupamento.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\ItemMenu.cs" />
+    <Compile Include="Models\ModeloDeInformacao.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\UsuarioTrocaSenha.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\RegistrarUsuarioViewModel.cs" />
+    <Compile Include="ViewModels\SobreViewModel.cs" />
     <Compile Include="Views\AtualizarCategoriaPage.xaml.cs">
       <DependentUpon>AtualizarCategoriaPage.xaml</DependentUpon>
     </Compile>
@@ -119,6 +121,9 @@
     </Compile>
     <Compile Include="Views\RegistrarUsuarioPage.xaml.cs">
       <DependentUpon>RegistrarUsuarioPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SobrePage.xaml.cs">
+      <DependentUpon>SobrePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +263,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ListaDeComprasPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SobrePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

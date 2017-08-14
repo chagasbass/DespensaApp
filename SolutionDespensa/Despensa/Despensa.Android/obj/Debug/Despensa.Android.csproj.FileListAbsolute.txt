@@ -419,6 +419,7 @@ C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable\categor
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable\produtoimg.png
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable\categorias.png
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable\produtos.png
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable\despensamenu.png
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\R.cs.flag
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\uploadflags.txt
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Despensa.dll.mdb

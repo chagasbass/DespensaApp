@@ -7,12 +7,7 @@
              BackgroundColor="#e0e0e0">
     <StackLayout Orientation="Vertical" Spacing="30" Padding="0,10,0,0">
 
-        <!--<Image HorizontalOptions="Center"
-                    VerticalOptions="Center" 
-                    HeightRequest="200"
-                    WidthRequest="200"
-                   Source="categoriaImg.png" 
-                   Aspect="AspectFill"/>-->
+       
         <Frame OutlineColor="#caa052"  VerticalOptions="Fill">
             <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Nome" TextColor="Black"/>

@@ -1,4 +1,5 @@
-﻿using Despensa.Views;
+﻿using Despensa.Helpers.Despensa.Helpers;
+using Despensa.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,6 +17,7 @@ namespace Despensa.ViewModels
         public ObservableCollection<Models.ItemMenu> ListaMenu { get; private set; } = new ObservableCollection<Models.ItemMenu>();
 
         Models.ItemMenu _ItemSelecionado;
+        string _MensagemUsuario;
 
         public Models.ItemMenu ItemSelecionado
         {
@@ -23,11 +25,18 @@ namespace Despensa.ViewModels
             set { SetValue(ref _ItemSelecionado, value); }
         }
 
+        public string MensagemUsuario
+        {
+            get { return _MensagemUsuario; }
+            set { SetValue(ref _MensagemUsuario, value); }
+        }
+
         public MenuItemViewModel()
         {
             //SelecionarItemCommand = new Command<Models.MenuItem>(async vm => await SelecionarItem(vm));
             SelecionarItemCommand = new Command(SelecionarItem);
             CriarListaDeMenu();
+            MensagemUsuario = string.Concat("Seja bem vindo", PreferenciasHelper.GravarNomeUsuario);
         }
 
         private async void SelecionarItem()
@@ -41,6 +50,7 @@ namespace Despensa.ViewModels
             ListaMenu.Add(new Models.ItemMenu() { Texto = "Categorias", Icone = "ic_list_black_24dp.png", Page = new ListagemDeCategoriasPage() });
             ListaMenu.Add(new Models.ItemMenu() { Texto = "Lista de Compras", Icone = "ic_info_outline_black_24dp.png", Page = new ListaDeComprasPage() });
             ListaMenu.Add(new Models.ItemMenu() { Texto = "Minha Conta", Icone = "ic_account_box_black_24dp.png", Page = new MinhaContaPage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Sobre", Icone = "ic_help_black_24dp.png", Page = new SobrePage() });
         }
     }
 }

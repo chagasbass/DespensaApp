@@ -19,6 +19,7 @@ namespace Despensa.Helpers
 
             private const string DadosDeLogin = "Login";
             private const string DadosDeSenha = "Senha";
+            private const string NomeUsuario = "NomeUsuario";
             private static readonly string ValorPadrao = string.Empty;
 
             #endregion
@@ -44,6 +45,18 @@ namespace Despensa.Helpers
                 set
                 {
                     AppSettings.AddOrUpdateValue(DadosDeSenha, value);
+                }
+            }
+
+            public static string GravarNomeUsuario
+            {
+                get
+                {
+                    return AppSettings.GetValueOrDefault(ValorPadrao, ValorPadrao);
+                }
+                set
+                {
+                    AppSettings.AddOrUpdateValue(ValorPadrao, value);
                 }
             }
         }

@@ -5,15 +5,14 @@
              Title="Despensa - Produtos"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
              NavigationPage.HasBackButton="False"
-             BackgroundColor="#e0e0e0">
+             BackgroundColor="White">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_add_white_24dp" 
                      Activated="ToolbarItem_Activated"
                      Order="Primary"></ToolbarItem>
     </ContentPage.ToolbarItems>
- 
-    <StackLayout>
+    <StackLayout BackgroundColor="White">
         <SearchBar Placeholder="Pesquisar..." Text="{Binding Pesquisa}" IsVisible="{Binding TemItems}" TextChanged="SearchBar_TextChanged" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"></SearchBar>
         <ListView x:Name="listViewProdutos" IsPullToRefreshEnabled="true"
               Refreshing="listViewProdutos_Refreshing" 
@@ -23,20 +22,34 @@
               HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ImageCell Text="{Binding Nome}" TextColor="Black" Detail="{Binding Detalhes}" DetailColor="#caa052" ImageSource="produtos.png">
-                        <!--<StackLayout Orientation="Vertical">
-                            <Label Text="{Binding Nome}" TextColor="Gray"></Label>
-                            <Label Text="{Binding Detalhes}" TextColor="#caa052"></Label>
-                        </StackLayout>-->
-
-                        <ImageCell.ContextActions>
+                    <ViewCell>
+                        <Frame VerticalOptions="Fill">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="produtos.png" HeightRequest="100" WidthRequest="100"></Image>
+                                <StackLayout Padding="10">    
+                                <Label Text="{Binding Nome}" Font="18" TextColor="Black" FontSize="Medium"></Label>
+                                <Label Text="{Binding Detalhes}" Font="18" TextColor="#caa052" ></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <ViewCell.ContextActions>
                             <MenuItem Text="Editar" Clicked="MenuItem_EditarProdutos"  CommandParameter="{Binding .}" />
                             <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirProdutos" IsDestructive="True" CommandParameter="{Binding .}"/>
-                        </ImageCell.ContextActions>
-                    </ImageCell>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
 
 </ContentPage>
+
+
+<!--<ImageCell Text="{Binding Nome}" TextColor="Black" Detail="{Binding Detalhes}" DetailColor="#caa052" ImageSource="produtos.png">
+
+
+    <ImageCell.ContextActions>
+        <MenuItem Text="Editar" Clicked="MenuItem_EditarProdutos"  CommandParameter="{Binding .}" />
+        <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirProdutos" IsDestructive="True" CommandParameter="{Binding .}"/>
+    </ImageCell.ContextActions>
+</ImageCell>-->

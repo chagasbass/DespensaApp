@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.SobrePage"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             Title="Despensa Sobre"
+             BackgroundColor="#e0e0e0">
+
+    <ListView 
+        HasUnevenRows="True"
+        ItemsSource="{Binding Conteudo}"
+        ItemSelected="ListView_ItemSelected"
+        SelectedItem="{Binding Selecionado}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame  VerticalOptions="Fill">
+                        <StackLayout Padding="20, 30" Orientation="Vertical">
+                            <Label Text="{Binding Titulo}"
+							   FontSize="Medium"                   
+                               TextColor="Black"/>
+                            <Label Text="{Binding Descricao}"
+							    FontSize="Small" />
+                        </StackLayout>
+                    </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
