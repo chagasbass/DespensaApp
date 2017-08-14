@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Despensa.Android", "Despensa\Despensa.Android\Despensa.Android.csproj", "{D5EDAC5F-F7BD-481E-AFB5-989E6A7D7C24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Despensa", "Despensa\Despensa\Despensa.csproj", "{1B42CD48-8E22-4692-B91B-07B848A9ACA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Despensa.iOS", "Despensa\Despensa.iOS\Despensa.iOS.csproj", "{66FE0079-6E96-40D8-80B7-534DAC14A6D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7693E249-93D6-4189-84BA-1740CCB40048}"
+	ProjectSection(SolutionItems) = preProject
+		Todos.txt = Todos.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

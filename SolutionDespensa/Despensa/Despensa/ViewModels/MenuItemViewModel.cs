@@ -46,11 +46,12 @@ namespace Despensa.ViewModels
 
         private void CriarListaDeMenu()
         {
-            ListaMenu.Add(new Models.ItemMenu() { Texto = "Produtos", Icone = "ic_list_black_24dp.png", Page = new ListagemDeProdutosPage() });
-            ListaMenu.Add(new Models.ItemMenu() { Texto = "Categorias", Icone = "ic_list_black_24dp.png", Page = new ListagemDeCategoriasPage() });
-            ListaMenu.Add(new Models.ItemMenu() { Texto = "Lista de Compras", Icone = "ic_info_outline_black_24dp.png", Page = new ListaDeComprasPage() });
-            ListaMenu.Add(new Models.ItemMenu() { Texto = "Minha Conta", Icone = "ic_account_box_black_24dp.png", Page = new MinhaContaPage() });
-            ListaMenu.Add(new Models.ItemMenu() { Texto = "Sobre", Icone = "ic_help_black_24dp.png", Page = new SobrePage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Produtos", Icone = "ic_restaurant_white_24dp", Page = new ListagemDeProdutosPage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Categorias", Icone = "ic_class_white_24dp", Page = new ListagemDeCategoriasPage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Lista de Compras", Icone = "ic_shopping_cart_white_24dp", Page = new ListaDeComprasPage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Minha Conta", Icone = "ic_account_box_white_24dp.png", Page = new MinhaContaPage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Sobre", Icone = "ic_help_outline_white_24dp.png", Page = new SobrePage() });
+            ListaMenu.Add(new Models.ItemMenu() { Texto = "Sair", Icone = "ic_exit_to_app_white_24dp", Page = new LoginPage() });
         }
     }
 }

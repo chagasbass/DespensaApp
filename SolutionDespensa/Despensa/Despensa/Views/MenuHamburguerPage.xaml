@@ -22,7 +22,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="{Binding Icone}" Aspect="AspectFit"></Image>
-                                <Label Text="{Binding Texto}" FontAttributes="Bold" VerticalOptions="CenterAndExpand" TextColor="Black"></Label>
+                                <Label Text="{Binding Texto}" FontAttributes="Bold" VerticalOptions="CenterAndExpand" TextColor="White"></Label>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

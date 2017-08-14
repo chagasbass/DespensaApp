@@ -1,6 +1,4 @@
-﻿using Despensa.Helpers;
-using Despensa.ViewModels;
-using SQLite;
+﻿using Despensa.ViewModels;
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
@@ -19,11 +17,13 @@ namespace Despensa.Models
          string _Detalhes;
          bool _Comprado;
         string _CorStatus;
+        string _Imagem;
         
         public Produto()
         {
             DataCadastro = DateTime.Now.ToString();
             _Comprado = true;
+            Imagem = "produtos.png";
         }
 
         #region Propriedades
@@ -150,6 +150,18 @@ namespace Despensa.Models
             {
                 SetValue(ref _CorStatus, value);
                 OnPropertyChanged(nameof(_CorStatus));
+            }
+        }
+
+        [MaxLength(200)]
+        public string Imagem
+        {
+            get { return _Imagem; }
+
+            set
+            {
+                SetValue(ref _Imagem, value);
+                OnPropertyChanged(nameof(_Imagem));
             }
         }
 

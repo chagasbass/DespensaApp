@@ -1,0 +1,20 @@
+
+Refatorar os repos -OK
+refatorar os model de produto - OK
+testar as mudanças de banco - OK
+Testar a lista de items para compra OK
+aumentar o switch da lista de compras OK
+consertar o drop de categorias na atualizacao de produtos. - OK
+trocar a cor dos textos dos detalhes na lista de compras (acabando = primary, acabou = vermelho)-OK
+add novo item a lista de compras.
+
+Esconder barra de pesquisa caso nao tenham produtos cadastrados (em produtos e em compras) (Testar)
+Fazer a pagina de sobre - ok
+Inserir a prop imagem no model de produto -OK
+Alterar a lista de compras - OK (Testar o padding)
+Alterar os icones do menu para branco - OK
+Refazer a view de Login
+Refazer a view Registar usuario
+Refazer a view de Esquecimento de Senha
+Refazer a view de Detalhes de Usuario
+

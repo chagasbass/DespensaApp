@@ -5,7 +5,7 @@
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
              NavigationPage.HasBackButton="False"
              Title="Despensa - Compras"
-             BackgroundColor="#e0e0e0">
+             BackgroundColor="White">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Finalizar"
@@ -28,19 +28,14 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Padding="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="25"></RowDefinition>
-                            <RowDefinition Height="25"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="50"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Switch Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" IsToggled="{Binding Comprado}"/>
-                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Nome}" LineBreakMode="TailTruncation"></Label>
-                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding Status}" Font="Small"  TextColor="{Binding CorStatus}" LineBreakMode="TailTruncation"></Label>
-                    </Grid>
+                    <StackLayout Orientation="Horizontal" Padding="5">
+                        <Image Source="produtos.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFit"/>
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label  Text="{Binding Nome}" FontSize="Medium" Margin="0,10,0,0"></Label>
+                            <Label  Text="{Binding Status}" FontSize="Small"  TextColor="{Binding CorStatus}"></Label>
+                        </StackLayout>
+                        <Switch IsToggled="{Binding Comprado}"/>
+                    </StackLayout>
                     <ViewCell.ContextActions>
                         <MenuItem Text="Excluir" Clicked="MenuItem_Clicked"  IsDestructive="True" CommandParameter="{Binding .}"/>
                     </ViewCell.ContextActions>
@@ -50,3 +45,21 @@
     </ListView>
 
 </ContentPage>
+
+
+<!--<Grid Padding="5">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="25"></RowDefinition>
+        <RowDefinition Height="25"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="50"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Switch Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" IsToggled="{Binding Comprado}"/>
+    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Nome}" LineBreakMode="TailTruncation"></Label>
+    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Status}" Font="Small"  TextColor="{Binding CorStatus}" LineBreakMode="TailTruncation"></Label>
+</Grid>
+<ViewCell.ContextActions>
+    <MenuItem Text="Excluir" Clicked="MenuItem_Clicked"  IsDestructive="True" CommandParameter="{Binding .}"/>
+</ViewCell.ContextActions>-->

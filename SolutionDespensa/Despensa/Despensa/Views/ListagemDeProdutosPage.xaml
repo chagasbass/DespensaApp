@@ -25,7 +25,7 @@
                     <ViewCell>
                         <Frame VerticalOptions="Fill">
                             <StackLayout Orientation="Horizontal">
-                                <Image Source="produtos.png" HeightRequest="100" WidthRequest="100"></Image>
+                                <Image Source="{Binding Imagem}" HeightRequest="100" WidthRequest="100"></Image>
                                 <StackLayout Padding="10">    
                                 <Label Text="{Binding Nome}" Font="18" TextColor="Black" FontSize="Medium"></Label>
                                 <Label Text="{Binding Detalhes}" Font="18" TextColor="#caa052" ></Label>
