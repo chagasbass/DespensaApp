@@ -36,7 +36,7 @@ namespace Despensa.ViewModels
             //SelecionarItemCommand = new Command<Models.MenuItem>(async vm => await SelecionarItem(vm));
             SelecionarItemCommand = new Command(SelecionarItem);
             CriarListaDeMenu();
-            MensagemUsuario = string.Concat("Seja bem vindo", PreferenciasHelper.GravarNomeUsuario);
+            MensagemUsuario = string.Concat("Seja bem vindo ", PreferenciasHelper.GravarNomeUsuario);
         }
 
         private async void SelecionarItem()

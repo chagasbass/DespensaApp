@@ -16,6 +16,8 @@ namespace Despensa.ViewModels
         public ICommand PesquisarItemCommand { get; private set; }
         public ICommand ExcluirItemCommand { get; private set; }
         public ICommand FinalizarCompraCommand { get; private set; }
+        public ICommand CancelarSelecaoDeItem { get; private set; }
+        public ICommand RedirecionarParaNovoItemCommand { get; private set; }
 
         Page _Page;
         ProdutoRepository _ProdutoRepository;
@@ -53,7 +55,13 @@ namespace Despensa.ViewModels
             PesquisarItemCommand = new Command(PesquisarItem);
             ExcluirItemCommand = new Command(ExcluirItem);
             FinalizarCompraCommand = new Command(FinalizarCompras);
+            CancelarSelecaoDeItem = new Command(CancelarSelecao);
+            RedirecionarParaNovoItemCommand = new Command(RedirecionarParaNovoItem);
         }
+
+        private async void RedirecionarParaNovoItem() => await _Page.Navigation.PushAsync(new CadastrarProdutoPage());
+
+        private void CancelarSelecao(object obj) => ItemSelecionado = null;
 
         private async void FinalizarCompras()
         {

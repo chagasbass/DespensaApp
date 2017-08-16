@@ -3,21 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Despensa.Views.MinhaContaPage"
              Title="Despensa - Minha Conta"
-             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             BackgroundColor="#e0e0e0">
-    <StackLayout Orientation="Vertical" Spacing="30" Padding="0,10,0,0">
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels">
+    <Frame  HasShadow="True">
+        <ScrollView>
+            <StackLayout Spacing="20">
 
-       
-        <Frame OutlineColor="#caa052"  VerticalOptions="Fill">
-            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Aspect="AspectFit">
+                    <Image.Source>
+                        <UriImageSource Uri="https://previews.123rf.com/images/ryzhov/ryzhov1503/ryzhov150300139/37640936-Women-housewife-with-cart-shopping-in-supermarket-Stock-Photo.jpg"
+                                    CachingEnabled="True"
+                                    CacheValidity="90"/>
+                    </Image.Source>
+                </Image>
+
                 <Label Text="Nome" TextColor="Black"/>
-                <Label Text="{Binding UsuarioEncontrado.Nome}" TextColor="Gray"/>
+                <Label Text="{Binding UsuarioEncontrado.Nome}" TextColor="Gray" FontSize="Medium"/>
                 <Label Text="Sobrenome" TextColor="Black"/>
-                <Label Text="{Binding UsuarioEncontrado.Sobrenome}" TextColor="Gray"/>
+                <Label Text="{Binding UsuarioEncontrado.Sobrenome}" TextColor="Gray" FontSize="Medium"/>
 
                 <Label Text="Email" TextColor="Black"/>
-                <Label Text="{Binding UsuarioEncontrado.Email}" TextColor="Gray"/>
+                <Label Text="{Binding UsuarioEncontrado.Email}" TextColor="Gray" FontSize="Medium"/>
+
+                <Button Text="Atualizar Dados"
+             BackgroundColor="#caa052"
+             VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
+		      BorderRadius="20"
+              BorderWidth="5"
+			 TextColor="White"  />
+                
             </StackLayout>
-        </Frame>
-    </StackLayout>
+        </ScrollView>
+    </Frame>
+
 </ContentPage>

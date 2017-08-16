@@ -20,13 +20,16 @@
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="windowActionModeOverlay">true</item>
-
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
   </style>
 
   <style name="Theme.Splash" parent="android:Theme">
     <item name="android:windowBackground">@drawable/splash</item>
     <item name="android:windowNoTitle">true</item>
+  </style>
+  
+  <style name="MainThemeBase.ActionBarPopupTheme" parent="android:ThemeOverlay.Material.Light"> 
+    <item name="android:colorBackground">#ffd180</item>     
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">

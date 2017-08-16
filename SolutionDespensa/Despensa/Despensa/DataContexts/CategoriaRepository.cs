@@ -21,11 +21,14 @@ namespace Despensa.DataContexts
             if (listaDeOriginais.Count() == 0)
             {
                 var lista = new List<Categoria>();
-                lista.Add(new Categoria() { Nome = "Bebidas", Informacao = "Água, sucos, refrigerantes, vinhos, cervejas, entre outras.", Original = true });
-                lista.Add(new Categoria() { Nome = "Mantimentos de mercearia", Informacao = "Óleos, azeites, mostardas, ketchups, maioneses. Molhos, patês, azeitonas, latinhas de atum e sardinha. Temperos diversos. Manteiga.", Original = true });
-                lista.Add(new Categoria() { Nome = "Mantimentos secos", Informacao = "Água Massas, arroz, feijão, farinhas, lentilha, legumes enlatados, sopas de pacote, macarrão instantâneo, amendoins, frutas secas, açúcar, sal.", Original = true });
-                lista.Add(new Categoria() { Nome = "Alimentos em conserva ", Informacao = "Carnes", Original = true });
-                lista.Add(new Categoria() { Nome = "Doces", Informacao = "Chocolates, biscoitos, creme de leite, leite condensado, gelatinas, adoçantes, geléias.", Original = true });
+                lista.Add(new Categoria() { Nome = "Bebidas", Informacao = "Água, sucos, refrigerantes, vinhos, cervejas, entre outras.", Original = true,Imagem="bebidas.png" });
+                lista.Add(new Categoria() { Nome = "Enlatados", Informacao = "Óleos,azeites,milho, ervilha,mostardas, ketchups, maioneses. Molhos, patês, azeitonas, latinhas de atum e sardinha.", Original = true ,Imagem="enlatados.png"});
+                lista.Add(new Categoria() { Nome = "Mantimentos secos", Informacao = "Água Massas, arroz, feijão, farinhas, lentilha, legumes enlatados, sopas de pacote, macarrão instantâneo, amendoins, frutas secas, açúcar, sal.", Original = true, Imagem="mantimentos.png" });
+                lista.Add(new Categoria() { Nome = "Carnes", Informacao = "Frango, Carne bovina, Carne de Porco, Peixes", Original = true, Imagem = "carnes.png" });
+                lista.Add(new Categoria() { Nome = "Leite e Derivados", Informacao = "Chocolates, biscoitos, creme de leite, leite condensado, gelatinas, adoçantes, geléias.", Original = true,Imagem= "leiteDerivados.png" });
+                lista.Add(new Categoria() { Nome = "Verduras", Informacao = "Verduras e Legumes", Original = true ,Imagem="verduras.png"});
+                lista.Add(new Categoria() { Nome = "Frutas", Informacao = "Frutas", Original = true, Imagem = "frutas.png" });
+                lista.Add(new Categoria() { Nome = "Temperos", Informacao = "Temperos e especiarias", Original = true, Imagem = "temperos.png" });
 
                 foreach (var item in lista)
                     _Connection.Insert(item);
@@ -46,7 +49,7 @@ namespace Despensa.DataContexts
 
         public IEnumerable<Categoria> RecuperarCategorias()
         {
-            var categorias =  _Connection.Table<Categoria>();
+            var categorias =  _Connection.Table<Categoria>().OrderBy(x=> x.Nome);
 
             return categorias;
         }

@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Despensa.Views.ListaDeComprasPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             NavigationPage.HasBackButton="False"
-             Title="Despensa - Compras"
-             BackgroundColor="White">
-
+             Title="Lista de Compras"
+             NavigationPage.HasBackButton="False">
+    <!--NavigationPage.HasBackButton="False"-->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Finalizar"
-                     Activated="ToolbarItem_Activated"
+                     Activated="ToolbarItem_FinalizarCompra"
+                     Order="Secondary"/>
+        <ToolbarItem Icon="ic_add_white_24dp" 
+                     Activated="ToolbarItem_NovoItem"
                      Order="Primary"/>
     </ContentPage.ToolbarItems>
 
@@ -23,6 +25,7 @@
               CachingStrategy="RecycleElement"
               ItemsSource="{Binding ItemsDeCompra}"
               SelectedItem="{Binding ItemSelecionado}"
+              ItemSelected="listViewItems_ItemSelected"
               HasUnevenRows="True"
               RowHeight="55">
         <ListView.ItemTemplate>

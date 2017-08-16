@@ -5,46 +5,49 @@
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
              Title="Efetue o Login">
 
+    <ContentPage.Content>
+        <Frame  HasShadow="True">
+            <ScrollView>
+                <StackLayout>
+                    <Grid Padding="0,60,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
-    <StackLayout>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <Image HorizontalOptions="Center"
+                        <Image HorizontalOptions="Center"
                    VerticalOptions="Center" 
                    Source="imagemLogin.png" 
                    Aspect="AspectFill"
                    Grid.Row="0"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"></Image>
-        </Grid>
+                    </Grid>
 
-        <StackLayout Orientation="Vertical"  VerticalOptions="End" Padding="0,15,0,0">
+                        <Label Text="Login"  />
+                        <Entry Keyboard="Email" Text="{Binding Login}"/>
+                        <Label Text="Senha" />
+                        <Entry  IsPassword="true" Text="{Binding Senha}"/>
 
-            <Label Text="Login"  />
-            <Entry Keyboard="Email" Text="{Binding Login}"/>
-            <Label Text="Senha" />
-            <Entry  IsPassword="true" Text="{Binding Senha}"/>
-            <Button Text="Acessar"
+                    <Button Text="Acessar"
              BackgroundColor="#caa052"
-		     BorderRadius="5"
-             BorderWidth="2"
+		     BorderRadius="20"
+             BorderWidth="5"
              Command="{Binding EfetuarLoginCommand}"
+             VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
 			 TextColor="White" />
-
-            <Button
+                    <Button 
               Text="Esqueceu a Senha?"
-              BorderRadius="5"
-              BorderWidth="2"
+              BorderRadius="20"
+              BorderWidth="5"
+              BackgroundColor="#ffd180"
               Command="{Binding RedirecionarParaEsqueciSenhaCommand}"/>
-
-        </StackLayout>
-    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+        </ContentPage.Content>
 </ContentPage>
 
 

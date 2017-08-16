@@ -1,20 +1,47 @@
 
-Refatorar os repos -OK
-refatorar os model de produto - OK
-testar as mudanças de banco - OK
-Testar a lista de items para compra OK
-aumentar o switch da lista de compras OK
-consertar o drop de categorias na atualizacao de produtos. - OK
-trocar a cor dos textos dos detalhes na lista de compras (acabando = primary, acabou = vermelho)-OK
-add novo item a lista de compras.
+Uri das imagens
+meu lateral
+https://c1.staticflickr.com/1/120/367472617_739b017cbc_b.jpg
 
-Esconder barra de pesquisa caso nao tenham produtos cadastrados (em produtos e em compras) (Testar)
-Fazer a pagina de sobre - ok
-Inserir a prop imagem no model de produto -OK
-Alterar a lista de compras - OK (Testar o padding)
-Alterar os icones do menu para branco - OK
-Refazer a view de Login
-Refazer a view Registar usuario
-Refazer a view de Esquecimento de Senha
-Refazer a view de Detalhes de Usuario
+Detalhes de produtos
+https://henriquecerdotcom.files.wordpress.com/2014/09/henriquecer99999999999994.jpg
+
+Detalhes de Categorias
+http://www.gbarbosa.com.br/blog/wp-content/uploads/ritinha-21-02-destacada-616x291.jpg
+
+#ffd180
+
+Lista De TODOS
+1-Refatorar os repos -OK
+2-refatorar os model de produto - OK
+3-testar as mudanças de banco - OK
+4-Testar a lista de items para compra OK
+5-aumentar o switch da lista de compras OK
+6-consertar o drop de categorias na atualizacao de produtos. - OK
+7-trocar a cor dos textos dos detalhes na lista de compras (acabando = primary, acabou = vermelho)-OK
+
+8-Esconder barra de pesquisa caso nao tenham produtos cadastrados (em produtos e em compras) - OK
+9-Fazer a pagina de sobre - Ok
+10-Inserir a prop imagem no model de produto -OK
+11-Alterar a lista de compras - OK 
+12-Alterar os icones do menu para branco - OK
+13-Alterar a lista de item para ficar igual a de categorias - OK
+14-Diminuir o tamanho dos dados na tela de Sobre - OK
+17-Refazer a view de Login - OK
+18-Refazer a view Registar usuario - OK
+19-Refazer a view de Esquecimento de Senha - OK
+20-Refazer a view de Detalhes de Usuario - OK
+15-Alterar o form de cadastro de items colocando os drops na mesma linha - OK
+16-add novo item a lista de compras e redirecionar para a tela de cadastro de produtos - OK
+17-Refazer o sistema de Navegação do APP
+
+Versao 2
+
+21-Retirar  a atualização de produtos da lista de produtos e jogar para a tela de detalhes - (Versao 2)
+22-Na tela de detalhes de produto incluir o botao para navegar para atualização do produto  - (Versao 2)
+23-Retirar  a atualização de categoria da lista de categorias e jogar para a tela de detalhes - (Versao 2)
+24-Na tela de detalhes de categoria incluir o botao para navegar para atualização da categoria - (Versao 2)
+25-Inserir a foto do produto caso queira. -(Versao 2)
+26-Criar a tela de configurações com a habilitação de notificaçoes (Versao 2))
+
 

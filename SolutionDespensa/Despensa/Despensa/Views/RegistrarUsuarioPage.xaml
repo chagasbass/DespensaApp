@@ -6,27 +6,32 @@
              Title="Crie a sua Conta"
              BackgroundColor="#e0e0e0">
     <ContentPage.Content>
-        
-        <StackLayout Orientation="Vertical" VerticalOptions="Center">
-            <Image HorizontalOptions="Center"
+        <Frame  HasShadow="True">
+            <ScrollView>
+                <StackLayout>
+
+                    <Image HorizontalOptions="Center"
                    VerticalOptions="Center" 
                    Source="imagemCriar.png" 
                    Aspect="AspectFill"
                    ></Image>
-          
-            <Label Text="Nome" />
-            <Entry Text="{Binding NovoUsuario.Nome}"/>
-            <Label Text="Sobrenome" />
-            <Entry Text="{Binding NovoUsuario.Sobrenome}"/>
-            <Label Text="Email" />
-            <Entry Keyboard="Email" Text="{Binding NovoUsuario.Email}"/>
-            <Label Text="Senha" />
-            <Entry  IsPassword="true" Text="{Binding NovoUsuario.Senha}"/>
-            <Button Text="Criar Conta"
+
+                    <Label Text="Nome" />
+                    <Entry Text="{Binding NovoUsuario.Nome}"/>
+                    <Label Text="Sobrenome" />
+                    <Entry Text="{Binding NovoUsuario.Sobrenome}"/>
+                    <Label Text="Email" />
+                    <Entry Keyboard="Email" Text="{Binding NovoUsuario.Email}"/>
+                    <Label Text="Senha" />
+                    <Entry  IsPassword="true" Text="{Binding NovoUsuario.Senha}"/>
+                    <Button Text="Criar Conta" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
              BackgroundColor="#caa052"
              Command="{Binding CadastrarNovoUsuarioCommand}"  
-		     BorderRadius="0"
+		    BorderRadius="20"
+              BorderWidth="5"
 			 TextColor="White"  />
-        </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

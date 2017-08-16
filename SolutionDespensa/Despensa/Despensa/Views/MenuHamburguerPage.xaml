@@ -9,7 +9,13 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Image Source="despensaMenu.png"/>
+                <Image Aspect="AspectFit">
+                <Image.Source>
+                        <UriImageSource Uri="https://c1.staticflickr.com/1/120/367472617_739b017cbc_b.jpg"
+                                    CachingEnabled="True"
+                                    CacheValidity="90"/>
+                </Image.Source>
+                </Image>
                 <Label TextColor="White" Text="{Binding MensagemUsuario}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
             <ListView 

@@ -8,7 +8,7 @@ namespace Despensa.Models
     public class Produto:BaseViewModel
     {
          string _Nome;
-         string _Quantidade;
+         int _Quantidade;
          string _Medida;
          string _Marca;
          string _DataCadastro;
@@ -22,7 +22,7 @@ namespace Despensa.Models
         public Produto()
         {
             DataCadastro = DateTime.Now.ToString();
-            _Comprado = true;
+            Comprado = true;
             Imagem = "produtos.png";
         }
 
@@ -46,8 +46,8 @@ namespace Despensa.Models
             }
         }
 
-        [MaxLength(50), NotNull]
-        public string Quantidade
+        [NotNull]
+        public int Quantidade
         {
             get { return _Quantidade; }
 
@@ -153,7 +153,7 @@ namespace Despensa.Models
             }
         }
 
-        [MaxLength(200)]
+        [MaxLength(200), NotNull]
         public string Imagem
         {
             get { return _Imagem; }
@@ -173,7 +173,7 @@ namespace Despensa.Models
 
             if (string.IsNullOrEmpty(Nome))
                 notificacoes.Add("Nome Inválido");
-            if (string.IsNullOrEmpty(Quantidade))
+            if (Quantidade == 0)
                 notificacoes.Add("Quantidade Inválida");
             if (string.IsNullOrEmpty(Medida))
                 notificacoes.Add("Medida Inválida");

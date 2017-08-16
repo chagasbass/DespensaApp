@@ -5,39 +5,47 @@
                Title="Despensa - Produto"
              BackgroundColor="#e0e0e0">
 
-    <ScrollView>
-    <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
-        <Image HorizontalOptions="Center"
+    <ContentPage.Content>
+        <Frame  HasShadow="True">
+            <ScrollView>
+                <StackLayout  Spacing="10">
+
+                    <Image HorizontalOptions="Center"
                    VerticalOptions="Center" 
                    Source="imagemCriar.png" 
                    Aspect="AspectFill"/>
 
-        <Label Text="Nome" />
-        <Entry Text="{Binding ProdutoAtualizado.Nome}"/>
-        <Label Text="Marca" />
-        <Entry Text="{Binding ProdutoAtualizado.Marca}"/>
-        <Label Text="Categoria" />
-        <Picker ItemsSource="{Binding Categorias}" SelectedItem="{Binding CategoriaSelecionada,Mode=TwoWay}"/>
-        <Label Text="Status" />
-            <Picker ItemsSource="{Binding Status}" SelectedItem="{Binding ProdutoAtualizado.Status}" />
-        <Grid RowSpacing="1" ColumnSpacing="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Text="Quantidade"  Grid.Row="0" Grid.Column="0" />
-            <Entry Text="{Binding ProdutoAtualizado.Quantidade}" Grid.Row="0" Grid.Column="0"/>
-            <Label Text="Medida" Grid.Row="0" Grid.Column="1" />
-                <Picker ItemsSource="{Binding Medidas}"  SelectedItem="{Binding ProdutoAtualizado.Medida}"
-                         Grid.Row="0" Grid.Column="1" />
-        </Grid>
-        <Button Text="Atualizar Produto"
+                    <Label Text="Nome" />
+                    <Entry Text="{Binding ProdutoAtualizado.Nome}"/>
+                    <Label Text="Marca" />
+                    <Entry Text="{Binding ProdutoAtualizado.Marca}"/>
+
+                    <Label Text="Categoria" />
+                    <Picker ItemsSource="{Binding Categorias}" SelectedItem="{Binding CategoriaSelecionada,Mode=TwoWay}"/>
+                    <Label Text="Status" />
+                    <Picker ItemsSource="{Binding Status}" SelectedItem="{Binding ProdutoAtualizado.Status}" />
+
+                    <Grid ColumnSpacing="10" RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Quantidade"  Grid.Row="0" Grid.Column="0" />
+                        <Entry  Keyboard="Numeric" Text="{Binding ProdutoAtualizado.Quantidade}" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="Medida"  Grid.Row="0" Grid.Column="1" />
+                        <Picker ItemsSource="{Binding Medidas}"  SelectedItem="{Binding ProdutoAtualizado.Medida}"
+                          Grid.Row="0" Grid.Column="1" />
+                    </Grid>
+                    <Button Text="Atualizar Produto"
              BackgroundColor="#caa052"
              Command="{Binding AtualizarProdutoCommand}"  
-		     BorderRadius="0"
+		     VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
 			 TextColor="White"  />
-    </StackLayout>
-    </ScrollView>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+    </ContentPage.Content>
 </ContentPage>

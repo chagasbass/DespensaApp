@@ -7,7 +7,7 @@ namespace Despensa.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetalhesProdutoPage : ContentPage
-    {
+    { 
         public DetalhesProdutoPage(Produto produto)
         {
             InitializeComponent();

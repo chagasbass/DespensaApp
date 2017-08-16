@@ -3,24 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Despensa.Views.CadastrarCategoriaPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             Title="Despensa - nova Categoria"
-             BackgroundColor="#e0e0e0">
+             Title="Despensa - nova Categoria">
+
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Margin="10,0,10,0" VerticalOptions="Center">
-            <Image HorizontalOptions="Center"
+        <Frame  HasShadow="True">
+            <ScrollView>
+                <StackLayout  Padding="0,100,0,0" Spacing="30">
+                    <Image HorizontalOptions="Center"
                    VerticalOptions="Center" 
                    Source="imagemCriar.png" 
                    Aspect="AspectFill"
                    ></Image>
-            <Label Text="Nome" />
-            <Entry Text="{Binding NovaCategoria.Nome}"/>
-            <Label Text="Informações" />
-            <Editor Text="{Binding NovaCategoria.Informacao}"/>
-            <Button Text="Cadastrar Categoria"
+                    <Label Text="Nome" />
+                    <Entry Text="{Binding NovaCategoria.Nome}"/>
+                    <Label Text="Informações" />
+                    <Editor Text="{Binding NovaCategoria.Informacao}"/>
+                    <Button Text="Cadastrar Categoria" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
              BackgroundColor="#caa052"
              Command="{Binding CadastrarNovaCategoriaCommand}"  
-		     BorderRadius="0"
+		     BorderRadius="20"
+              BorderWidth="5"
 			 TextColor="White"  />
-        </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

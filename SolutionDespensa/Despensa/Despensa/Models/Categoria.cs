@@ -53,6 +53,7 @@ namespace Despensa.Models
             }
         }
 
+        [NotNull]
         public bool Original
         {
             get { return _Original; }

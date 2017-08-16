@@ -29,13 +29,12 @@ namespace Despensa.ViewModels
 
         private void CancelarSelecao() => Selecionado = null;
 
-
         private void InicializarConteudo()
         {
             Conteudo.Add(new ModeloDeInformacao() { Titulo = "Versão", Descricao = "1.0" });
             Conteudo.Add(new ModeloDeInformacao() { Titulo = "Criado em", Descricao = "14/08/2017" });
             Conteudo.Add(new ModeloDeInformacao() { Titulo = "Autor", Descricao = "Thiago Chagas" });
-            Conteudo.Add(new ModeloDeInformacao() { Titulo = "Termos de Uso", Descricao = "Livre" });
+            Conteudo.Add(new ModeloDeInformacao() { Titulo = "Despensa 2017", Descricao = "Todos os direitos reservados" });
         }
     }
 }

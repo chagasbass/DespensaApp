@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using Despensa.Helpers;
 using System.Collections.ObjectModel;
+using Despensa.Views;
 
 namespace Despensa.ViewModels
 {
@@ -103,7 +104,7 @@ namespace Despensa.ViewModels
             Status = StatusHelper.RecuperarStatus();
         }
 
-        private  void ListarCategorias()
+        private void ListarCategorias()
         {
             var categorias = _CategoriaRepository.RecuperarCategorias();
 
@@ -147,18 +148,15 @@ namespace Despensa.ViewModels
 
             await _PageService.DisplayAlert("Despensa", "Item criado com sucesso", "OK");
 
-            //volta para a lista
-            await _Navigation.PopAsync();
+            if (NovoProduto.Status.Equals("Acabou") || NovoProduto.Status.Equals("Acabando"))
+                await _Navigation.PushAsync(new ListaDeComprasPage());
+
+            else
+                await _Navigation.PopAsync();
         }
 
-        private async Task SelecionarMedida(string medida)
-        {
-            NovoProduto.Medida = medida;
-        }
+        private async Task SelecionarMedida(string medida)=> NovoProduto.Medida = medida;
 
-        private async Task SelecionarStatus(string status)
-        {
-            NovoProduto.Status = status;
-        }
+        private async Task SelecionarStatus(string status)=> NovoProduto.Status = status;
     }
 }

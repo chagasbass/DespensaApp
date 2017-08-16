@@ -3,24 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Despensa.Views.AtualizarCategoriaPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             Title="Despensa - Categoria"
-             BackgroundColor="#e0e0e0">
+             Title="Despensa - Categoria">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" VerticalOptions="Center">
-            <Image HorizontalOptions="Center"
+        <Frame  HasShadow="True">
+            <ScrollView>
+                <StackLayout Padding="0,100,0,0" Spacing="30">
+                    <Image HorizontalOptions="Center"
                    VerticalOptions="Center" 
                    Source="imagemCriar.png" 
                    Aspect="AspectFill"/>
-
-            <Label Text="Nome" />
-            <Entry Text="{Binding CategoriaAtualizada.Nome}"/>
-            <Label Text="Informações" />
-            <Editor Text="{Binding CategoriaAtualizada.Informacao}"/>
-            <Button Text="Atualizar Categoria"
+              
+                    <Label Text="Nome" Margin="0,10,0,0" />
+                    <Entry Text="{Binding CategoriaAtualizada.Nome}"/>
+                    <Label Text="Informações" />
+                    <Editor Text="{Binding CategoriaAtualizada.Informacao}" />
+                    <Button Text="Atualizar Categoria"
              BackgroundColor="#caa052"
              Command="{Binding AtualizarCategoriaCommand}"  
-		     BorderRadius="0"
+             VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
+		      BorderRadius="20"
+              BorderWidth="5"
 			 TextColor="White"  />
-        </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
