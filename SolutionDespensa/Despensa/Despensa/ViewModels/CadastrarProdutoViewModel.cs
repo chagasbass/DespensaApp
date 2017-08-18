@@ -20,8 +20,8 @@ namespace Despensa.ViewModels
 
         readonly ProdutoRepository _ProdutoRepository;
         readonly CategoriaRepository _CategoriaRepository;
-        readonly INavigation _Navigation;
-        readonly IPageService _PageService;
+        readonly INavigationService _Navigation;
+        readonly IMessageService _MessageService;
 
         Produto _NovoProduto;
         public ObservableCollection<Categoria> Categorias { get; private set; } = new ObservableCollection<Categoria>();
@@ -83,12 +83,12 @@ namespace Despensa.ViewModels
 
         #endregion
 
-        public CadastrarProdutoViewModel(INavigation Navigation, ProdutoRepository ProdutoRepository, CategoriaRepository CategoriaRepository, IPageService PageService)
+        public CadastrarProdutoViewModel(ProdutoRepository ProdutoRepository, CategoriaRepository CategoriaRepository)
         {
-            _Navigation = Navigation;
+            _Navigation = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
             _ProdutoRepository = ProdutoRepository;
             _CategoriaRepository = CategoriaRepository;
-            _PageService = PageService;
 
             CadastrarNovoProdutoCommand = new Command(CadastrarProduto);
             SelecionarMedidaCommand = new Command<string>(async vm => await SelecionarMedida(vm));
@@ -127,7 +127,7 @@ namespace Despensa.ViewModels
                     Erros = string.Concat(Erros, "*", item);
                 }
 
-                await _PageService.DisplayAlert("Atenção", Erros, "OK");
+                await _MessageService.MostrarDialog("Atenção", Erros);
 
                 Erros = string.Empty;
 
@@ -140,23 +140,19 @@ namespace Despensa.ViewModels
 
             if (produtoEncontrado != null)
             {
-                await _PageService.DisplayAlert("Atenção", "Item já cadastrado", "OK");
+                await _MessageService.MostrarDialog("Atenção", "Item já cadastrado");
                 return;
             }
 
             _ProdutoRepository.CadastrarProduto(NovoProduto);
 
-            await _PageService.DisplayAlert("Despensa", "Item criado com sucesso", "OK");
+            await _MessageService.MostrarDialog("Despensa", "Item criado com sucesso");
 
-            if (NovoProduto.Status.Equals("Acabou") || NovoProduto.Status.Equals("Acabando"))
-                await _Navigation.PushAsync(new ListaDeComprasPage());
-
-            else
-                await _Navigation.PopAsync();
+            await _Navigation.NavegarCadastrarProdutos();
         }
 
-        private async Task SelecionarMedida(string medida)=> NovoProduto.Medida = medida;
+        private async Task SelecionarMedida(string medida) => NovoProduto.Medida = medida;
 
-        private async Task SelecionarStatus(string status)=> NovoProduto.Status = status;
+        private async Task SelecionarStatus(string status) => NovoProduto.Status = status;
     }
 }

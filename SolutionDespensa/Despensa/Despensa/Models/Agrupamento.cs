@@ -8,11 +8,11 @@ namespace Despensa.Models
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="T"></typeparam>
-    public class Agrupamento<K,T>: ObservableCollection<T>
+    public class Agrupamento<TKey,TITem>: ObservableCollection<TITem>
     {
-        public K Categoria { get; set; }
+        public TKey Categoria { get; set; }
 
-        public Agrupamento(K categoria, IEnumerable<T>items)
+        public Agrupamento(TKey categoria, IEnumerable<TITem>items)
         {
             Categoria = categoria;
             foreach (var item in items)

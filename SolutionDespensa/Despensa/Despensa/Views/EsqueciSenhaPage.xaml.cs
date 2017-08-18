@@ -11,7 +11,7 @@ namespace Despensa.Views
     public partial class EsqueciSenhaPage : ContentPage
     {
         readonly UsuarioRepository UsuarioRepo;
-        readonly IPageService PageService;
+        readonly IMessageService PageService;
 
         private EsqueciSenhaViewModel ViewModel
         {
@@ -24,10 +24,7 @@ namespace Despensa.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-           UsuarioRepo = new UsuarioRepository();
-            PageService = new PageService();
-
-            BindingContext = new EsqueciSenhaViewModel(this.Navigation, UsuarioRepo, PageService);
+            BindingContext = new EsqueciSenhaViewModel(UsuarioRepo);
             ViewModel.UsuarioTrocaSenha = new Models.UsuarioTrocaSenha();
         }
     }

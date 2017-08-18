@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Despensa.Views.ListagemDeProdutosPage"
-             Title="Despensa - Produtos"
-             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             NavigationPage.HasBackButton="False">
+             Title="Lista De Items"
+             NavigationPage.HasBackButton="False"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_add_white_24dp" 
@@ -12,7 +12,9 @@
                      Order="Primary"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <StackLayout BackgroundColor="White">
-        <SearchBar Placeholder="Pesquisar..." Text="{Binding Pesquisa}" IsVisible="{Binding TemItems}" TextChanged="SearchBar_TextChanged" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"></SearchBar>
+        <SearchBar Placeholder="Pesquisar..." Text="{Binding Pesquisa}" IsVisible="{Binding TemItems}"
+                   TextChanged="SearchBar_TextChanged" HorizontalOptions="StartAndExpand" 
+                   VerticalOptions="FillAndExpand"/>
         <ListView x:Name="listViewProdutos" IsPullToRefreshEnabled="true"
               Refreshing="listViewProdutos_Refreshing" 
               ItemSelected="listViewProdutos_ItemSelected"
@@ -51,7 +53,6 @@
     </StackLayout>
 
 </ContentPage>
-
 
 <!--<ImageCell Text="{Binding Nome}" TextColor="Black" Detail="{Binding Detalhes}" DetailColor="#caa052" ImageSource="produtos.png">
 

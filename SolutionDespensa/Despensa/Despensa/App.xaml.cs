@@ -1,7 +1,6 @@
 ﻿
 using Despensa.DataContexts;
-using Java.Lang;
-using System.Threading;
+using Despensa.Services;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -14,21 +13,21 @@ namespace Despensa
         public App()
         {
             InitializeComponent();
-            
+            RegistrarDependencias();
+
             MainPage = new NavigationPage(new Despensa.MainPage());
+        }
+
+        private void RegistrarDependencias()
+        {
+            DependencyService.Register<IMessageService, MessageService>();
+            DependencyService.Register<INavigationService, NavigationService>();
         }
 
         public async static Task NavigateMasterDetail(Page page)
         {
-            try
-            {
-                MasterDetail.IsPresented = false;//esconde a barra quando navegar para outra página!
-                MasterDetail.Detail = new NavigationPage(page);
-            }
-            catch (System.Exception ex)
-            {
-                var m = ex.Message;
-            }
+            MasterDetail.IsPresented = false;//esconde a barra quando navegar para outra página!
+            MasterDetail.Detail = new NavigationPage(page);
         }
 
         protected override void OnStart()

@@ -25,11 +25,10 @@
                    Grid.Column="0"
                    Grid.ColumnSpan="2"></Image>
                     </Grid>
-
                         <Label Text="Login"  />
-                        <Entry Keyboard="Email" Text="{Binding Login}"/>
+                    <Entry Keyboard="Email" Text="{Binding Login}"/>
                         <Label Text="Senha" />
-                        <Entry  IsPassword="true" Text="{Binding Senha}"/>
+                    <Entry  IsPassword="true" Text="{Binding Senha}"/>
 
                     <Button Text="Acessar"
              BackgroundColor="#caa052"

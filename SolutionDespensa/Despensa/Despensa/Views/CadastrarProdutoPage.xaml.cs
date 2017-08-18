@@ -14,7 +14,6 @@ namespace Despensa.Views
     {
         readonly ProdutoRepository ProdutoRepo;
         readonly CategoriaRepository CategoriaRepo;
-        readonly IPageService PageService;
 
         private CadastrarProdutoViewModel ViewModel
         {
@@ -28,9 +27,8 @@ namespace Despensa.Views
 
             ProdutoRepo = new ProdutoRepository();
             CategoriaRepo = new CategoriaRepository();
-            PageService = new PageService();
 
-            BindingContext = new CadastrarProdutoViewModel(this.Navigation, ProdutoRepo,CategoriaRepo, PageService);
+            BindingContext = new CadastrarProdutoViewModel(ProdutoRepo,CategoriaRepo);
             ViewModel.NovoProduto = new Models.Produto();
         }
 

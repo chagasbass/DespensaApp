@@ -11,7 +11,7 @@ namespace Despensa.Views
     public partial class CadastrarCategoriaPage : ContentPage
     {
         readonly CategoriaRepository CategoriaRepo;
-        readonly IPageService PageService;
+        readonly IMessageService PageService;
 
         private CadastrarCategoriaViewModel ViewModel
         {
@@ -26,9 +26,8 @@ namespace Despensa.Views
                 InitializeComponent();
 
                 CategoriaRepo = new CategoriaRepository();
-                PageService = new PageService();
 
-                BindingContext = new CadastrarCategoriaViewModel(CategoriaRepo,this.Navigation, PageService);
+                BindingContext = new CadastrarCategoriaViewModel(CategoriaRepo);
                 ViewModel.NovaCategoria = new Models.Categoria();
             }
             catch (System.Exception ex)

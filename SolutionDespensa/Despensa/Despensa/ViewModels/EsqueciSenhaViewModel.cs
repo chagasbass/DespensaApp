@@ -4,7 +4,6 @@ using Despensa.Services;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Plugin.LocalNotifications;
-using Despensa.Views;
 
 namespace Despensa.ViewModels
 {
@@ -13,8 +12,8 @@ namespace Despensa.ViewModels
         public ICommand GerarCodigoDeUsuarioCommand { get; private set; }
 
         readonly UsuarioRepository _UsuarioRepository;
-        readonly INavigation _Navigation;
-        readonly IPageService _PageService;
+        readonly INavigationService _Navigation;
+        readonly IMessageService _MessageService;
 
         UsuarioTrocaSenha _UsuarioTrocaSenha;
         bool _DesabilitarEmail;
@@ -72,12 +71,12 @@ namespace Despensa.ViewModels
             }
         }
 
-        public EsqueciSenhaViewModel(INavigation Navigation, UsuarioRepository UsuarioRepository, IPageService PageService)
+        public EsqueciSenhaViewModel(UsuarioRepository UsuarioRepository)
         {
             _UsuarioRepository = UsuarioRepository;
-            _Navigation = Navigation;
-            _PageService = PageService;
-            
+            _Navigation = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
+
             GerarCodigoDeUsuarioCommand = new Command(GerarCodigoDeUsuario);
             HabilitarSenha = false;
             DesabilitarEmail = true;
@@ -103,7 +102,7 @@ namespace Despensa.ViewModels
         {
             if (string.IsNullOrEmpty(UsuarioTrocaSenha.Email))
             {
-                await _PageService.DisplayAlert("Atenção", "Email não preenchido", "OK");
+                await _MessageService.MostrarDialog("Atenção", "Email não preenchido");
                 return;
             }
 
@@ -118,7 +117,7 @@ namespace Despensa.ViewModels
 
             if (user == null)
             {
-                await _PageService.DisplayAlert("Atenção", "Usuário não encontrado", "OK");
+                await _MessageService.MostrarDialog("Atenção", "Usuário não encontrado");
                 return;
             }
 
@@ -143,7 +142,7 @@ namespace Despensa.ViewModels
             //testa se senhas sao iguais
             if (UsuarioTrocaSenha.NovaSenha != UsuarioTrocaSenha.ConfirmacaoDeSenha)
             {
-                await _PageService.DisplayAlert("Atenção", "As senhas devem ser iguais", "OK");
+                await _MessageService.MostrarDialog("Atenção", "As senhas devem ser iguais");
                 return;
             }
 
@@ -157,15 +156,15 @@ namespace Despensa.ViewModels
 
             if (retorno == null)
             {
-                await _PageService.DisplayAlert("Atenção", "A troca de senha não foi efetuada, tente novamente", "OK");
+                await _MessageService.MostrarDialog("Atenção", "A troca de senha não foi efetuada, tente novamente");
                 return;
             }
 
-            await _PageService.DisplayAlert("Atenção", "A troca de senha foi efetuada", "OK");
+            await _MessageService.MostrarDialog("Atenção", "A troca de senha foi efetuada");
 
             CrossLocalNotifications.Current.Show("Despensa", "A troca de senha foi efetuada, efetue o login");
 
-            await _Navigation.PushAsync(new LoginPage());
+            await _Navigation.NavegarParaLogin();
         }
     }
 }

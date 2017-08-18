@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Despensa.Views.CadastrarProdutoPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
-             Title="Despensa - Novo Produto"
-             BackgroundColor="#e0e0e0">
+             Title="Novo Produto">
     <ContentPage.Content>
         <Frame  HasShadow="True">
             <ScrollView>

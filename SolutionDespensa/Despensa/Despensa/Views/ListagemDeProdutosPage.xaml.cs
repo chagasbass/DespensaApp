@@ -23,7 +23,7 @@ namespace Despensa.Views
         {
             InitializeComponent();
             _Repo = new ProdutoRepository();
-            BindingContext = new ProdutoViewModel(this, _Repo);
+            BindingContext = new ProdutoViewModel(_Repo);
         }
 
         protected override async void OnAppearing()

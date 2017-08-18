@@ -11,8 +11,8 @@ namespace Despensa.ViewModels
         public ICommand CadastrarNovaCategoriaCommand { get; private set; }
 
         readonly CategoriaRepository _CategoriaRepository;
-        readonly INavigation _Navigation;
-        readonly IPageService _PageService;
+        readonly INavigationService _Navigation;
+        readonly IMessageService _MessageService;
 
         Categoria _NovaCategoria;
         string _Erros;
@@ -37,11 +37,11 @@ namespace Despensa.ViewModels
             }
         }
 
-        public CadastrarCategoriaViewModel(CategoriaRepository CategoriaRepository, INavigation Navigation, IPageService PageService)
+        public CadastrarCategoriaViewModel(CategoriaRepository CategoriaRepository)
         {
             _CategoriaRepository = CategoriaRepository;
-            _Navigation = Navigation;
-            _PageService = PageService;
+            _Navigation = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
 
             CadastrarNovaCategoriaCommand = new Command(CadastrarCategoria);
         }
@@ -57,7 +57,7 @@ namespace Despensa.ViewModels
                     Erros = string.Concat(Erros, "*", item);
                 }
                 
-                await _PageService.DisplayAlert("Atenção", Erros, "OK");
+                await _MessageService.MostrarDialog("Atenção", Erros);
 
                 return;
             }
@@ -66,7 +66,7 @@ namespace Despensa.ViewModels
 
             if (categoriaEncontrada != null)
             {
-                await _PageService.DisplayAlert("Atenção", "Categoria já cadastrada", "OK");
+                await _MessageService.MostrarDialog("Atenção", "Categoria já cadastrada");
                 return;
             }
 
@@ -74,9 +74,9 @@ namespace Despensa.ViewModels
 
             _CategoriaRepository.CadastrarCategoria(NovaCategoria);
 
-            await _PageService.DisplayAlert("Despensa", "Categoria criada com sucesso", "OK");
-            
-            await _Navigation.PopAsync();
+            await _MessageService.MostrarDialog("Despensa", "Categoria criada com sucesso");
+
+            await _Navigation.NavegarParaListarCategorias();
         }
     }
 }

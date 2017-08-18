@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.CadastrarItemDeCompraPage"
+             xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
+             Title="Novo Item">
+
+    <ContentPage.Content>
+        <Frame  HasShadow="True">
+            <ScrollView>
+                <StackLayout  Spacing="10">
+                    <Image HorizontalOptions="Center"
+                   VerticalOptions="Center" 
+                   Source="imagemCriar.png" 
+                   Aspect="AspectFill"/>
+
+                    <Label Text="Nome" />
+                    <Entry Text="{Binding NovoProduto.Nome}"/>
+                    <Label Text="Marca" />
+                    <Entry Text="{Binding NovoProduto.Marca}"/>
+
+                    <Label Text="Categoria"/>
+                    <Picker ItemsSource="{Binding Categorias}"  
+                    ItemDisplayBinding="{Binding Nome}" 
+                    SelectedItem="{Binding CategoriaSelecionada}"/>
+                    <Label Text="Status"/>
+                    <Picker ItemsSource="{Binding Status}"  ItemDisplayBinding="{Binding StatusSelecionado}"
+                            SelectedItem="{Binding StatusSelecionado}"/>
+                    <Grid Padding="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Quantidade"  Grid.Row="0" Grid.Column="0" />
+                        <Entry  Keyboard="Numeric" Text="{Binding NovoProduto.Quantidade}" Grid.Row="0" Grid.Column="0" />
+                        <Label Text="Medida" Grid.Row="0" Grid.Column="1"/>
+                        <Picker ItemsSource="{Binding Medidas}" ItemDisplayBinding="{Binding MedidaSelecionada}"
+                                SelectedItem="{Binding MedidaSelecionada}"
+                         Grid.Row="0" Grid.Column="1" ></Picker>
+                    </Grid>
+
+                    <Button Text="Cadastrar Item"  VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
+             BackgroundColor="#caa052"
+             Command="{Binding CadastrarNovoProdutoCommand}"  
+              BorderRadius = "5"
+              BorderWidth = "2"
+			 TextColor="White"  />
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

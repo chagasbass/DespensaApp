@@ -29,6 +29,8 @@ namespace Despensa.DataContexts
                 lista.Add(new Categoria() { Nome = "Verduras", Informacao = "Verduras e Legumes", Original = true ,Imagem="verduras.png"});
                 lista.Add(new Categoria() { Nome = "Frutas", Informacao = "Frutas", Original = true, Imagem = "frutas.png" });
                 lista.Add(new Categoria() { Nome = "Temperos", Informacao = "Temperos e especiarias", Original = true, Imagem = "temperos.png" });
+                lista.Add(new Categoria() { Nome = "Higiene", Informacao = "Produtos de higiene em geral, pasta de dente, sabonetes,shampoo, condicionador e outros.", Original = true, Imagem = "higiene.png" });
+                lista.Add(new Categoria() { Nome = "Limpeza", Informacao = "Produtos de Limpeza em geralsabão em pó, amaciantes, desifetantes e outros.", Original = true, Imagem = "limpeza.png" });
 
                 foreach (var item in lista)
                     _Connection.Insert(item);

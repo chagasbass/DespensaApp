@@ -13,8 +13,8 @@ namespace Despensa.ViewModels
         public ICommand CadastrarNovoUsuarioCommand { get; private set; }
 
         readonly UsuarioRepository _UsuarioRepository;
-        readonly INavigation _Navigation;
-        readonly IPageService _PageService;
+        readonly INavigationService _Navigation;
+        readonly IMessageService _MessageService;
 
         #region Propriedades
 
@@ -43,11 +43,11 @@ namespace Despensa.ViewModels
 
         #endregion
 
-        public RegistrarUsuarioViewModel(INavigation Navigation, UsuarioRepository UsuarioRepository, IPageService PageService)
+        public RegistrarUsuarioViewModel(UsuarioRepository UsuarioRepository)
         {
             _UsuarioRepository = UsuarioRepository;
-            _Navigation = Navigation;
-            _PageService = PageService;
+            _Navigation = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
 
             CadastrarNovoUsuarioCommand = new Command(CadastrarNovoUsuario);
         }
@@ -61,7 +61,7 @@ namespace Despensa.ViewModels
                 foreach (var item in erros)
                     Erros = string.Concat(Erros, "*", item);
 
-                await _PageService.DisplayAlert("Atenção", Erros, "OK");
+                await _MessageService.MostrarDialog("Atenção", Erros);
 
                 return;
             }
@@ -70,17 +70,20 @@ namespace Despensa.ViewModels
 
             if (userEncontrado != null)
             {
-                await _PageService.DisplayAlert("Atenção", "Usuário já cadastrado", "OK");
+                await _MessageService.MostrarDialog("Atenção", "Usuário já cadastrado");
                 return;
             }
+
+            NovoUsuario.Nome = char.ToUpper(NovoUsuario.Nome[0]) + NovoUsuario.Nome.Substring(1);
+            NovoUsuario.Sobrenome= char.ToUpper(NovoUsuario.Sobrenome[0]) + NovoUsuario.Sobrenome.Substring(1);
 
             _UsuarioRepository.CadastrarUsuario(NovoUsuario);
 
             GravarPreferenciasDeUsuario();
 
             CrossLocalNotifications.Current.Show("Despensa", string.Concat("Sua conta foi criada,seja bem vindo ", NovoUsuario.Nome, " ", NovoUsuario.Sobrenome));
-            
-            await _Navigation.PopAsync();
+
+            await _Navigation.NavegarParaLogin();
         }
 
         /// <summary>

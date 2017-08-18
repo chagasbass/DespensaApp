@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using Despensa.Views;
 using Despensa.Helpers;
+using Despensa.Services;
 
 namespace Despensa.ViewModels
 {
@@ -19,7 +20,8 @@ namespace Despensa.ViewModels
         public ICommand CancelarSelecaoDeItem { get; private set; }
         public ICommand RedirecionarParaNovoItemCommand { get; private set; }
 
-        Page _Page;
+        INavigationService _NavigationService;
+        IMessageService _MessageService;
         ProdutoRepository _ProdutoRepository;
         CategoriaRepository _CategoriaRepository;
 
@@ -45,9 +47,10 @@ namespace Despensa.ViewModels
 
         public ObservableCollection<Produto> ItemsDeCompra { get; private set; } = new ObservableCollection<Produto>();
 
-        public ItemsDeCompraViewModel(Page Page, ProdutoRepository ProdutoRepository)
+        public ItemsDeCompraViewModel(ProdutoRepository ProdutoRepository)
         {
-            _Page = Page;
+            _NavigationService = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
             _ProdutoRepository = ProdutoRepository;
             _CategoriaRepository = new CategoriaRepository();
 
@@ -59,7 +62,7 @@ namespace Despensa.ViewModels
             RedirecionarParaNovoItemCommand = new Command(RedirecionarParaNovoItem);
         }
 
-        private async void RedirecionarParaNovoItem() => await _Page.Navigation.PushAsync(new CadastrarProdutoPage());
+        private async void RedirecionarParaNovoItem() => await _NavigationService.NavegarParaCadastrarItemDeCompra();
 
         private void CancelarSelecao(object obj) => ItemSelecionado = null;
 
@@ -73,9 +76,9 @@ namespace Despensa.ViewModels
 
             _ProdutoRepository.AtualizarProdutosEmLote(ItemsDeCompra.ToList());
 
-            await _Page.DisplayAlert("Despensa", "Sua Compra foi finalizada!", "OK");
+            await _MessageService.MostrarDialog("Despensa", "Sua Compra foi finalizada!");
 
-            await _Page.Navigation.PushAsync(new ListagemDeProdutosPage());
+            await _NavigationService.NavegarParaListarProdutos();
         }
 
         private void ExcluirItem()=> ItemsDeCompra.Remove(ItemSelecionado);
@@ -130,8 +133,8 @@ namespace Despensa.ViewModels
 
                 if (ItemsDeCompra.Count == 0)
                 {
-                    await _Page.DisplayAlert("Despensa", "Não é necessário fazer compras", "OK");
-                    await _Page.Navigation.PushAsync(new ListagemDeProdutosPage());
+                    await _MessageService.MostrarDialog("Despensa", "Não é necessário fazer compras");
+                    await _NavigationService.NavegarParaListaDeCompras();
                 }
             }
             catch (Exception ex)

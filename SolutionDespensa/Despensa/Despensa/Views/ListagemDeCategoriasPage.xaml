@@ -4,7 +4,7 @@
              x:Class="Despensa.Views.ListagemDeCategoriasPage"
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
              NavigationPage.HasBackButton="False"
-             Title="Despensa - Categorias">
+             Title="Lista de Categorias">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_add_white_24dp" 

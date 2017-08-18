@@ -2,8 +2,6 @@
 using Despensa.Services;
 using System.Windows.Input;
 using Xamarin.Forms;
-
-using Despensa.Views;
 using System.Threading.Tasks;
 
 namespace Despensa.ViewModels
@@ -14,8 +12,8 @@ namespace Despensa.ViewModels
         public ICommand EfetuarLoginCommand { get; private set; }
 
         readonly UsuarioRepository _UsuarioRepository;
-        readonly INavigation _Navigation;
-        readonly IPageService _PageService;
+        readonly INavigationService _Navigation;
+        readonly IMessageService _MessageService;
 
         #region Propriedades 
         string _Login;
@@ -43,11 +41,11 @@ namespace Despensa.ViewModels
 
         #endregion
 
-        public LoginViewModel(INavigation Navigation, UsuarioRepository UsuarioRepository, IPageService PageService)
+        public LoginViewModel(UsuarioRepository UsuarioRepository)
         {
             _UsuarioRepository = UsuarioRepository;
-            _Navigation = Navigation;
-            _PageService = PageService;
+            _Navigation = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
 
             RedirecionarParaEsqueciSenhaCommand = new Command(IRedirecionarParaTrocaDeSenha);
             EfetuarLoginCommand = new Command(EfetuarLogin);
@@ -64,28 +62,28 @@ namespace Despensa.ViewModels
 
             if(user == null)
             {
-                await _PageService.DisplayAlert("Atenção", "Usuário ou Senha inválidos", "OK");
+                await _MessageService.MostrarDialog("Atenção", "Usuário ou Senha inválidos");
                 return;
             }
 
-            await _Navigation.PushAsync(new MenuPage());
+            await _Navigation.NavegarParaMenu();
         }
 
         /// <summary>
         /// Redireciona para a Page de troca de senha
         /// </summary>
-        private async void IRedirecionarParaTrocaDeSenha() => await _Navigation.PushAsync(new EsqueciSenhaPage());
+        private async void IRedirecionarParaTrocaDeSenha() => await _Navigation.NavegarParaEsqueciSenha();
 
         public  async Task<bool> ValidarLogin()
         {
             if (string.IsNullOrEmpty(Login))
             {
-                await _PageService.DisplayAlert("Atenção", "O Login é obrigatório", "OK");
+                await _MessageService.MostrarDialog("Atenção", "O Login é obrigatório");
                 return false;
             }
             if (string.IsNullOrEmpty(Senha))
             {
-                await _PageService.DisplayAlert("Atenção", "A Senha é obrigatória", "OK");
+                await _MessageService.MostrarDialog("Atenção", "A Senha é obrigatória");
                 return false;
             }
 

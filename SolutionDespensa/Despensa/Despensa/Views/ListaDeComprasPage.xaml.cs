@@ -20,7 +20,7 @@ namespace Despensa.Views
         public ListaDeComprasPage()
         {
             InitializeComponent();
-            BindingContext = new ItemsDeCompraViewModel(this, new ProdutoRepository());
+            BindingContext = new ItemsDeCompraViewModel(new ProdutoRepository());
         }
 
         protected override void OnAppearing() => ViewModel.ListarComprasCommand.Execute(null);
@@ -43,9 +43,6 @@ namespace Despensa.Views
 
         private void listViewItems_ItemSelected(object sender, SelectedItemChangedEventArgs e) => ViewModel.CancelarSelecaoDeItem.Execute(null);
 
-        private void ToolbarItem_NovoItem(object sender, EventArgs e)
-        {
-
-        }
+        private void ToolbarItem_NovoItem(object sender, EventArgs e) => ViewModel.RedirecionarParaNovoItemCommand.Execute(null);
     }
 }

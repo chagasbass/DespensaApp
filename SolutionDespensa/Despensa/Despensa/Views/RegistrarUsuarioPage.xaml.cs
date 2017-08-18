@@ -10,7 +10,7 @@ namespace Despensa.Views
 	public partial class RegistrarUsuarioPage : ContentPage
 	{
         readonly UsuarioRepository UsuarioRepo;
-        readonly IPageService PageService;
+        readonly IMessageService PageService;
 
         private RegistrarUsuarioViewModel ViewModel
         {
@@ -25,9 +25,8 @@ namespace Despensa.Views
                 InitializeComponent();
                 NavigationPage.SetHasNavigationBar(this, false);
                 UsuarioRepo = new UsuarioRepository();
-                PageService = new PageService();
 
-                BindingContext = new RegistrarUsuarioViewModel(this.Navigation, UsuarioRepo, PageService);
+                BindingContext = new RegistrarUsuarioViewModel(UsuarioRepo);
                 ViewModel.NovoUsuario = new Models.Usuario();
             }
             catch (System.Exception ex)

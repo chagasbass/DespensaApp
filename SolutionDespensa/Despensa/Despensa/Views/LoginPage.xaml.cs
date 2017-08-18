@@ -12,8 +12,7 @@ namespace Despensa.Views
 	public partial class LoginPage : ContentPage
 	{
         readonly UsuarioRepository UsuarioRepo;
-        readonly IPageService PageService;
-
+        readonly IMessageService PageService;
 
         protected override void OnAppearing()
         {
@@ -31,10 +30,8 @@ namespace Despensa.Views
 			InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);
             UsuarioRepo = new UsuarioRepository();
-            PageService = new PageService();
 
-            BindingContext = new LoginViewModel(this.Navigation, UsuarioRepo, PageService);
-
+            BindingContext = new LoginViewModel(UsuarioRepo);
         }
-	}
+    }
 }

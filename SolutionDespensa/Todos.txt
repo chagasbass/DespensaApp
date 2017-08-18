@@ -33,7 +33,10 @@ Lista De TODOS
 20-Refazer a view de Detalhes de Usuario - OK
 15-Alterar o form de cadastro de items colocando os drops na mesma linha - OK
 16-add novo item a lista de compras e redirecionar para a tela de cadastro de produtos - OK
-17-Refazer o sistema de Navegação do APP
+17-Refazer o sistema de Navegação do APP - OK
+18-Inserir novas categorias ( Higiene, Limpeza) - OK
+19-Separar a logica da pagina de compras para cadastro de novo item - OK
+20- Testar!
 
 Versao 2
 
@@ -43,5 +46,6 @@ Versao 2
 24-Na tela de detalhes de categoria incluir o botao para navegar para atualização da categoria - (Versao 2)
 25-Inserir a foto do produto caso queira. -(Versao 2)
 26-Criar a tela de configurações com a habilitação de notificaçoes (Versao 2))
+27-Colocar a a pesquisa na toolbar 
 
 

@@ -173,7 +173,7 @@ namespace Despensa.Models
 
             if (string.IsNullOrEmpty(Nome))
                 notificacoes.Add("Nome Inválido");
-            if (Quantidade == 0)
+            if (Quantidade < 0)
                 notificacoes.Add("Quantidade Inválida");
             if (string.IsNullOrEmpty(Medida))
                 notificacoes.Add("Medida Inválida");

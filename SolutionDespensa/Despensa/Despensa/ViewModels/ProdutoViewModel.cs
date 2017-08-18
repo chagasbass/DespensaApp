@@ -1,6 +1,6 @@
 ﻿using Despensa.DataContexts;
 using Despensa.Models;
-using Despensa.Views;
+using Despensa.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,11 +19,13 @@ namespace Despensa.ViewModels
         public ICommand PesquisarProdutoCommand { get; set; }
 
         public ObservableCollection<Produto> Produtos { get; private set; } = new ObservableCollection<Produto>();
-        //public ObservableCollection<CategoriaProduto<string, Produto>> Produtos { get; private set; } = new ObservableCollection<CategoriaProduto<string, Produto>>();
+        //public ObservableCollection<Agrupamento<char, Produto>> Produtos { get; private set; } = new ObservableCollection<Agrupamento<char, Produto>>();
 
         readonly ProdutoRepository _ProdutoRepository;
         readonly CategoriaRepository _CategoriaRepository;
-        readonly Page _Page;
+        readonly INavigationService _Navigation;
+        readonly IMessageService _MessageService;
+
         string _Pesquisa;
         bool _TemItems;
 
@@ -47,11 +49,12 @@ namespace Despensa.ViewModels
             set { SetValue(ref _TemItems, value); }
         }
 
-        public ProdutoViewModel(Page Page, ProdutoRepository ProdutoRepository)
+        public ProdutoViewModel(ProdutoRepository ProdutoRepository)
         {
-            _Page = Page;
             _ProdutoRepository = ProdutoRepository;
             _CategoriaRepository = new CategoriaRepository();
+            _Navigation = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
 
             SelecionarProdutoCommand = new Command<Produto>(async vm => await SelecionarProduto(vm));
             NavegarParaNovoProdutoCommand = new Command(NavegarParaNovoProduto);
@@ -85,7 +88,7 @@ namespace Despensa.ViewModels
             if (produto == null)
                 return;
 
-            await _Page.Navigation.PushAsync(new DetalhesProdutoPage(produto));
+            await _Navigation.NavegarParaDetalhesDoProduto(produto);
         }
 
         private async Task AtualizarProduto(Produto produto)
@@ -93,50 +96,52 @@ namespace Despensa.ViewModels
             if (produto == null)
                 return;
 
-            await _Page.Navigation.PushAsync(new AtualizarProdutoPage(produto));
+            await _Navigation.NavegarParaAtualizarProdutos(produto);
         }
 
-        private  void ExcluirProduto()
+        private void ExcluirProduto()
         {
             _ProdutoRepository.ExcluirProdutoAsync(ProdutoSelecionado);
         }
 
         private async void NavegarParaNovoProduto()
         {
-            await _Page.Navigation.PushAsync(new CadastrarProdutoPage());
+            await _Navigation.NavegarCadastrarProdutos();
         }
 
         private async void ListarProdutos()
         {
-            try
+            Produtos.Clear();
+
+            var produtos = _ProdutoRepository.RecuperarProdutos();
+
+            #region recuperando as categorias de cada produto
+            foreach (var produto in produtos)
             {
-                Produtos.Clear();
-
-                var produtos = _ProdutoRepository.RecuperarProdutos();
-
-                if (produtos == null)
-                    return;
-               
-                #region recuperando as categorias de cada produto
-                foreach (var produto in produtos)
-                {
-                    produto.CriarDetalhes();
-                    produto.Categoria =  _CategoriaRepository.RecuperarCategoriaPorId(produto.IdCategoria);
-                    Produtos.Add(produto);
-                }
-
-                #endregion
-
-                if (Produtos.Count == 0)
-                {
-                    TemItems = false;
-                    await _Page.DisplayAlert("Despensa", "Não existem produtos cadastrados", "OK");
-                }
+                produto.CriarDetalhes();
+                produto.Categoria = _CategoriaRepository.RecuperarCategoriaPorId(produto.IdCategoria);
+                Produtos.Add(produto);
             }
-            catch (System.Exception ex)
+            #endregion
+
+            if (Produtos.Count == 0)
             {
-                var e = ex.Message;
+                TemItems = false;
+                await _MessageService.MostrarDialog("Despensa", "Não existem produtos cadastrados");
+                return;
             }
         }
+
+        //private IEnumerable<Agrupamento<char, Produto>> ListarAgrupados(IEnumerable<Produto> Produtos)
+        //{
+        //    var lista =  from produto in Produtos
+        //           orderby produto.Nome
+        //           group produto
+        //           by produto.Categoria.Nome[0]
+        //           into grupos
+        //           select new Agrupamento<char, Produto>(grupos.Key, grupos);
+
+        //    return lista;
+        //}
     }
 }
