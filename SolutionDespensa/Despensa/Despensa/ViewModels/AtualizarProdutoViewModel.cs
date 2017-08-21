@@ -1,8 +1,7 @@
 ﻿using Despensa.DataContexts;
 using Despensa.Helpers;
 using Despensa.Models;
-using Plugin.LocalNotifications;
-using System;
+using Despensa.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,11 +10,13 @@ using Xamarin.Forms;
 
 namespace Despensa.ViewModels
 {
-    public class AtualizarProdutoViewModel:BaseViewModel
+    public class AtualizarProdutoViewModel : BaseViewModel
     {
         public ICommand AtualizarProdutoCommand { get; private set; }
 
-        readonly Page _Page;
+        readonly INavigationService _NavigationService;
+        readonly IPopupService _PopupService;
+        readonly IMessageService _MessageService;
         readonly ProdutoRepository _ProdutoRepository;
         readonly CategoriaRepository _CategoriaRepository;
 
@@ -108,9 +109,12 @@ namespace Despensa.ViewModels
 
         #endregion
 
-        public AtualizarProdutoViewModel(Page Page, ProdutoRepository ProdutoRepository,CategoriaRepository CategoriaRepository,Produto produto)
+        public AtualizarProdutoViewModel(ProdutoRepository ProdutoRepository, CategoriaRepository CategoriaRepository, Produto produto)
         {
-            _Page = Page;
+            _NavigationService = DependencyService.Get<INavigationService>();
+            _PopupService = DependencyService.Get<IPopupService>();
+            _MessageService = DependencyService.Get<IMessageService>();
+
             _ProdutoRepository = ProdutoRepository;
             _CategoriaRepository = CategoriaRepository;
             ProdutoAtualizado = produto;
@@ -123,8 +127,8 @@ namespace Despensa.ViewModels
         private async void AtualizarContato()
         {
             var cat = (from c in CategoriasDeItem
-                                 where c.Nome == CategoriaSelecionada
-                                 select c).FirstOrDefault();
+                       where c.Nome == CategoriaSelecionada
+                       select c).FirstOrDefault();
 
             ProdutoAtualizado.Categoria = cat;
 
@@ -140,20 +144,20 @@ namespace Despensa.ViewModels
                     Erros = string.Concat(Erros, "*", item);
                 }
 
-                await _Page.DisplayAlert("Atenção", Erros, "OK");
+                await _MessageService.MostrarDialog("Atenção", Erros);
 
                 Erros = string.Empty;
 
                 return;
             }
 
-             _ProdutoRepository.AtualizarProduto(ProdutoAtualizado);
+            _ProdutoRepository.AtualizarProduto(ProdutoAtualizado);
 
-             await _Page.DisplayAlert("Atenção", "Item atualizado com sucesso", "OK");
+            _PopupService.MostrarSnackbar("Item atualizado com sucesso");
 
             VerificarStatusDeItem();
 
-            await _Page.Navigation.PopAsync();
+            await _NavigationService.NavegarParaListarProdutos();
         }
 
         private void VerificarStatusDeItem()
@@ -161,12 +165,12 @@ namespace Despensa.ViewModels
             switch (ProdutoAtualizado.Status)
             {
                 case "Acabou":
-                    CrossLocalNotifications.Current.Show("Despensa", string.Concat("Verifique a sua Despensa, existe um item que acabou"), 101, DateTime.Now.AddSeconds(2));
-                    _Page.Navigation.PopAsync();
+                    _PopupService.MostrarSnackbar(string.Concat("Verifique a sua Despensa, existe um item que acabou"));
+                    _NavigationService.NavegarParaListarProdutos();
                     break;
                 case "Acabando":
-                    CrossLocalNotifications.Current.Show("Despensa", string.Concat("Existe um item que está acabando na Despensa"), 101, DateTime.Now);
-                    _Page.Navigation.PopAsync();
+                    _PopupService.MostrarSnackbar(string.Concat("Existe um item que está acabando na Despensa"));
+                    _NavigationService.NavegarParaListarProdutos();
                     break;
                 default:
                     break;
@@ -182,7 +186,7 @@ namespace Despensa.ViewModels
 
         private void ListarCategorias()
         {
-            var categorias =  _CategoriaRepository.RecuperarCategorias();
+            var categorias = _CategoriaRepository.RecuperarCategorias();
             Categorias = new List<string>();
 
             foreach (var cat in categorias)

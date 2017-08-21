@@ -1,10 +1,6 @@
 ﻿using Despensa.DataContexts;
 using Despensa.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Despensa.Services;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -14,7 +10,10 @@ namespace Despensa.ViewModels
     {
         public ICommand AtualizarCategoriaCommand { get; private set; }
 
-        readonly Page _Page;
+        readonly INavigationService _NavigationService;
+        readonly IMessageService _MessageService;
+        readonly IPopupService _PopupService;
+
         readonly CategoriaRepository _CategoriaRepository;
 
         private Categoria _CategoriaAtualizada;
@@ -25,9 +24,12 @@ namespace Despensa.ViewModels
             set { SetValue(ref _CategoriaAtualizada, value); }
         }
 
-        public AtualizarCategoriaViewModel(Page Page, CategoriaRepository CategoriaRepository)
+        public AtualizarCategoriaViewModel(CategoriaRepository CategoriaRepository)
         {
-            _Page = Page;
+            _NavigationService = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
+            _PopupService = DependencyService.Get<IPopupService>();
+
             _CategoriaRepository = CategoriaRepository;
 
             AtualizarCategoriaCommand = new Command(AtualizarContato);
@@ -38,14 +40,14 @@ namespace Despensa.ViewModels
             if (CategoriaAtualizada.Original == false)
             {
                 _CategoriaRepository.AtualizarCategoria(CategoriaAtualizada);
-                await _Page.DisplayAlert("Atenção", "Categoria atualizada com sucesso", "OK");
+                _PopupService.MostrarSnackbar("Categoria atualizada com sucesso");
             }
             else
             {
-                await _Page.DisplayAlert("Atenção", "Esta categoria não pode ser atualizada", "OK");
+                await _MessageService.MostrarDialog("Atenção", "Esta categoria não pode ser atualizada");
             }
 
-            await _Page.Navigation.PopAsync();
+           await  _NavigationService.NavegarParaListarCategorias();
         }
     }
 }

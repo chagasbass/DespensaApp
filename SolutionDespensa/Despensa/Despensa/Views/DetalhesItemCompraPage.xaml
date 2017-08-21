@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Despensa.Views.DetalhesItemCompraPage"
+             BackgroundColor="White"
+             Title="Despensa - Detalhes">
+
+    <Frame  HasShadow="True">
+        <ScrollView>
+            <StackLayout>
+
+                <Image Aspect="AspectFit">
+                    <Image.Source>
+                        <UriImageSource Uri="http://www.oestadoce.com.br/wp-content/uploads/2015/11/supermercado_dublin_.jpg"
+                                    CachingEnabled="True"
+                                    CacheValidity="90"/>
+                    </Image.Source>
+                </Image>
+
+                <StackLayout>
+                    <Label Text="Item" TextColor="Black"/>
+                    <Label Text="{Binding Nome}" TextColor="Gray" FontSize="Medium"/>
+                    <Label Text="Categoria" TextColor="Black"/>
+                    <Label Text="{Binding Categoria.Nome}" TextColor="Gray" FontSize="Medium"/>
+                    <Label Text="Marca" TextColor="Black"/>
+                    <Label Text=" {Binding Marca}" TextColor="Gray" FontSize="Medium"/>
+                    <Label Text="Status" TextColor="Black"/>
+                    <Label Text="{Binding Status}" TextColor="Gray" FontSize="Medium"/>
+                    <Label Text="Detalhes" TextColor="Black"/>
+                    <Label Text="{Binding Detalhes}"
+                       TextColor="Gray" FontSize="Small"/>
+                </StackLayout>
+
+                <!--<Button Text="Atualizar Produto"
+             BackgroundColor="#caa052"
+             VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
+		      BorderRadius="20"
+              BorderWidth="5"
+			 TextColor="White"  />-->
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+
+</ContentPage>

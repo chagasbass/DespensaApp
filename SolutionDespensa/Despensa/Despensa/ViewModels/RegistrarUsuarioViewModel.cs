@@ -2,7 +2,6 @@
 using Despensa.Helpers.Despensa.Helpers;
 using Despensa.Models;
 using Despensa.Services;
-using Plugin.LocalNotifications;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -15,6 +14,7 @@ namespace Despensa.ViewModels
         readonly UsuarioRepository _UsuarioRepository;
         readonly INavigationService _Navigation;
         readonly IMessageService _MessageService;
+        readonly IPopupService _PopupService;
 
         #region Propriedades
 
@@ -48,6 +48,7 @@ namespace Despensa.ViewModels
             _UsuarioRepository = UsuarioRepository;
             _Navigation = DependencyService.Get<INavigationService>();
             _MessageService = DependencyService.Get<IMessageService>();
+            _PopupService = DependencyService.Get<IPopupService>();
 
             CadastrarNovoUsuarioCommand = new Command(CadastrarNovoUsuario);
         }
@@ -70,7 +71,7 @@ namespace Despensa.ViewModels
 
             if (userEncontrado != null)
             {
-                await _MessageService.MostrarDialog("Atenção", "Usuário já cadastrado");
+                _PopupService.MostrarToast("Usuário já cadastrado");
                 return;
             }
 
@@ -81,7 +82,9 @@ namespace Despensa.ViewModels
 
             GravarPreferenciasDeUsuario();
 
-            CrossLocalNotifications.Current.Show("Despensa", string.Concat("Sua conta foi criada,seja bem vindo ", NovoUsuario.Nome, " ", NovoUsuario.Sobrenome));
+            string mensagem  = string.Concat("Sua conta foi criada,seja bem vindo ", NovoUsuario.Nome, " ", NovoUsuario.Sobrenome);
+
+            _PopupService.MostrarSnackbar(mensagem);
 
             await _Navigation.NavegarParaLogin();
         }

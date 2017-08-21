@@ -3,7 +3,6 @@ using Despensa.Models;
 using Despensa.Services;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Plugin.LocalNotifications;
 
 namespace Despensa.ViewModels
 {
@@ -14,6 +13,7 @@ namespace Despensa.ViewModels
         readonly UsuarioRepository _UsuarioRepository;
         readonly INavigationService _Navigation;
         readonly IMessageService _MessageService;
+        readonly IPopupService _PopupService;
 
         UsuarioTrocaSenha _UsuarioTrocaSenha;
         bool _DesabilitarEmail;
@@ -76,6 +76,7 @@ namespace Despensa.ViewModels
             _UsuarioRepository = UsuarioRepository;
             _Navigation = DependencyService.Get<INavigationService>();
             _MessageService = DependencyService.Get<IMessageService>();
+            _PopupService = DependencyService.Get<IPopupService>();
 
             GerarCodigoDeUsuarioCommand = new Command(GerarCodigoDeUsuario);
             HabilitarSenha = false;
@@ -108,7 +109,8 @@ namespace Despensa.ViewModels
 
             if (!string.IsNullOrEmpty(CodigoGerado))
             {
-                CrossLocalNotifications.Current.Show("Atenção", string.Concat("Use o código ", CodigoGerado, " para alterar a senha"));
+                string mensagemErro = string.Concat("Use o código ", CodigoGerado, " para alterar a senha");
+                _PopupService.MostrarSnackbar(mensagemErro);
                 return;
             }
 
@@ -131,7 +133,8 @@ namespace Despensa.ViewModels
             DesabilitarEmail = false;
             TextoBotao = "Alterar Senha";
 
-            CrossLocalNotifications.Current.Show("Despensa", string.Concat("Use o código ", UsuarioTrocaSenha.Codigo, " para alterar a senha"));
+            string mensagem = string.Concat("Use o código ", CodigoGerado, " para alterar a senha");
+            _PopupService.MostrarSnackbar(mensagem);
         }
 
         /// <summary>
@@ -143,6 +146,12 @@ namespace Despensa.ViewModels
             if (UsuarioTrocaSenha.NovaSenha != UsuarioTrocaSenha.ConfirmacaoDeSenha)
             {
                 await _MessageService.MostrarDialog("Atenção", "As senhas devem ser iguais");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(UsuarioTrocaSenha.NovaSenha) || string.IsNullOrEmpty(UsuarioTrocaSenha.ConfirmacaoDeSenha))
+            {
+                await _MessageService.MostrarDialog("Atenção", "A senha e confirmação de senha devem ser preenchidas");
                 return;
             }
 
@@ -162,7 +171,8 @@ namespace Despensa.ViewModels
 
             await _MessageService.MostrarDialog("Atenção", "A troca de senha foi efetuada");
 
-            CrossLocalNotifications.Current.Show("Despensa", "A troca de senha foi efetuada, efetue o login");
+            string mensagem = "A troca de senha foi efetuada, efetue o login";
+            _PopupService.MostrarSnackbar(mensagem);
 
             await _Navigation.NavegarParaLogin();
         }

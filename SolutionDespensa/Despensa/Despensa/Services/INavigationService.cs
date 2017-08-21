@@ -23,6 +23,7 @@ namespace Despensa.Services
         Task NavegarParaEsqueciSenha();
         Task NavegarParaListaDeCompras();
         Task NavegarParaCadastrarItemDeCompra();
+        Task NavegarParaDetalhesDeItemDeCompra(Produto produto);
         Task NavegarParaMenu();
         Task Voltar();
     }

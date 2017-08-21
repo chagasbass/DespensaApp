@@ -44,3 +44,4 @@ C:\App\SolutionDespensa\Despensa\Despensa\obj\Release\Despensa.Views.SobrePage.x
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Release\Despensa.Views.CadastrarItemDeCompraPage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Release\Despensa.dll
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Release\Despensa.pdb
+C:\App\SolutionDespensa\Despensa\Despensa\obj\Release\Despensa.csprojResolveAssemblyReference.cache

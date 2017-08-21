@@ -5,7 +5,6 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System;
 using System.Linq;
-using Despensa.Views;
 using Despensa.Helpers;
 using Despensa.Services;
 
@@ -58,13 +57,13 @@ namespace Despensa.ViewModels
             PesquisarItemCommand = new Command(PesquisarItem);
             ExcluirItemCommand = new Command(ExcluirItem);
             FinalizarCompraCommand = new Command(FinalizarCompras);
-            CancelarSelecaoDeItem = new Command(CancelarSelecao);
+            CancelarSelecaoDeItem = new Command(SelecionarItem);
             RedirecionarParaNovoItemCommand = new Command(RedirecionarParaNovoItem);
         }
 
         private async void RedirecionarParaNovoItem() => await _NavigationService.NavegarParaCadastrarItemDeCompra();
 
-        private void CancelarSelecao(object obj) => ItemSelecionado = null;
+        private async void SelecionarItem() => await _NavigationService.NavegarParaDetalhesDeItemDeCompra(ItemSelecionado);
 
         private async void FinalizarCompras()
         {
@@ -121,20 +120,16 @@ namespace Despensa.ViewModels
                     else
                         item.CorStatus = "Red";
 
+                    var categoria = _CategoriaRepository.RecuperarCategoriaPorId(item.IdCategoria);
+                    item.Categoria = categoria;
+
                     ItemsDeCompra.Add(item);
                 }
-
-                //foreach (var item in items)
-                //{
-                //    var categoria = _CategoriaRepository.RecuperarCategoriaPorId(item.IdCategoria);
-                //    item.Categoria = categoria;
-                //    ItemsDeCompra.Add(item);
-                //}
-
+              
                 if (ItemsDeCompra.Count == 0)
                 {
                     await _MessageService.MostrarDialog("Despensa", "Não é necessário fazer compras");
-                    await _NavigationService.NavegarParaListaDeCompras();
+                    await _NavigationService.NavegarParaListarProdutos();
                 }
             }
             catch (Exception ex)

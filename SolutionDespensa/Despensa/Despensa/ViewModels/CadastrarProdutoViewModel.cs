@@ -7,7 +7,6 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using Despensa.Helpers;
 using System.Collections.ObjectModel;
-using Despensa.Views;
 
 namespace Despensa.ViewModels
 {
@@ -22,6 +21,7 @@ namespace Despensa.ViewModels
         readonly CategoriaRepository _CategoriaRepository;
         readonly INavigationService _Navigation;
         readonly IMessageService _MessageService;
+        readonly IPopupService _PopupService;
 
         Produto _NovoProduto;
         public ObservableCollection<Categoria> Categorias { get; private set; } = new ObservableCollection<Categoria>();
@@ -87,6 +87,8 @@ namespace Despensa.ViewModels
         {
             _Navigation = DependencyService.Get<INavigationService>();
             _MessageService = DependencyService.Get<IMessageService>();
+            _PopupService = DependencyService.Get<IPopupService>();
+
             _ProdutoRepository = ProdutoRepository;
             _CategoriaRepository = CategoriaRepository;
 
@@ -114,10 +116,7 @@ namespace Despensa.ViewModels
 
         private async void CadastrarProduto()
         {
-            NovoProduto.CriarDetalhes();
             NovoProduto.Categoria = CategoriaSelecionada;
-            NovoProduto.IdCategoria = CategoriaSelecionada.Id;
-
             var erros = NovoProduto.ValidarProduto();
 
             if (erros.Count > 0)
@@ -133,22 +132,27 @@ namespace Despensa.ViewModels
 
                 return;
             }
-
-            NovoProduto.FormatarCamposDeItem();
-
-            var produtoEncontrado = _ProdutoRepository.RecuperarProdutoPorNomeEMarca(NovoProduto.Nome, NovoProduto.Marca);
-
-            if (produtoEncontrado != null)
+            else
             {
-                await _MessageService.MostrarDialog("Atenção", "Item já cadastrado");
-                return;
+                NovoProduto.CriarDetalhes();
+                NovoProduto.IdCategoria = CategoriaSelecionada.Id;
+
+                var produtoEncontrado = _ProdutoRepository.RecuperarProdutoPorNomeEMarca(NovoProduto.Nome, NovoProduto.Marca);
+
+                if (produtoEncontrado != null)
+                {
+                    await _MessageService.MostrarDialog("Atenção", "Item já cadastrado");
+                    return;
+                }
+
+                NovoProduto.FormatarCamposDeItem();
+
+                _ProdutoRepository.CadastrarProduto(NovoProduto);
+
+               _PopupService.MostrarSnackbar("Item criado com sucesso");
+
+                await _Navigation.NavegarCadastrarProdutos();
             }
-
-            _ProdutoRepository.CadastrarProduto(NovoProduto);
-
-            await _MessageService.MostrarDialog("Despensa", "Item criado com sucesso");
-
-            await _Navigation.NavegarCadastrarProdutos();
         }
 
         private async Task SelecionarMedida(string medida) => NovoProduto.Medida = medida;

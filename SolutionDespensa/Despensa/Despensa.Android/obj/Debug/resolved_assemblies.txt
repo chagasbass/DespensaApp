@@ -1,6 +1,7 @@
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Despensa.Android.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Despensa.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\FormsViewGroup.dll
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Plugin.CurrentActivity.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Plugin.LocalNotifications.Abstractions.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Plugin.LocalNotifications.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Plugin.Settings.Abstractions.dll

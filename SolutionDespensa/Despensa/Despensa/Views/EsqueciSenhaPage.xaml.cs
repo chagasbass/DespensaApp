@@ -23,6 +23,7 @@ namespace Despensa.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            UsuarioRepo = new UsuarioRepository();
 
             BindingContext = new EsqueciSenhaViewModel(UsuarioRepo);
             ViewModel.UsuarioTrocaSenha = new Models.UsuarioTrocaSenha();

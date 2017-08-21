@@ -90,6 +90,8 @@ namespace Despensa.Models
 
             if (string.IsNullOrEmpty(Nome))
                 notificacoes.Add("Nome Inválido");
+            if (string.IsNullOrEmpty(Informacao))
+                notificacoes.Add("Informações não preenchidas");
 
             return notificacoes;
         }

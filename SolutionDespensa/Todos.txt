@@ -38,6 +38,10 @@ Lista De TODOS
 19-Separar a logica da pagina de compras para cadastro de novo item - OK
 20- Testar!
 
+Correção de bugs
+
+B1- Verificar o que tem de diferente entre os detalhes do produto e detalhes de Item de compra
+
 Versao 2
 
 21-Retirar  a atualização de produtos da lista de produtos e jogar para a tela de detalhes - (Versao 2)

@@ -24,6 +24,7 @@ namespace Despensa.Services
         #region ListaDeCompras
         public async Task NavegarParaCadastrarItemDeCompra() => await App.NavigateMasterDetail(new CadastrarItemDeCompraPage());
         public async Task NavegarParaListaDeCompras() => await App.NavigateMasterDetail(new ListaDeComprasPage());
+        public async Task NavegarParaDetalhesDeItemDeCompra(Produto produto) => await App.Current.MainPage.Navigation.PushAsync(new DetalhesItemCompraPage(produto));
         #endregion
 
         #region Usuarios
@@ -37,7 +38,8 @@ namespace Despensa.Services
 
         public async Task NavegarParaMenu() => await App.Current.MainPage.Navigation.PushAsync(new MenuPage());
 
-        public async Task Voltar() => await App.Current.MainPage.Navigation.PopAsync();        
-        
+        public async Task Voltar() => await App.Current.MainPage.Navigation.PopAsync();
+
+      
     }
 }

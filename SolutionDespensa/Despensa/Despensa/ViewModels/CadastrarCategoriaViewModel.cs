@@ -13,6 +13,7 @@ namespace Despensa.ViewModels
         readonly CategoriaRepository _CategoriaRepository;
         readonly INavigationService _Navigation;
         readonly IMessageService _MessageService;
+        readonly IPopupService _PopupService;
 
         Categoria _NovaCategoria;
         string _Erros;
@@ -42,6 +43,7 @@ namespace Despensa.ViewModels
             _CategoriaRepository = CategoriaRepository;
             _Navigation = DependencyService.Get<INavigationService>();
             _MessageService = DependencyService.Get<IMessageService>();
+            _PopupService = DependencyService.Get<IPopupService>();
 
             CadastrarNovaCategoriaCommand = new Command(CadastrarCategoria);
         }
@@ -61,22 +63,24 @@ namespace Despensa.ViewModels
 
                 return;
             }
-
-            var categoriaEncontrada =  _CategoriaRepository.RecuperarCategoriaPorNome(NovaCategoria.Nome);
-
-            if (categoriaEncontrada != null)
+            else
             {
-                await _MessageService.MostrarDialog("Atenção", "Categoria já cadastrada");
-                return;
+                var categoriaEncontrada = _CategoriaRepository.RecuperarCategoriaPorNome(NovaCategoria.Nome);
+
+                if (categoriaEncontrada != null)
+                {
+                    await _MessageService.MostrarDialog("Atenção", "Categoria já cadastrada");
+                    return;
+                }
+
+                NovaCategoria.FormatarCamposDeItem();
+
+                _CategoriaRepository.CadastrarCategoria(NovaCategoria);
+
+                _PopupService.MostrarSnackbar("Categoria criada com sucesso");
+
+                await _Navigation.NavegarParaListarCategorias();
             }
-
-            NovaCategoria.FormatarCamposDeItem();
-
-            _CategoriaRepository.CadastrarCategoria(NovaCategoria);
-
-            await _MessageService.MostrarDialog("Despensa", "Categoria criada com sucesso");
-
-            await _Navigation.NavegarParaListarCategorias();
         }
     }
 }

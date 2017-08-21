@@ -23,7 +23,7 @@ namespace Despensa.Views
             var ProdutoRepo = new ProdutoRepository();
             var CategoriaRepo = new CategoriaRepository();
 
-            ViewModel = new AtualizarProdutoViewModel(this,ProdutoRepo, CategoriaRepo,produto);
+            ViewModel = new AtualizarProdutoViewModel(ProdutoRepo, CategoriaRepo,produto);
 
             BindingContext = ViewModel;
         }

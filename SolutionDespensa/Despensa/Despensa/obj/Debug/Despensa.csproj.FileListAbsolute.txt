@@ -42,5 +42,6 @@ C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.MinhaContaPag
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.ListaDeComprasPage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.SobrePage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.CadastrarItemDeCompraPage.xaml.g.cs
+C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.Views.DetalhesItemCompraPage.xaml.g.cs
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.dll
 C:\App\SolutionDespensa\Despensa\Despensa\obj\Debug\Despensa.pdb

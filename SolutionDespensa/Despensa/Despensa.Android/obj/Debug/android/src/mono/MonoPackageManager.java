@@ -101,6 +101,7 @@ class MonoPackageManager_Resources {
 		"Despensa.Android.dll",
 		"Despensa.dll",
 		"FormsViewGroup.dll",
+		"Plugin.CurrentActivity.dll",
 		"Plugin.LocalNotifications.Abstractions.dll",
 		"Plugin.LocalNotifications.dll",
 		"Plugin.Settings.Abstractions.dll",

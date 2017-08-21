@@ -10,7 +10,6 @@ namespace Despensa.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AtualizarCategoriaPage : ContentPage
     {
-
         private AtualizarCategoriaViewModel ViewModel
         {
             get { return BindingContext as AtualizarCategoriaViewModel; }
@@ -20,7 +19,7 @@ namespace Despensa.Views
         public AtualizarCategoriaPage(Categoria categoria)
         {
             InitializeComponent();
-            ViewModel = new AtualizarCategoriaViewModel(this, new CategoriaRepository());
+            ViewModel = new AtualizarCategoriaViewModel(new CategoriaRepository());
             ViewModel.CategoriaAtualizada = categoria;
 
             BindingContext = ViewModel;
