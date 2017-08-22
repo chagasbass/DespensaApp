@@ -17,7 +17,7 @@ namespace Despensa.Views
         public SobrePage()
         {
             InitializeComponent();
-            ViewModel = new SobreViewModel(this.Navigation);
+            ViewModel = new SobreViewModel();
             BindingContext = ViewModel;
         }
 

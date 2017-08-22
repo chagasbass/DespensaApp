@@ -1,4 +1,5 @@
 ﻿using Despensa.Helpers.Despensa.Helpers;
+using Despensa.Services;
 using Despensa.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -18,6 +19,7 @@ namespace Despensa.ViewModels
 
         Models.ItemMenu _ItemSelecionado;
         string _MensagemUsuario;
+        INavigationService _NavigationService;
 
         public Models.ItemMenu ItemSelecionado
         {
@@ -33,6 +35,7 @@ namespace Despensa.ViewModels
 
         public MenuItemViewModel()
         {
+            _NavigationService = DependencyService.Get<INavigationService>();
             //SelecionarItemCommand = new Command<Models.MenuItem>(async vm => await SelecionarItem(vm));
             SelecionarItemCommand = new Command(SelecionarItem);
             CriarListaDeMenu();
@@ -41,6 +44,9 @@ namespace Despensa.ViewModels
 
         private async void SelecionarItem()
         {
+            _NavigationService.GuardarUltimaPagina(_NavigationService.RetornarPaginaAtual());
+            _NavigationService.GuardarPaginaAtual(ItemSelecionado.Page);
+
             await App.NavigateMasterDetail(ItemSelecionado.Page);
         }
 

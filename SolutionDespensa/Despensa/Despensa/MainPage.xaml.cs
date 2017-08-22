@@ -13,14 +13,24 @@ namespace Despensa
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
-            
+
             BindingContext = new MainViewModel(this.Navigation);
         }
 
         protected override bool OnBackButtonPressed()
         {
+
             if (Device.OS == TargetPlatform.Android)
+            {
                 DependencyService.Get<IAndroidMethods>();
+
+                var paginas = Navigation.NavigationStack;
+
+                foreach (var item in paginas)
+                {
+
+                }
+            }
 
             return base.OnBackButtonPressed();
         }

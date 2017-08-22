@@ -1,6 +1,7 @@
 ﻿using Despensa.DataContexts;
 using Despensa.Models;
 using Despensa.Services;
+using Despensa.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -62,7 +63,9 @@ namespace Despensa.ViewModels
             ListarProdutosCommand = new Command(ListarProdutos);
             ExcluirProdutoCommand = new Command(ExcluirProduto);
             PesquisarProdutoCommand = new Command(PesquisarProduto);
+
             TemItems = true;
+            //_Navigation.GuardarPaginaAtual(new ListagemDeProdutosPage());
         }
 
         private async void PesquisarProduto()
@@ -87,7 +90,7 @@ namespace Despensa.ViewModels
         {
             if (produto == null)
                 return;
-
+            
             await _Navigation.NavegarParaDetalhesDoProduto(produto);
         }
 
@@ -95,7 +98,7 @@ namespace Despensa.ViewModels
         {
             if (produto == null)
                 return;
-
+            
             await _Navigation.NavegarParaAtualizarProdutos(produto);
         }
 

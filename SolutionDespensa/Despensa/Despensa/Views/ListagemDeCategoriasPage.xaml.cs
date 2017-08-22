@@ -2,7 +2,6 @@
 using Despensa.Models;
 using Despensa.ViewModels;
 using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,18 +22,12 @@ namespace Despensa.Views
         {
             InitializeComponent();
             _Repo = new CategoriaRepository();
-            BindingContext = new CategoriaViewModel(this, _Repo);
+            BindingContext = new CategoriaViewModel(_Repo);
         }
 
-        private async void ToolbarItem_Activated(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new CadastrarCategoriaPage());
-        }
+        private async void ToolbarItem_Activated(object sender, EventArgs e)=> ViewModel.NavegarParaNovoCategoriaCommand.Execute(null);
 
-        protected override async void OnAppearing()
-        {
-            ViewModel.ListarCategoriasCommand.Execute(null);
-        }
+        protected override async void OnAppearing() => ViewModel.ListarCategoriasCommand.Execute(null);
 
         private async void listViewCategorias_Refreshing(object sender, EventArgs e)
         {
@@ -62,14 +55,9 @@ namespace Despensa.Views
             ViewModel.ListarCategoriasCommand.Execute(null);
         }
 
-        private async void listViewCategorias_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            ViewModel.SelecionarCategoriaCommand.Execute(e.SelectedItem);
-        }
+        private async void listViewCategorias_ItemSelected(object sender, SelectedItemChangedEventArgs e) => ViewModel.SelecionarCategoriaCommand.Execute(e.SelectedItem);
 
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ViewModel.PesquisarCategoriaCommand.Execute(null);
-        }
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e) => ViewModel.PesquisarCategoriaCommand.Execute(null);
+
     }
 }

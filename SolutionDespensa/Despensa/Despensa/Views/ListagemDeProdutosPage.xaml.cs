@@ -28,13 +28,11 @@ namespace Despensa.Views
 
         protected override async void OnAppearing()
         {
+            App.PaginaAtual = this;
             ViewModel.ListarProdutosCommand.Execute(null);
         }
 
-        private async void ToolbarItem_Activated(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new CadastrarProdutoPage());
-        }
+        private async void ToolbarItem_Activated(object sender, EventArgs e)=> ViewModel.NavegarParaNovoProdutoCommand.Execute(null);
 
         private async void listViewProdutos_Refreshing(object sender, EventArgs e)
         {
@@ -69,10 +67,7 @@ namespace Despensa.Views
             ViewModel.ListarProdutosCommand.Execute(null);
         }
 
-        private async void listViewProdutos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            ViewModel.SelecionarProdutoCommand.Execute(e.SelectedItem);
-        }
+        private async void listViewProdutos_ItemSelected(object sender, SelectedItemChangedEventArgs e) => ViewModel.SelecionarProdutoCommand.Execute(e.SelectedItem);
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System;
+using Despensa.Services;
 
 namespace Despensa.ViewModels
 {
@@ -11,7 +12,6 @@ namespace Despensa.ViewModels
         public ICommand CancelarSelecaoCommand { get; private set; }
 
         public ObservableCollection<ModeloDeInformacao> Conteudo { get; private set; } = new ObservableCollection<ModeloDeInformacao>();
-        INavigation _Navigation;
         ModeloDeInformacao _Selecionado;
 
         public ModeloDeInformacao Selecionado
@@ -20,9 +20,8 @@ namespace Despensa.ViewModels
             set { SetValue(ref _Selecionado, value); }
         }
 
-        public SobreViewModel(INavigation Navigation)
+        public SobreViewModel()
         {
-            _Navigation = Navigation;
             CancelarSelecaoCommand = new Command(CancelarSelecao);
             InicializarConteudo();
         }

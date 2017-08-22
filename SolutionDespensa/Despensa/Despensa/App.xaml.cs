@@ -1,6 +1,7 @@
 ﻿
 using Despensa.DataContexts;
 using Despensa.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -9,6 +10,9 @@ namespace Despensa
     public partial class App : Application
     {
         public static MasterDetailPage MasterDetail { get; set; }
+        public static Stack<Page> ListaDePaginas { get; set; } = new Stack<Page>();
+        public static Page PaginaAtual { get; set; }
+        public static Page UltimaPagina { get; set; }
 
         public App()
         {

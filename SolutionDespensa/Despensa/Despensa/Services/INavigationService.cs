@@ -1,5 +1,6 @@
 ﻿using Despensa.Models;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Despensa.Services
 {
@@ -26,5 +27,9 @@ namespace Despensa.Services
         Task NavegarParaDetalhesDeItemDeCompra(Produto produto);
         Task NavegarParaMenu();
         Task Voltar();
+        void GuardarUltimaPagina(Page page);
+        void GuardarPaginaAtual(Page page);
+        Page RetornarPaginaAtual();
+        Page RetornarUltimaPagina();
     }
 }

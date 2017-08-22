@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System;
-using Despensa.Views;
 using System.Linq;
+using Despensa.Services;
 
 namespace Despensa.ViewModels
 {
-    public class CategoriaViewModel:BaseViewModel
+    public class CategoriaViewModel : BaseViewModel
     {
         public ICommand SelecionarCategoriaCommand { get; private set; }
         public ICommand NavegarParaNovoCategoriaCommand { get; private set; }
@@ -20,11 +20,12 @@ namespace Despensa.ViewModels
         public ICommand PesquisarCategoriaCommand { get; set; }
         public ICommand AtualizarCategoriaCommand { get; set; }
 
-
         public ObservableCollection<Categoria> Categorias { get; private set; } = new ObservableCollection<Categoria>();
 
         readonly CategoriaRepository _CategoriaRepository;
-        readonly Page _Page;
+        readonly INavigationService _NavigationService;
+        readonly IMessageService _MessageService;
+        readonly IPopupService _PopupService;
 
         private Categoria _CategoriaSelecionada;
         private string _Pesquisa;
@@ -41,9 +42,12 @@ namespace Despensa.ViewModels
             set { SetValue(ref _Pesquisa, value); }
         }
 
-        public CategoriaViewModel(Page Page, CategoriaRepository CategoriaRepository)
+        public CategoriaViewModel(CategoriaRepository CategoriaRepository)
         {
-            _Page = Page;
+            _NavigationService = DependencyService.Get<INavigationService>();
+            _MessageService = DependencyService.Get<IMessageService>();
+            _PopupService = DependencyService.Get<IPopupService>();
+
             _CategoriaRepository = CategoriaRepository;
 
             SelecionarCategoriaCommand = new Command<Categoria>(async vm => await SelecionarCategoria(vm));
@@ -63,7 +67,7 @@ namespace Despensa.ViewModels
             }
 
             var pesquisa = Categorias.Where(x => x.Nome.ToUpper().Contains(Pesquisa.ToUpper())).ToList();
-           
+
             Categorias.Clear();
 
             foreach (var item in pesquisa)
@@ -77,7 +81,7 @@ namespace Despensa.ViewModels
             if (categoria == null)
                 return;
 
-            await _Page.Navigation.PushAsync(new DetalhesCategoriaPage(categoria));
+            await _NavigationService.NavegarParaDetalhesDaCategoria(categoria);
         }
 
         private async Task AtualizarCategoria(Categoria categoria)
@@ -85,12 +89,12 @@ namespace Despensa.ViewModels
             if (categoria == null)
                 return;
 
-           await _Page.Navigation.PushAsync(new AtualizarCategoriaPage(categoria));
+            await _NavigationService.NavegarParaAtualizarCategorias(categoria);
         }
 
         private async void ExcluirCategoria()
         {
-            var response = await _Page.DisplayAlert("Atenção", "Deseja excluir o Item?", "SIM", "NÃO");
+            var response = await _MessageService.MostrarDialogComBotoes("Atenção", "Deseja excluir o Item?");
 
             if (!response)
                 return;
@@ -98,33 +102,30 @@ namespace Despensa.ViewModels
             if (CategoriaSelecionada.Original == false)
             {
                 _CategoriaRepository.ExcluirCategoria(CategoriaSelecionada);
-                await _Page.DisplayAlert("Atenção", "Item excluído com sucesso", "OK");
+                await _MessageService.MostrarDialog("Atenção", "Item excluído com sucesso");
             }
             else
-            { 
-                await _Page.DisplayAlert("Atenção", "Esta categoria não pode ser excluída", "OK");
+            {
+                _PopupService.MostrarSnackbar("Esta categoria não pode ser excluída");
             }
         }
 
-        private async void NavegarParaNovoCategoria()
-        {
-            await _Page.Navigation.PushAsync(new CadastrarCategoriaPage());
-        }
+        private async void NavegarParaNovoCategoria() => await _NavigationService.NavegarCadastrarCategorias();
 
         private async void ListarCategorias()
         {
             Categorias.Clear();
 
-            var categorias =  _CategoriaRepository.RecuperarCategorias();
+            var categorias = _CategoriaRepository.RecuperarCategorias();
 
             if (categorias == null)
                 return;
 
             foreach (var cat in categorias)
                 Categorias.Add(cat);
-            
+
             if (Categorias.Count == 0)
-                await _Page.DisplayAlert("Despensa", "Cadastre as suas categorias!!,","OK");
+                await _MessageService.MostrarDialog("Despensa", "Cadastre as suas categorias!!,");
         }
     }
 }
