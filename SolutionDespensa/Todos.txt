@@ -41,8 +41,8 @@ Lista De TODOS
 Correção de bugs
 
 B1- Verificar o que tem de diferente entre os detalhes do produto e detalhes de Item de compra -OK
-B2- Verificar o backButton
-B3 -Inserir os detalhes do item de compra em detalhes
+B2- Verificar o backButton - OK
+B3 -Inserir os detalhes do item de compra em detalhes - OK
 
 Versao 2
 

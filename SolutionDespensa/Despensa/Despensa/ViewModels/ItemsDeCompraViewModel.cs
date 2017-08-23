@@ -122,13 +122,14 @@ namespace Despensa.ViewModels
 
                     var categoria = _CategoriaRepository.RecuperarCategoriaPorId(item.IdCategoria);
                     item.Categoria = categoria;
+                    item.CriarDetalhes();
 
                     ItemsDeCompra.Add(item);
                 }
               
                 if (ItemsDeCompra.Count == 0)
                 {
-                    await _MessageService.MostrarDialog("Despensa", "Não é necessário fazer compras");
+                    await _MessageService.MostrarDialog("Despensa", "Não é necessário fazer compras mo momento");
                     await _NavigationService.NavegarParaListarProdutos();
                 }
             }

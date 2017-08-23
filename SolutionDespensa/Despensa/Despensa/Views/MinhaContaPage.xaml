@@ -24,12 +24,12 @@
                 <Label Text="Email" TextColor="Black"/>
                 <Label Text="{Binding UsuarioEncontrado.Email}" TextColor="Gray" FontSize="Medium"/>
 
-                <Button Text="Atualizar Dados"
+                <!--<Button Text="Atualizar Dados"
              BackgroundColor="#caa052"
              VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"
 		      BorderRadius="20"
               BorderWidth="5"
-			 TextColor="White"  />
+			 TextColor="White"  />-->
                 
             </StackLayout>
         </ScrollView>

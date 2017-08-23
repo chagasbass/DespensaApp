@@ -16,8 +16,9 @@ namespace Despensa.Views
             NavigationPage.SetHasNavigationBar(this, false);
             var page = new ListagemDeProdutosPage();
             this.Master = new MenuHamburguerPage();
+            this.MasterBehavior = MasterBehavior.Popover;
             this.Detail = new NavigationPage(page);
-            _service.GuardarUltimaPagina(page);
+
             _service.GuardarPaginaAtual(page);
 
             App.MasterDetail = this;
