@@ -3,9 +3,11 @@ using Despensa.Services;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using Android.Runtime;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class LoginViewModel:BaseViewModel
     {
         public ICommand RedirecionarParaEsqueciSenhaCommand { get; private set; }

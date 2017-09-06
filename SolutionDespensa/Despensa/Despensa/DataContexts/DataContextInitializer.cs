@@ -1,4 +1,5 @@
-﻿using Despensa.Models;
+﻿using Android.Runtime;
+using Despensa.Models;
 using Xamarin.Forms;
 
 namespace Despensa.DataContexts
@@ -6,6 +7,8 @@ namespace Despensa.DataContexts
     /// <summary>
     /// Classe que efetua a inicialização do banco de dados
     /// </summary>
+    /// 
+    [Preserve(AllMembers = true)]
     public static class DataContextInitializer
     {
         public static void InicializarBancoDeDados()

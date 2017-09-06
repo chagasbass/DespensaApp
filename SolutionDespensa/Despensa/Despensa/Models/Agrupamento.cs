@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Android.Runtime;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Despensa.Models
@@ -8,6 +9,8 @@ namespace Despensa.Models
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="T"></typeparam>
+    /// 
+    [Preserve(AllMembers = true)]
     public class Agrupamento<TKey,TITem>: ObservableCollection<TITem>
     {
         public TKey Categoria { get; set; }

@@ -1,4 +1,5 @@
-﻿using Despensa.DataContexts;
+﻿using Android.Runtime;
+using Despensa.DataContexts;
 using Despensa.Helpers.Despensa.Helpers;
 using Despensa.Models;
 using Despensa.Services;
@@ -7,6 +8,7 @@ using Xamarin.Forms;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class RegistrarUsuarioViewModel : BaseViewModel
     {
         public ICommand CadastrarNovoUsuarioCommand { get; private set; }

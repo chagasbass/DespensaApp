@@ -1,4 +1,5 @@
-﻿using Despensa.DataContexts;
+﻿using Android.Runtime;
+using Despensa.DataContexts;
 using Despensa.Helpers;
 using Despensa.Models;
 using Despensa.Services;
@@ -10,6 +11,7 @@ using Xamarin.Forms;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class AtualizarProdutoViewModel : BaseViewModel
     {
         public ICommand AtualizarProdutoCommand { get; private set; }

@@ -1,4 +1,5 @@
-﻿using Despensa.DataContexts;
+﻿using Android.Runtime;
+using Despensa.DataContexts;
 using Despensa.Models;
 using Despensa.Services;
 using Despensa.Views;
@@ -10,6 +11,7 @@ using Xamarin.Forms;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class ProdutoViewModel : BaseViewModel
     {
         public ICommand SelecionarProdutoCommand { get; private set; }

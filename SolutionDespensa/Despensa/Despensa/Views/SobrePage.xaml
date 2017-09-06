@@ -5,6 +5,7 @@
              xmlns:ViewModels="clr-namespace:Despensa.ViewModels"
              Title="Despensa">
 
+    <Label Text="Sobre o Despensa App" FontSize="Large"></Label>
     <ListView 
         HasUnevenRows="True"
         ItemsSource="{Binding Conteudo}"

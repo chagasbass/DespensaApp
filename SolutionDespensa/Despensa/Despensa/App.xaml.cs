@@ -30,8 +30,8 @@ namespace Despensa
 
         public async static Task NavigateMasterDetail(Page page)
         {
-            MasterDetail.IsPresented = false;//esconde a barra quando navegar para outra página!
             MasterDetail.Detail = new NavigationPage(page);
+            MasterDetail.IsPresented = false;//esconde a barra quando navegar para outra página!
         }
 
         protected override void OnStart()

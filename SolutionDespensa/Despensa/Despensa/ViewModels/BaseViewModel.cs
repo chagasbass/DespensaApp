@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Android.Runtime;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

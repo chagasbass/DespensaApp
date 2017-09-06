@@ -1,10 +1,12 @@
-﻿using Despensa.Models;
+﻿using Android.Runtime;
+using Despensa.Models;
 using SQLite.Net;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace Despensa.DataContexts
 {
+    [Preserve(AllMembers = true)]
     public class CategoriaRepository
     {
         SQLiteConnection _Connection;

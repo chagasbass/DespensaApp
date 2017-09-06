@@ -1,9 +1,11 @@
-﻿using Despensa.Models;
+﻿using Android.Runtime;
+using Despensa.Models;
 using SQLite.Net;
 using Xamarin.Forms;
 
 namespace Despensa.DataContexts
 {
+    [Preserve(AllMembers = true)]
     public class UsuarioRepository
     {
         SQLiteConnection _Connection;

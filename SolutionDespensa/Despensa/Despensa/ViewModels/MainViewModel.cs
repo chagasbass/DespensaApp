@@ -1,9 +1,11 @@
-﻿using Despensa.Views;
+﻿using Android.Runtime;
+using Despensa.Views;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class MainViewModel : BaseViewModel
     {
         public ICommand RedirecionarParaLoginCommand { get; private set; }

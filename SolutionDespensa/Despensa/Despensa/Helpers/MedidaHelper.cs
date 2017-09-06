@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Android.Runtime;
+using System.Collections.Generic;
 
 namespace Despensa.Helpers
 {
     /// <summary>
     ///Classe helper que retorna uma lista de string para preenchimento da medidas
     /// </summary>
+    /// 
+    [Preserve(AllMembers = true)]
     public static class MedidaHelper
     {
         public static List<string> RetornarMedidas()

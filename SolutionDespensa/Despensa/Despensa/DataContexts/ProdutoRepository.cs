@@ -1,10 +1,12 @@
-﻿using Despensa.Models;
+﻿using Android.Runtime;
+using Despensa.Models;
 using SQLite.Net;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace Despensa.DataContexts
 {
+    [Preserve(AllMembers = true)]
     public class ProdutoRepository
     {
         SQLiteConnection _Connection;
@@ -69,7 +71,7 @@ namespace Despensa.DataContexts
         public IEnumerable<Produto> RecuperarProdutos()
         {
             var lista = _Connection.Table<Produto>();
-            return lista;
+            return lista.OrderBy(c => c.Nome);
         }
 
 
@@ -80,7 +82,7 @@ namespace Despensa.DataContexts
             foreach (var item in produtos)
                 item.Comprado = false;
 
-            return produtos;
+            return produtos.OrderBy(c=> c.Status);
         }
 
         public Produto AtualizarProduto(Produto produto)

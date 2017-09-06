@@ -1,4 +1,5 @@
-﻿using Despensa.Helpers.Despensa.Helpers;
+﻿using Android.Runtime;
+using Despensa.Helpers.Despensa.Helpers;
 using Despensa.Services;
 using Despensa.Views;
 using System.Collections.ObjectModel;
@@ -10,6 +11,8 @@ namespace Despensa.ViewModels
     /// <summary>
     /// ViewModel responsável pelo Menu
     /// </summary>
+    /// 
+    [Preserve(AllMembers = true)]
     public class MenuItemViewModel : BaseViewModel
     {
         public ICommand SelecionarItemCommand { get; private set; }

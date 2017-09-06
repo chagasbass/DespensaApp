@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using Android.Runtime;
+using System.Threading.Tasks;
 
 namespace Despensa.Services
 {
+    [Preserve(AllMembers = true)]
     public class MessageService : IMessageService
     {
         public async Task MostrarDialog(string titulo ,string mensagem) => await App.Current.MainPage.DisplayAlert(titulo, mensagem, "OK");

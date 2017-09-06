@@ -1,6 +1,7 @@
 ﻿using System.Resources;
 using System.Reflection;
 using Xamarin.Forms.Xaml;
+using Android.App;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -28,3 +29,4 @@ using Xamarin.Forms.Xaml;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+

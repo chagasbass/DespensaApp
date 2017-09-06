@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Android.Runtime;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Despensa.Helpers
 {
+    [Preserve(AllMembers = true)]
     public class CategoriaProduto<K, T> : ObservableCollection<T>
     {
         public K Chave { get; private set; }

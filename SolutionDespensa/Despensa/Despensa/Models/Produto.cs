@@ -1,14 +1,16 @@
-﻿using Despensa.ViewModels;
+﻿using Android.Runtime;
+using Despensa.ViewModels;
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 
 namespace Despensa.Models
 {
+    [Preserve(AllMembers = true)]
     public class Produto:BaseViewModel
     {
          string _Nome;
-         int _Quantidade;
+         string _Quantidade;
          string _Medida;
          string _Marca;
          string _DataCadastro;
@@ -47,7 +49,7 @@ namespace Despensa.Models
         }
 
         [NotNull]
-        public int Quantidade
+        public string Quantidade
         {
             get { return _Quantidade; }
 
@@ -173,7 +175,7 @@ namespace Despensa.Models
 
             if (string.IsNullOrEmpty(Nome))
                 notificacoes.Add("Nome Inválido");
-            if (Quantidade < 0)
+            if (int.Parse(Quantidade) < 0)
                 notificacoes.Add("Quantidade Inválida");
             if (string.IsNullOrEmpty(Medida))
                 notificacoes.Add("Medida Inválida");

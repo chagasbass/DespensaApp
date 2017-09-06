@@ -1,10 +1,12 @@
-﻿using Plugin.Settings;
+﻿using Android.Runtime;
+using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
 namespace Despensa.Helpers
 {
     namespace Despensa.Helpers
     {
+        [Preserve(AllMembers = true)]
         public static class PreferenciasHelper
         {
             private static ISettings AppSettings

@@ -4,9 +4,11 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System;
 using Despensa.Services;
+using Android.Runtime;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public  class SobreViewModel:BaseViewModel
     {
         public ICommand CancelarSelecaoCommand { get; private set; }

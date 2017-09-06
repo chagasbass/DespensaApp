@@ -1,4 +1,5 @@
-﻿using Despensa.ViewModels;
+﻿using Android.Runtime;
+using Despensa.ViewModels;
 using Xamarin.Forms;
 
 namespace Despensa.Models
@@ -6,6 +7,8 @@ namespace Despensa.Models
     /// <summary>
     /// Classe que representa o item do menu
     /// </summary>
+    /// 
+    [Preserve(AllMembers = true)]
     public class ItemMenu : BaseViewModel
     {
         string _Texto;

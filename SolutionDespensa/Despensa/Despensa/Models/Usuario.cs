@@ -1,4 +1,5 @@
-﻿using Despensa.ViewModels;
+﻿using Android.Runtime;
+using Despensa.ViewModels;
 using SQLite;
 using SQLite.Net.Attributes;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 namespace Despensa.Models
 {
+    [Preserve(AllMembers = true)]
     public class Usuario : BaseViewModel
     {
         #region Propriedades Privadas

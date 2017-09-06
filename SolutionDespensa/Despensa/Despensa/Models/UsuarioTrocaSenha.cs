@@ -1,4 +1,5 @@
-﻿using Despensa.ViewModels;
+﻿using Android.Runtime;
+using Despensa.ViewModels;
 using System;
 
 namespace Despensa.Models
@@ -6,6 +7,8 @@ namespace Despensa.Models
     /// <summary>
     /// Modelo para esquecimento e troca de senha de um usuário
     /// </summary>
+    /// 
+    [Preserve(AllMembers = true)]
     public class UsuarioTrocaSenha:BaseViewModel
     {
         string _Email;

@@ -1,4 +1,5 @@
-﻿using Despensa.Models;
+﻿using Android.Runtime;
+using Despensa.Models;
 using Despensa.Views;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -8,6 +9,8 @@ namespace Despensa.Services
     /// <summary>
     /// Servico de navegação do aplicativo
     /// </summary>
+    /// 
+    [Preserve(AllMembers = true)]
     public class NavigationService : INavigationService
     {
         #region Produtos

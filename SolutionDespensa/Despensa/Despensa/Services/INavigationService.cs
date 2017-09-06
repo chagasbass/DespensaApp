@@ -1,4 +1,5 @@
-﻿using Despensa.Models;
+﻿using Android.Runtime;
+using Despensa.Models;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -7,6 +8,8 @@ namespace Despensa.Services
     /// <summary>
     /// Interface de navegação so APP
     /// </summary>
+    /// 
+    [Preserve(AllMembers = true)]
     public interface INavigationService
     {
         Task NavegarParaLogin();

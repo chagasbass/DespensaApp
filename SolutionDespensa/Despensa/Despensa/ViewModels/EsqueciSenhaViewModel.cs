@@ -1,4 +1,5 @@
-﻿using Despensa.DataContexts;
+﻿using Android.Runtime;
+using Despensa.DataContexts;
 using Despensa.Models;
 using Despensa.Services;
 using System.Windows.Input;
@@ -6,6 +7,7 @@ using Xamarin.Forms;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class EsqueciSenhaViewModel : BaseViewModel
     {
         public ICommand GerarCodigoDeUsuarioCommand { get; private set; }

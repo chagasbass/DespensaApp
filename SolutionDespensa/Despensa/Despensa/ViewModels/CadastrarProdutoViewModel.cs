@@ -7,9 +7,11 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using Despensa.Helpers;
 using System.Collections.ObjectModel;
+using Android.Runtime;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class CadastrarProdutoViewModel : BaseViewModel
     {
         public ICommand CadastrarNovoProdutoCommand { get; private set; }

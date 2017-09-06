@@ -7,9 +7,11 @@ using Xamarin.Forms;
 using System;
 using System.Linq;
 using Despensa.Services;
+using Android.Runtime;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class CategoriaViewModel : BaseViewModel
     {
         public ICommand SelecionarCategoriaCommand { get; private set; }

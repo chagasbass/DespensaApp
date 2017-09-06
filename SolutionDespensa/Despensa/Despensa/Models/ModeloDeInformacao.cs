@@ -1,4 +1,5 @@
-﻿using Despensa.ViewModels;
+﻿using Android.Runtime;
+using Despensa.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Despensa.Models
 {
+    [Preserve(AllMembers = true)]
     public class ModeloDeInformacao:BaseViewModel
     {
         string _Titulo;

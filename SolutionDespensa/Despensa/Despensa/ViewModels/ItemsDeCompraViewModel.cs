@@ -7,9 +7,11 @@ using System;
 using System.Linq;
 using Despensa.Helpers;
 using Despensa.Services;
+using Android.Runtime;
 
 namespace Despensa.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class ItemsDeCompraViewModel : BaseViewModel
     {
         public ICommand ListarComprasCommand { get; private set; }
