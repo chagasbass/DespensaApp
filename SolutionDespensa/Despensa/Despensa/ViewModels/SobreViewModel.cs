@@ -2,8 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System;
-using Despensa.Services;
 using Android.Runtime;
 
 namespace Despensa.ViewModels

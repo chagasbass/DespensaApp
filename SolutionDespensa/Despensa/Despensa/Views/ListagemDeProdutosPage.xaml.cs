@@ -40,13 +40,13 @@ namespace Despensa.Views
             listViewProdutos.EndRefresh();
         }
 
-        private async void MenuItem_EditarProdutos(object sender, EventArgs e)
-        {
-            var escolha = (MenuItem)sender;
-            var produto = (Produto)escolha.CommandParameter;
+        //private async void MenuItem_EditarProdutos(object sender, EventArgs e)
+        //{
+        //    var escolha = (MenuItem)sender;
+        //    var produto = (Produto)escolha.CommandParameter;
 
-            ViewModel.NavegarParaAtualizarProdutoCommand.Execute(produto);
-        }
+        //    ViewModel.NavegarParaAtualizarProdutoCommand.Execute(produto);
+        //}
 
         private async void MenuItem_ExcluirProdutos(object sender, EventArgs e)
         {

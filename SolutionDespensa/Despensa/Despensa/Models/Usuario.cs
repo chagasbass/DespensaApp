@@ -1,6 +1,4 @@
 ﻿using Android.Runtime;
-using Despensa.ViewModels;
-using SQLite;
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
@@ -8,16 +6,24 @@ using System.Collections.Generic;
 namespace Despensa.Models
 {
     [Preserve(AllMembers = true)]
-    public class Usuario : BaseViewModel
+    public class Usuario
     {
         #region Propriedades Privadas
 
-        private string _Nome;
-        private string _Sobrenome;
-        private string _Email;
-        private string _Senha;
-        private string _StatusUsuario;
-        private string _DataCadastro;
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        [MaxLength(50), NotNull]
+        public string Nome { get; set; }
+        [MaxLength(50), NotNull]
+        public string Sobrenome { get; set; }
+        [MaxLength(50), NotNull]
+        public string Email { get; set; }
+        [MaxLength(10), NotNull]
+        public string Senha { get; set; }
+        [MaxLength(1), NotNull]
+        public string StatusUsuario { get; set; }
+        [MaxLength(20)]
+        public string DataCadastro { get; set; }
         #endregion
 
         public Usuario()
@@ -25,81 +31,6 @@ namespace Despensa.Models
             DataCadastro = DateTime.Now.ToString();
             StatusUsuario = "A";
         }
-
-        #region Propriedades Públicas
-
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
-        [MaxLength(50),NotNull]
-        public string Nome
-        {
-            get { return _Nome; }
-
-            set
-            {
-                SetValue(ref _Nome, value);
-                OnPropertyChanged(nameof(_Nome));
-            }
-        }
-
-        [MaxLength(50),NotNull]
-        public string Sobrenome
-        {
-            get { return _Sobrenome; }
-
-            set
-            {
-                SetValue(ref _Sobrenome, value);
-                OnPropertyChanged(nameof(_Nome));
-            }
-        }
-
-        [MaxLength(50),NotNull]
-        public string Email
-        {
-            get { return _Email; }
-            set
-            {
-                SetValue(ref _Email, value);
-                OnPropertyChanged(nameof(_Email));
-            }
-        }
-
-        [MaxLength(10),NotNull]
-        public string Senha
-        {
-            get { return _Senha; }
-            set
-            {
-                SetValue(ref _Senha, value);
-                OnPropertyChanged(nameof(_Email));
-            }
-        }
-
-        [MaxLength(1), NotNull]
-        public string StatusUsuario
-        {
-            get { return _StatusUsuario; }
-            set
-            {
-                SetValue(ref _StatusUsuario, value);
-                OnPropertyChanged(nameof(_StatusUsuario));
-            }
-        }
-
-        [MaxLength(20)]
-        public string DataCadastro
-        {
-            get { return _DataCadastro; }
-            set
-            {
-                SetValue(ref _DataCadastro, value);
-                OnPropertyChanged(nameof(_DataCadastro));
-            }
-        }
-
-        #endregion
 
         public List<string> ValidarUsuario()
         {
@@ -113,6 +44,8 @@ namespace Despensa.Models
                 notificacoes.Add("Email Inválido");
             if (string.IsNullOrEmpty(Senha))
                 notificacoes.Add("Senha Inválida");
+            if (Senha.Length > 10)
+                notificacoes.Add("Máximo de 10 caractéres para Senha");
 
             return notificacoes;
         }

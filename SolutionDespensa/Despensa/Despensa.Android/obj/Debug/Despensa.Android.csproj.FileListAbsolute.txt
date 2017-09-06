@@ -275,10 +275,11 @@ C:\ProjetosXamarin\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\
 C:\ProjetosXamarin\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Xamarin.Forms.Platform.Android.dll.mdb
 C:\ProjetosXamarin\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\android\assets\Xamarin.Forms.Xaml.dll.mdb
 C:\ProjetosXamarin\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable\ic_menulateral.png
-C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\DespensaApp.DespensaApp-Signed.apk
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Xamarin.Android.Support.Compat.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Despensa.Android.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Despensa.Android.pdb
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\DespensaApp.DespensaApp.apk
+C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\DespensaApp.DespensaApp-Signed.apk
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Despensa.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\FormsViewGroup.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Plugin.CurrentActivity.dll
@@ -290,7 +291,6 @@ C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\SQLite.Net.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\SQLite.Net.Platform.XamarinAndroid.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Xamarin.Android.Support.Animated.Vector.Drawable.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Xamarin.Android.Support.Annotations.dll
-C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Xamarin.Android.Support.Compat.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Xamarin.Android.Support.Core.UI.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Xamarin.Android.Support.Core.Utils.dll
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Xamarin.Android.Support.Design.dll
@@ -476,6 +476,12 @@ C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-xxhdpi\
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-xxhdpi\limpeza.png
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-xxxhdpi\higiene.png
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-xxxhdpi\limpeza.png
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable\ic_settings_white_24dp.png
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-hdpi\ic_settings_white_24dp.png
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-mdpi\ic_settings_white_24dp.png
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-xhdpi\ic_settings_white_24dp.png
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-xxhdpi\ic_settings_white_24dp.png
+C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\res\drawable-xxxhdpi\ic_settings_white_24dp.png
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\R.cs.flag
 C:\App\SolutionDespensa\Despensa\Despensa.Android\obj\Debug\uploadflags.txt
 C:\App\SolutionDespensa\Despensa\Despensa.Android\bin\Debug\Despensa.dll.mdb

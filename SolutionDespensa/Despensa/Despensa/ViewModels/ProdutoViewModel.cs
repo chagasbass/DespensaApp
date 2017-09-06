@@ -2,7 +2,6 @@
 using Despensa.DataContexts;
 using Despensa.Models;
 using Despensa.Services;
-using Despensa.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +15,6 @@ namespace Despensa.ViewModels
     {
         public ICommand SelecionarProdutoCommand { get; private set; }
         public ICommand NavegarParaNovoProdutoCommand { get; private set; }
-        public ICommand NavegarParaAtualizarProdutoCommand { get; private set; }
         public ICommand ExcluirProdutoCommand { get; private set; }
         public ICommand ListarProdutosCommand { get; private set; }
         public ICommand PesquisarProdutoCommand { get; set; }
@@ -61,7 +59,7 @@ namespace Despensa.ViewModels
 
             SelecionarProdutoCommand = new Command<Produto>(async vm => await SelecionarProduto(vm));
             NavegarParaNovoProdutoCommand = new Command(NavegarParaNovoProduto);
-            NavegarParaAtualizarProdutoCommand = new Command<Produto>(async vm => await AtualizarProduto(vm));
+            
             ListarProdutosCommand = new Command(ListarProdutos);
             ExcluirProdutoCommand = new Command(ExcluirProduto);
             PesquisarProdutoCommand = new Command(PesquisarProduto);
@@ -94,14 +92,6 @@ namespace Despensa.ViewModels
                 return;
             
             await _Navigation.NavegarParaDetalhesDoProduto(produto);
-        }
-
-        private async Task AtualizarProduto(Produto produto)
-        {
-            if (produto == null)
-                return;
-            
-            await _Navigation.NavegarParaAtualizarProdutos(produto);
         }
 
         private void ExcluirProduto()

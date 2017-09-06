@@ -1,5 +1,4 @@
 ﻿using Android.Runtime;
-using Despensa.ViewModels;
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
@@ -7,19 +6,35 @@ using System.Collections.Generic;
 namespace Despensa.Models
 {
     [Preserve(AllMembers = true)]
-    public class Produto:BaseViewModel
+    public class Produto
     {
-         string _Nome;
-         string _Quantidade;
-         string _Medida;
-         string _Marca;
-         string _DataCadastro;
-         Categoria _Categoria;
-         string _Status;
-         string _Detalhes;
-         bool _Comprado;
-        string _CorStatus;
-        string _Imagem;
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        [Indexed]
+        public int IdCategoria { get; set; }
+        [MaxLength(50), NotNull]
+        public string Nome { get; set; }
+        [NotNull]
+        public string Quantidade { get; set; }
+        [MaxLength(50), NotNull]
+        public string Medida { get; set; }
+        [MaxLength(50), NotNull]
+        public string Marca { get; set; }
+        [MaxLength(50), NotNull]
+        public string DataCadastro { get; set; }
+        [Ignore]
+        public Categoria Categoria { get; set; }
+        [MaxLength(20), NotNull]
+        public string Status { get; set; }
+        [Ignore]
+        public string Detalhes { get; set; }
+        [NotNull]
+        public bool Comprado { get; set; }
+        [Ignore]
+        public string CorStatus { get; set; }
+        [MaxLength(200), NotNull]
+        public string Imagem { get; set; }
+
         
         public Produto()
         {
@@ -27,147 +42,6 @@ namespace Despensa.Models
             Comprado = true;
             Imagem = "produtos.png";
         }
-
-        #region Propriedades
-
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
-        [Indexed]
-        public int IdCategoria { get; set; }
-
-        [MaxLength(50), NotNull]
-        public string Nome
-        {
-            get { return _Nome; }
-
-            set
-            {
-                SetValue(ref _Nome, value);
-                OnPropertyChanged(nameof(_Nome));
-            }
-        }
-
-        [NotNull]
-        public string Quantidade
-        {
-            get { return _Quantidade; }
-
-            set
-            {
-                SetValue(ref _Quantidade, value);
-                OnPropertyChanged(nameof(_Quantidade));
-            }
-        }
-
-        [MaxLength(50), NotNull]
-        public string Medida
-        {
-            get { return _Medida; }
-
-            set
-            {
-                SetValue(ref _Medida, value);
-                OnPropertyChanged(nameof(_Medida));
-            }
-        }
-
-        [MaxLength(50), NotNull]
-        public string Marca
-        {
-            get { return _Marca; }
-
-            set
-            {
-                SetValue(ref _Marca, value);
-                OnPropertyChanged(nameof(_Marca));
-            }
-        }
-
-        [MaxLength(50), NotNull]
-        public string DataCadastro
-        {
-            get { return _DataCadastro; }
-
-            set
-            {
-                SetValue(ref _DataCadastro, value);
-                OnPropertyChanged(nameof(_DataCadastro));
-            }
-        }
-        [Ignore]
-        public Categoria Categoria
-        {
-            get { return _Categoria; }
-
-            set
-            {
-                SetValue(ref _Categoria, value);
-                OnPropertyChanged(nameof(_Categoria));
-            }
-        }
-
-        [MaxLength(20), NotNull]
-        public string Status
-        {
-            get { return _Status; }
-
-            set
-            {
-                SetValue(ref _Status, value);
-                OnPropertyChanged(nameof(_Status));
-            }
-        }
-
-        [Ignore]
-        public string Detalhes
-        {
-            get { return _Detalhes; }
-
-            set
-            {
-                SetValue(ref _Detalhes, value);
-                OnPropertyChanged(nameof(_Detalhes));
-            }
-        }
-
-        [NotNull]
-        public bool Comprado
-        {
-            get { return _Comprado; }
-
-            set
-            {
-                SetValue(ref _Comprado, value);
-                OnPropertyChanged(nameof(_Comprado));
-            }
-        }
-
-        [Ignore]
-        public string CorStatus
-        {
-            get { return _CorStatus; }
-
-            set
-            {
-                SetValue(ref _CorStatus, value);
-                OnPropertyChanged(nameof(_CorStatus));
-            }
-        }
-
-        [MaxLength(200), NotNull]
-        public string Imagem
-        {
-            get { return _Imagem; }
-
-            set
-            {
-                SetValue(ref _Imagem, value);
-                OnPropertyChanged(nameof(_Imagem));
-            }
-        }
-
-        #endregion
 
         public List<string> ValidarProduto()
         {

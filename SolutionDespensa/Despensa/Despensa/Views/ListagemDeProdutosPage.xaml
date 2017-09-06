@@ -43,7 +43,7 @@
                             </StackLayout>
                         </Frame>-->
                         <ViewCell.ContextActions>
-                            <MenuItem Text="Editar" Clicked="MenuItem_EditarProdutos"  CommandParameter="{Binding .}" />
+                            <!--<MenuItem Text="Editar" Clicked="MenuItem_EditarProdutos"  CommandParameter="{Binding .}" />-->
                             <MenuItem Text="Excluir" Clicked="MenuItem_ExcluirProdutos" IsDestructive="True" CommandParameter="{Binding .}"/>
                         </ViewCell.ContextActions>
                     </ViewCell>

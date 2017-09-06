@@ -1,45 +1,16 @@
 ﻿using Android.Runtime;
-using Despensa.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Despensa.Models
 {
     [Preserve(AllMembers = true)]
-    public class ModeloDeInformacao:BaseViewModel
+    public class ModeloDeInformacao
     {
-        string _Titulo;
-        string _Descricao;
+        public string Titulo { get; set; }
+        public string Descricao { get; set; }
 
         public ModeloDeInformacao()
         {
 
         }
-
-        public string Titulo
-        {
-            get { return _Titulo; }
-
-            set
-            {
-                SetValue(ref _Titulo, value);
-                OnPropertyChanged(nameof(_Titulo));
-            }
-        }
-
-        public string Descricao
-        {
-            get { return _Descricao; }
-
-            set
-            {
-                SetValue(ref _Descricao, value);
-                OnPropertyChanged(nameof(_Descricao));
-            }
-        }
-
     }
 }

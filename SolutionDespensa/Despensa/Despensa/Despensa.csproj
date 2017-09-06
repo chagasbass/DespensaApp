@@ -72,6 +72,7 @@
     <Compile Include="ViewModels\CadastrarItemViewModel.cs" />
     <Compile Include="ViewModels\CadastrarProdutoViewModel.cs" />
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
+    <Compile Include="ViewModels\DetalhesProdutoViewModel.cs" />
     <Compile Include="ViewModels\EsqueciSenhaViewModel.cs" />
     <Compile Include="ViewModels\ItemsDeCompraViewModel.cs" />
     <Compile Include="ViewModels\MinhaContaViewModel.cs" />

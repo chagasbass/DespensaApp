@@ -46,6 +46,10 @@ B3 -Inserir os detalhes do item de compra em detalhes - OK
 
 Versao 2
 
+21.A- Refatorar o projeto
+*Refatorar os modelos - OK
+*Refatorar as ViewModels
+*Refatorar as Views
 21-Retirar  a atualização de produtos da lista de produtos e jogar para a tela de detalhes - (Versao 2)
 22-Na tela de detalhes de produto incluir o botao para navegar para atualização do produto  - (Versao 2)
 23-Retirar  a atualização de categoria da lista de categorias e jogar para a tela de detalhes - (Versao 2)
