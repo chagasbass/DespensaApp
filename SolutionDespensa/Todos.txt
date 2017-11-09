@@ -14,7 +14,7 @@ http://www.gbarbosa.com.br/blog/wp-content/uploads/ritinha-21-02-destacada-616x2
 Lista De TODOS
 1-Refatorar os repos -OK
 2-refatorar os model de produto - OK
-3-testar as mudan�as de banco - OK
+3-testar as mudanças de banco - OK
 4-Testar a lista de items para compra OK
 5-aumentar o switch da lista de compras OK
 6-consertar o drop de categorias na atualizacao de produtos. - OK
@@ -33,12 +33,12 @@ Lista De TODOS
 20-Refazer a view de Detalhes de Usuario - OK
 15-Alterar o form de cadastro de items colocando os drops na mesma linha - OK
 16-add novo item a lista de compras e redirecionar para a tela de cadastro de produtos - OK
-17-Refazer o sistema de Navega��o do APP - OK
+17-Refazer o sistema de Navegação do APP - OK
 18-Inserir novas categorias ( Higiene, Limpeza) - OK
 19-Separar a logica da pagina de compras para cadastro de novo item - OK
 20- Testar!
 
-Corre��o de bugs
+Correção de bugs
 
 B1- Verificar o que tem de diferente entre os detalhes do produto e detalhes de Item de compra -OK
 B2- Verificar o backButton - OK
@@ -47,15 +47,23 @@ B3 -Inserir os detalhes do item de compra em detalhes - OK
 Versao 2
 
 21.A- Refatorar o projeto
-*Refatorar os modelos - OK
+*Refatorar os modelos
+ *Criação do campo Data de Validade no modelo de Produtos
 *Refatorar as ViewModels
 *Refatorar as Views
-21-Retirar  a atualiza��o de produtos da lista de produtos e jogar para a tela de detalhes - (Versao 2)
-22-Na tela de detalhes de produto incluir o botao para navegar para atualiza��o do produto  - (Versao 2)
-23-Retirar  a atualiza��o de categoria da lista de categorias e jogar para a tela de detalhes - (Versao 2)
-24-Na tela de detalhes de categoria incluir o botao para navegar para atualiza��o da categoria - (Versao 2)
+*Criação dos serviços para consumo da api
+*Refatorar todas as listas da aplicação, colocando o loading,escolha para mvvm
+*Alterar o serviço de navegação da aplicação
+*Alterar o menu da aplicação
+*Alterar as fotos e ícones da aplicação
+*Criação da view de esquecimento de senha
+*Implementar a lista de troca de preços de produtos(talvez)
+
+21-Retirar  a atualização de produtos da lista de produtos e jogar para a tela de detalhes - (Versao 2)
+22-Na tela de detalhes de produto incluir o botao para navegar para atualização do produto  - (Versao 2)
+23-Retirar  a atualização de categoria da lista de categorias e jogar para a tela de detalhes - (Versao 2)
+24-Na tela de detalhes de categoria incluir o botao para navegar para atualização da categoria - (Versao 2)
 25-Inserir a foto do produto caso queira. -(Versao 2)
-26-Criar a tela de configura��es com a habilita��o de notifica�oes (Versao 2))
-27-Colocar a a pesquisa na toolbar 
-
-
+26-Criar a tela de configurações com a habilitação de notificaçoes (Versao 2))
+27-Colocar a a pesquisa na toolbar (Implementar primeiro fora, se funcionar inserir no app)
+28-Efetuar a exclusão em lote das listas (listas ticadas)
