@@ -67,3 +67,4 @@ Versao 2
 26-Criar a tela de configurações com a habilitação de notificaçoes (Versao 2))
 27-Colocar a a pesquisa na toolbar (Implementar primeiro fora, se funcionar inserir no app)
 28-Efetuar a exclusão em lote das listas (listas ticadas)
+29-Implementar as push notifications para avisar de produtos chegando a validade, fora da validade e produtos acabando
